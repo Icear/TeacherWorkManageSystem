@@ -9,6 +9,26 @@ import java.util.Objects;
 public class TeacherWatchExamEntity {
     private int examId;
     private int teacherId;
+    private TeacherEntity teacherEntity;
+    private ExamEntity examEntity;
+
+    @ManyToOne
+    public ExamEntity getExamEntity() {
+        return examEntity;
+    }
+
+    public void setExamEntity(ExamEntity examEntity) {
+        this.examEntity = examEntity;
+    }
+
+    @ManyToOne
+    public TeacherEntity getTeacherEntity() {
+        return teacherEntity;
+    }
+
+    public void setTeacherEntity(TeacherEntity teacherEntity) {
+        this.teacherEntity = teacherEntity;
+    }
 
     @Id
     @Column(name = "exa_no")
@@ -50,6 +70,8 @@ public class TeacherWatchExamEntity {
         return "TeacherWatchExamEntity{" +
                 "examId=" + examId +
                 ", teacherId=" + teacherId +
+                ", teacherEntity=" + teacherEntity +
+                ", examEntity=" + examEntity +
                 '}';
     }
 }

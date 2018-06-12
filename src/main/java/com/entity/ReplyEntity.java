@@ -11,6 +11,26 @@ public class ReplyEntity {
     private String replyInformation;
     private Timestamp replyTime;
     private Byte whetherInTime;
+    private TeacherEntity teacherEntity;
+    private ReplyMissionEntity replyMissionEntity;
+
+    @ManyToOne
+    public ReplyMissionEntity getReplyMissionEntity() {
+        return replyMissionEntity;
+    }
+
+    public void setReplyMissionEntity(ReplyMissionEntity replyMissionEntity) {
+        this.replyMissionEntity = replyMissionEntity;
+    }
+
+    @ManyToOne
+    public TeacherEntity getTeacherEntity() {
+        return teacherEntity;
+    }
+
+    public void setTeacherEntity(TeacherEntity teacherEntity) {
+        this.teacherEntity = teacherEntity;
+    }
 
     @Id
     @Column(name = "rep_no")
@@ -76,6 +96,8 @@ public class ReplyEntity {
                 ", replyInformation='" + replyInformation + '\'' +
                 ", replyTime=" + replyTime +
                 ", whetherInTime=" + whetherInTime +
+                ", teacherEntity=" + teacherEntity +
+                ", replyMissionEntity=" + replyMissionEntity +
                 '}';
     }
 }

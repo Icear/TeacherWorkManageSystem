@@ -3,6 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "exam", schema = "teacherworkmanagesystemdatabase")
@@ -16,6 +17,46 @@ public class ExamEntity {
     private String examInformationStatus;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private AdministratorEntity administratorEntity;
+    private CourseEntity courseEntity;
+    private Set<ClassroomEntity> classroomEntities;
+    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
+
+    @OneToMany(mappedBy = "examEntity")
+    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
+        return teacherWatchExamEntities;
+    }
+
+    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+        this.teacherWatchExamEntities = teacherWatchExamEntities;
+    }
+
+    @OneToMany(mappedBy = "examEntity")
+    public Set<ClassroomEntity> getClassroomEntities() {
+        return classroomEntities;
+    }
+
+    public void setClassroomEntities(Set<ClassroomEntity> classroomEntities) {
+        this.classroomEntities = classroomEntities;
+    }
+
+    @ManyToOne
+    public CourseEntity getCourseEntity() {
+        return courseEntity;
+    }
+
+    public void setCourseEntity(CourseEntity courseEntity) {
+        this.courseEntity = courseEntity;
+    }
+
+    @ManyToOne
+    public AdministratorEntity getAdministratorEntity() {
+        return administratorEntity;
+    }
+
+    public void setAdministratorEntity(AdministratorEntity administratorEntity) {
+        this.administratorEntity = administratorEntity;
+    }
 
     @Id
     @Column(name = "exa_no")
@@ -141,6 +182,10 @@ public class ExamEntity {
                 ", examInformationStatus='" + examInformationStatus + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", administratorEntity=" + administratorEntity +
+                ", courseEntity=" + courseEntity +
+                ", classroomEntities=" + classroomEntities +
+                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
                 '}';
     }
 }

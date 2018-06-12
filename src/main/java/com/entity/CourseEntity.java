@@ -3,6 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "course", schema = "teacherworkmanagesystemdatabase")
@@ -11,6 +12,26 @@ public class CourseEntity {
     private String courseName;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private AdministratorEntity administratorEntity;
+    private Set<ExamEntity> examEntities;
+
+    @OneToMany(mappedBy = "courseEntity")
+    public Set<ExamEntity> getExamEntities() {
+        return examEntities;
+    }
+
+    public void setExamEntities(Set<ExamEntity> examEntities) {
+        this.examEntities = examEntities;
+    }
+
+    @ManyToOne
+    public AdministratorEntity getAdministratorEntity() {
+        return administratorEntity;
+    }
+
+    public void setAdministratorEntity(AdministratorEntity administratorEntity) {
+        this.administratorEntity = administratorEntity;
+    }
 
     @Id
     @Column(name = "cou_no")
@@ -76,6 +97,8 @@ public class CourseEntity {
                 ", courseName='" + courseName + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", administratorEntity=" + administratorEntity +
+                ", examEntities=" + examEntities +
                 '}';
     }
 }

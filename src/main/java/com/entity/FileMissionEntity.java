@@ -3,6 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "file_mission", schema = "teacherworkmanagesystemdatabase")
@@ -14,6 +15,26 @@ public class FileMissionEntity {
     private String status;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private MissionEntity missionEntity;
+    private Set<ResourceEntity> resourceEntities;
+
+    @OneToMany(mappedBy = "fileMissionEntity")
+    public Set<ResourceEntity> getResourceEntities() {
+        return resourceEntities;
+    }
+
+    public void setResourceEntities(Set<ResourceEntity> resourceEntities) {
+        this.resourceEntities = resourceEntities;
+    }
+
+    @OneToOne (mappedBy = "fileMissionEntity")
+    public MissionEntity getMissionEntity() {
+        return missionEntity;
+    }
+
+    public void setMissionEntity(MissionEntity missionEntity) {
+        this.missionEntity = missionEntity;
+    }
 
     @Id
     @Column(name = "fil_mis_no")
@@ -115,6 +136,8 @@ public class FileMissionEntity {
                 ", status='" + status + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", missionEntity=" + missionEntity +
+                ", resourceEntities=" + resourceEntities +
                 '}';
     }
 }

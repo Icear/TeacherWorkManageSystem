@@ -12,6 +12,38 @@ public class MissionEntity {
     private String missionStatus;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private AdministratorEntity administratorEntity;
+    private ReplyMissionEntity replyMissionEntity;
+    private FileMissionEntity fileMissionEntity;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    public FileMissionEntity getFileMissionEntity() {
+        return fileMissionEntity;
+    }
+
+    public void setFileMissionEntity(FileMissionEntity fileMissionEntity) {
+        this.fileMissionEntity = fileMissionEntity;
+    }
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    public ReplyMissionEntity getReplyMissionEntity() {
+        return replyMissionEntity;
+    }
+
+    public void setReplyMissionEntity(ReplyMissionEntity replyMissionEntity) {
+        this.replyMissionEntity = replyMissionEntity;
+    }
+
+    @ManyToOne
+    public AdministratorEntity getAdministratorEntity() {
+        return administratorEntity;
+    }
+
+    public void setAdministratorEntity(AdministratorEntity administratorEntity) {
+        this.administratorEntity = administratorEntity;
+    }
 
     @Id
     @Column(name = "mis_no")
@@ -89,6 +121,9 @@ public class MissionEntity {
                 ", missionStatus='" + missionStatus + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", administratorEntity=" + administratorEntity +
+                ", replyMissionEntity=" + replyMissionEntity +
+                ", fileMissionEntity=" + fileMissionEntity +
                 '}';
     }
 }

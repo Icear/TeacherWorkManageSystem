@@ -14,6 +14,16 @@ public class ResourceEntity {
     private Timestamp uploadTime;
     private byte isFailed;
     private String hash;
+    private FileMissionEntity fileMissionEntity;
+
+    @ManyToOne
+    public FileMissionEntity getFileMissionEntity() {
+        return fileMissionEntity;
+    }
+
+    public void setFileMissionEntity(FileMissionEntity fileMissionEntity) {
+        this.fileMissionEntity = fileMissionEntity;
+    }
 
     @Id
     @Column(name = "res_no")
@@ -115,6 +125,7 @@ public class ResourceEntity {
                 ", uploadTime=" + uploadTime +
                 ", isFailed=" + isFailed +
                 ", hash='" + hash + '\'' +
+                ", fileMissionEntity=" + fileMissionEntity +
                 '}';
     }
 }

@@ -11,6 +11,16 @@ public class ClassroomEntity {
     private String classInformation;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private ExamEntity examEntity;
+
+    @ManyToOne
+    public ExamEntity getExamEntity() {
+        return examEntity;
+    }
+
+    public void setExamEntity(ExamEntity examEntity) {
+        this.examEntity = examEntity;
+    }
 
     @Id
     @Column(name = "cla_no")
@@ -76,6 +86,7 @@ public class ClassroomEntity {
                 ", classInformation='" + classInformation + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", examEntity=" + examEntity +
                 '}';
     }
 }

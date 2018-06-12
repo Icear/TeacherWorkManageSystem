@@ -3,6 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "teacher", schema = "teacherworkmanagesystemdatabase")
@@ -17,6 +18,37 @@ public class TeacherEntity {
     private String email;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private AdministratorEntity administratorEntity;
+    private Set<ReplyEntity> replyEntities;
+    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
+
+    @OneToMany(mappedBy = "teacherEntity")
+    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
+        return teacherWatchExamEntities;
+    }
+
+    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+        this.teacherWatchExamEntities = teacherWatchExamEntities;
+    }
+
+    @OneToMany(mappedBy = "teacherEntity")
+    public Set<ReplyEntity> getReplyEntities() {
+        return replyEntities;
+    }
+
+    public void setReplyEntities(Set<ReplyEntity> replyEntities) {
+        this.replyEntities = replyEntities;
+    }
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    public AdministratorEntity getAdministratorEntity() {
+        return administratorEntity;
+    }
+
+    public void setAdministratorEntity(AdministratorEntity administratorEntity) {
+        this.administratorEntity = administratorEntity;
+    }
 
     @Id
     @Column(name = "tea_no")
@@ -154,6 +186,9 @@ public class TeacherEntity {
                 ", email='" + email + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", administratorEntity=" + administratorEntity +
+                ", replyEntities=" + replyEntities +
+                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
                 '}';
     }
 }
