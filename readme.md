@@ -4,13 +4,13 @@
     This is a simple system made for school works helping.
 
 ## Environment Configuration
-[x] maven
-[x] log4j
-[] docker
-[x] hibernate
-[x] spring-framework
-[x] spring-MVC
-[] git
-[x] spring-AOP
-[x] gson
-[x] validator
+- [x] maven
+- [x] log4j
+- [] docker
+- [x] hibernate
+- [x] spring-framework
+- [x] spring-MVC
+- [x] git
+- [x] spring-AOP
+- [x] gson
+- [x] validator
