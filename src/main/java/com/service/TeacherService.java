@@ -55,5 +55,13 @@ public interface TeacherService {
      */
     boolean updateTeacher(@NotNull TeacherEntity teacherEntity);
 
+    /**
+     * 根据教师id判断其是否是管理员，与administratorService.findAdministrator关联
+     *
+     * @param teacherId 教师id
+     * @return 真假
+     */
+    boolean isAdministrator(int teacherId);
+
 
 }
