@@ -12,6 +12,7 @@ public class TeacherWatchExamEntity {
     private TeacherEntity teacherEntity;
     private ExamEntity examEntity;
 
+
     @ManyToOne
     public ExamEntity getExamEntity() {
         return examEntity;
