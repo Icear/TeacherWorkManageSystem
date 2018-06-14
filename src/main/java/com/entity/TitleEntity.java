@@ -10,8 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "title", schema = "teacherworkmanagesystemdatabase")
 public class TitleEntity {
-    private int titNo;
-    private String tilName;
+    private int id;
+    private String name;
     private Set<TeacherEntity> teacherEntities;
 
     public TitleEntity() {
@@ -32,22 +32,22 @@ public class TitleEntity {
 
     @Id
     @Column(name = "tit_no")
-    public int getTitNo() {
-        return titNo;
+    public int getId() {
+        return id;
     }
 
-    public void setTitNo(int titNo) {
-        this.titNo = titNo;
+    public void setId(int titNo) {
+        this.id = titNo;
     }
 
     @Basic
     @Column(name = "til_name")
-    public String getTilName() {
-        return tilName;
+    public String getName() {
+        return name;
     }
 
-    public void setTilName(String tilName) {
-        this.tilName = tilName;
+    public void setName(String tilName) {
+        this.name = tilName;
     }
 
     @Override
@@ -55,28 +55,28 @@ public class TitleEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TitleEntity that = (TitleEntity) o;
-        return titNo == that.titNo &&
-                Objects.equals(tilName, that.tilName);
+        return id == that.id &&
+                Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(titNo, tilName);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
         return "TitleEntity{" +
-                "titNo=" + titNo +
-                ", tilName='" + tilName + '\'' +
+                "titNo=" + id +
+                ", tilName='" + name + '\'' +
                 ", teacherEntities=" + teacherEntities +
                 '}';
     }
 
     public TitleEntity(int titNo, String tilName, Set<TeacherEntity> teacherEntities) {
-        this.titNo = titNo;
-        this.tilName = tilName;
+        this.id = titNo;
+        this.name = tilName;
         this.teacherEntities = teacherEntities;
     }
 }

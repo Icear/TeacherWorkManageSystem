@@ -16,6 +16,11 @@ public abstract class GenericDao<T> {
     private EntityManager entityManager;
     private Class<T> clazz;
 
+    public GenericDao(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+
+
     @SuppressWarnings({"unchecked","rawtypes"})
     GenericDao(){
         Type t = getClass().getGenericSuperclass();

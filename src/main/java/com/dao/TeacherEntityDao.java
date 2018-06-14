@@ -7,13 +7,15 @@ import javax.persistence.Query;
 
 
 /**
- * TeacherEntityDao 类 重载find方法 相对于父类新增根据姓名查找老师实体的方法
+ * TeacherEntityDao 类 相对于父类新增根据姓名查找老师实体的方法 以及 根据账号查找老师实体的方法
  */
 public class TeacherEntityDao extends GenericDao<TeacherEntity> {
 
+    public TeacherEntityDao() {
+    }
 
 //    /**
-//     * 重载的find方法 不知道需不需要
+//     * 重载的find方法 然而不需要重载find方法 只需要调用父类的就行了
 //     * @param id entity.id
 //     * @return
 //     */
@@ -32,11 +34,10 @@ public class TeacherEntityDao extends GenericDao<TeacherEntity> {
 
     /**
      * 根据账号查找老师
-     * 如果需要重载上方注释的find方法，则修改此类为 findByAccount
      * @param account 账号
      * @return 查找到的老师实体
      */
-    public TeacherEntity find(String account){
+    public TeacherEntity findByAccount(String account){
         String jpql ="FROM TeacherEntity t WHERE t.account=:account";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("account",account);
@@ -66,8 +67,6 @@ public class TeacherEntityDao extends GenericDao<TeacherEntity> {
         }
         return  teacherEntity;
     }
-
-
 
 
 }

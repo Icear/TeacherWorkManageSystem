@@ -9,8 +9,17 @@ import java.util.Objects;
  * 这个类用来储存老师监考考试PK实体的数据 因为是多对多的映射关系 所以产生出了两个表
  */
 public class TeacherWatchExamEntityPK implements Serializable {
+    private int id;
     private int examId;
     private int teacherId;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Column(name = "exa_no")
     @Id
@@ -47,17 +56,20 @@ public class TeacherWatchExamEntityPK implements Serializable {
         return Objects.hash(examId, teacherId);
     }
 
+
+    public TeacherWatchExamEntityPK(int id, int examId, int teacherId) {
+        this.id = id;
+        this.examId = examId;
+        this.teacherId = teacherId;
+    }
+
     @Override
     public String toString() {
         return "TeacherWatchExamEntityPK{" +
-                "examId=" + examId +
+                "id=" + id +
+                ", examId=" + examId +
                 ", teacherId=" + teacherId +
                 '}';
-    }
-
-    public TeacherWatchExamEntityPK(int examId, int teacherId) {
-        this.examId = examId;
-        this.teacherId = teacherId;
     }
 
     public TeacherWatchExamEntityPK() {

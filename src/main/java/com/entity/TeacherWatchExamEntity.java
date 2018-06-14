@@ -10,6 +10,7 @@ import java.util.Objects;
 @Table(name = "teacher_watch_exam", schema = "teacherworkmanagesystemdatabase")
 @IdClass(TeacherWatchExamEntityPK.class)
 public class TeacherWatchExamEntity {
+    private int id;
     private int examId;
     private int teacherId;
     private TeacherEntity teacherEntity;
@@ -18,6 +19,13 @@ public class TeacherWatchExamEntity {
     public TeacherWatchExamEntity() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @ManyToOne
     public ExamEntity getExamEntity() {
@@ -75,14 +83,16 @@ public class TeacherWatchExamEntity {
     @Override
     public String toString() {
         return "TeacherWatchExamEntity{" +
-                "examId=" + examId +
+                "id=" + id +
+                ", examId=" + examId +
                 ", teacherId=" + teacherId +
                 ", teacherEntity=" + teacherEntity +
                 ", examEntity=" + examEntity +
                 '}';
     }
 
-    public TeacherWatchExamEntity(int examId, int teacherId, TeacherEntity teacherEntity, ExamEntity examEntity) {
+    public TeacherWatchExamEntity(int id, int examId, int teacherId, TeacherEntity teacherEntity, ExamEntity examEntity) {
+        this.id = id;
         this.examId = examId;
         this.teacherId = teacherId;
         this.teacherEntity = teacherEntity;
