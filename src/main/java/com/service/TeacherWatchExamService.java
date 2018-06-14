@@ -3,6 +3,7 @@ package com.service;
 import com.entity.TeacherWatchExamEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface TeacherWatchExamService {
@@ -10,9 +11,9 @@ public interface TeacherWatchExamService {
      * 添加监考信息
      *
      * @param teacherWatchExamEntity 教师监考考试实体
-     * @return 是否添加成功
+     * @return 成功返回新的实体类
      */
-    boolean addTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
+    @NotNull Optional<TeacherWatchExamEntity> addTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
 
     /**
      * 删除指定监考信息
@@ -28,9 +29,9 @@ public interface TeacherWatchExamService {
      * 更新监考信息
      *
      * @param teacherWatchExamEntity 教师监考信息实体
-     * @return 是否修改成功
+     * @return 成功返回修改后的新的实体
      */
-    boolean updateTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
+    @NotNull Optional<TeacherWatchExamEntity> updateTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
 
     /**
      * 查询所有监考信息
@@ -38,4 +39,7 @@ public interface TeacherWatchExamService {
      * @return 监考信息实体集合
      */
     @NotNull Set<TeacherWatchExamEntity> findTeacherWatchExams();
+
+
+    // @NotNull Set<TeacherEntity> findTeachersInOneExam(int examId);
 }

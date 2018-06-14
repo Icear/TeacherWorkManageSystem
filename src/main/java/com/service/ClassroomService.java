@@ -2,8 +2,8 @@ package com.service;
 
 import com.entity.ClassroomEntity;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface ClassroomService {
@@ -12,25 +12,25 @@ public interface ClassroomService {
      * 添加教室
      *
      * @param classroom 教室实体对象
-     * @return 是否添加成功
+     * @return 成功则返回新的教室实体，失败返回null
      */
-    boolean addClassroom(@NotNull ClassroomEntity classroom);
+    @NotNull Optional<ClassroomEntity> addClassroom(@NotNull ClassroomEntity classroom);
 
     /**
      * 删除教室
      *
-     * @param classroomId 教室id
+     * @param classroom 有效的含有教室id的教室类
      * @return 删除成功与否
      */
-    boolean deleteClassroom(int classroomId);
+    boolean deleteClassroom(ClassroomEntity classroom);
 
     /**
      * 更新教室
      *
      * @param classroom 教室实体，应包含被修改的教室id
-     * @return 删除成功与否
+     * @return 更新成功返回新的教室实体，失败返回null
      */
-    boolean updateClassroom(@NotNull ClassroomEntity classroom);
+    @NotNull Optional<ClassroomEntity> updateClassroom(@NotNull ClassroomEntity classroom);
 
     /**
      * 查找所有的教室
@@ -45,7 +45,7 @@ public interface ClassroomService {
      * @param classroomId 教室id
      * @return 教室对象
      */
-    @Nullable ClassroomEntity findClassroomByClassroomId(int classroomId);
+    @NotNull Optional<ClassroomEntity> findClassroomByClassroomId(int classroomId);
 
     /**
      * 根据考试id查询占用的教室信息
