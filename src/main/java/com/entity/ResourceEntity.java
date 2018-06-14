@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * 这个类用来储存资源实体的数据
+ */
 @Entity
 @Table(name = "resource", schema = "teacherworkmanagesystemdatabase")
 public class ResourceEntity {
@@ -16,6 +19,13 @@ public class ResourceEntity {
     private String hash;
     private FileMissionEntity fileMissionEntity;
 
+    public ResourceEntity() {
+    }
+
+    /**
+     * 与文件任务多对一的映射
+     * @return 文件任务
+     */
     @ManyToOne
     public FileMissionEntity getFileMissionEntity() {
         return fileMissionEntity;
@@ -45,6 +55,10 @@ public class ResourceEntity {
         this.name = name;
     }
 
+    /**
+     * 资源的格式 如 jpg txt mp3 等
+     * @return 资源格式
+     */
     @Basic
     @Column(name = "format")
     public String getFormat() {
@@ -55,6 +69,10 @@ public class ResourceEntity {
         this.format = format;
     }
 
+    /**
+     * 资源的物理路径
+     * @return 物理路径
+     */
     @Basic
     @Column(name = "physicalPath")
     public String getPhysicalPath() {
@@ -75,6 +93,10 @@ public class ResourceEntity {
         this.uploadTime = uploadTime;
     }
 
+    /**
+     * 资源是否失效
+     * @return 是/否
+     */
     @Basic
     @Column(name = "isFailed")
     public byte getIsFailed() {
@@ -85,6 +107,10 @@ public class ResourceEntity {
         this.isFailed = isFailed;
     }
 
+    /**
+     * 资源的哈希值
+     * @return 哈希值
+     */
     @Basic
     @Column(name = "hash")
     public String getHash() {
@@ -127,5 +153,16 @@ public class ResourceEntity {
                 ", hash='" + hash + '\'' +
                 ", fileMissionEntity=" + fileMissionEntity +
                 '}';
+    }
+
+    public ResourceEntity(int id, String name, String format, String physicalPath, Timestamp uploadTime, byte isFailed, String hash, FileMissionEntity fileMissionEntity) {
+        this.id = id;
+        this.name = name;
+        this.format = format;
+        this.physicalPath = physicalPath;
+        this.uploadTime = uploadTime;
+        this.isFailed = isFailed;
+        this.hash = hash;
+        this.fileMissionEntity = fileMissionEntity;
     }
 }

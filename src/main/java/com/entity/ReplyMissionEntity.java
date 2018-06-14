@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * 这个类用来储存回复任务实体的数据
+ */
 @Entity
 @Table(name = "reply_mission", schema = "teacherworkmanagesystemdatabase")
 public class ReplyMissionEntity {
@@ -18,6 +21,13 @@ public class ReplyMissionEntity {
     private Set<ReplyEntity> replyEntities;
     private MissionEntity missionEntity;
 
+    public ReplyMissionEntity() {
+    }
+
+    /**
+     * 与任务实体一对一的映射
+     * @return 任务实体
+     */
     @OneToOne(mappedBy = "replyMissionEntity")
     public MissionEntity getMissionEntity() {
         return missionEntity;
@@ -27,6 +37,10 @@ public class ReplyMissionEntity {
         this.missionEntity = missionEntity;
     }
 
+    /**
+     * 与回复实体一对多的映射
+     * @return 回复实体
+     */
     @OneToMany(mappedBy = "replyMissionEntity")
     public Set<ReplyEntity> getReplyEntities() {
         return replyEntities;
@@ -139,5 +153,17 @@ public class ReplyMissionEntity {
                 ", replyEntities=" + replyEntities +
                 ", missionEntity=" + missionEntity +
                 '}';
+    }
+
+    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Byte status, Timestamp createTime, Timestamp updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.status = status;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.replyEntities = replyEntities;
+        this.missionEntity = missionEntity;
     }
 }

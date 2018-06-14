@@ -4,8 +4,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * 这个类用来储存任务实体的数据
+ */
 @Entity
 @Table(name = "mission", schema = "teacherworkmanagesystemdatabase")
+
 public class MissionEntity {
     private int id;
     private String missionType;
@@ -16,6 +20,13 @@ public class MissionEntity {
     private ReplyMissionEntity replyMissionEntity;
     private FileMissionEntity fileMissionEntity;
 
+    public MissionEntity() {
+    }
+
+    /**
+     * 与文件任务实体一对一的关系
+     * @return 文件任务实体
+     */
     @OneToOne
     @JoinColumn(unique = true)
     public FileMissionEntity getFileMissionEntity() {
@@ -26,6 +37,10 @@ public class MissionEntity {
         this.fileMissionEntity = fileMissionEntity;
     }
 
+    /**
+     * 与回复任务实体的一对一的关系
+     * @return 回复任务实体
+     */
     @OneToOne
     @JoinColumn(unique = true)
     public ReplyMissionEntity getReplyMissionEntity() {
@@ -55,6 +70,10 @@ public class MissionEntity {
         this.id = id;
     }
 
+    /**
+     * 任务类型 共两种： 文件任务/回复任务
+     * @return 任务类型
+     */
     @Basic
     @Column(name = "missionType")
     public String getMissionType() {
@@ -125,5 +144,16 @@ public class MissionEntity {
                 ", replyMissionEntity=" + replyMissionEntity +
                 ", fileMissionEntity=" + fileMissionEntity +
                 '}';
+    }
+
+    public MissionEntity(int id, String missionType, String missionStatus, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, ReplyMissionEntity replyMissionEntity, FileMissionEntity fileMissionEntity) {
+        this.id = id;
+        this.missionType = missionType;
+        this.missionStatus = missionStatus;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.replyMissionEntity = replyMissionEntity;
+        this.fileMissionEntity = fileMissionEntity;
     }
 }

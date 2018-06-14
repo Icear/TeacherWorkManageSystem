@@ -7,6 +7,10 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ * DAO层的抽象父类泛型 为子类提供重载方法
+ * @param <T> 实体类泛型
+ */
 public abstract class GenericDao<T> {
     @PersistenceContext
     private EntityManager entityManager;
@@ -123,6 +127,7 @@ public abstract class GenericDao<T> {
     public void add(T entity){
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
     /**
      * 可能有问题 以后还要再改
@@ -131,6 +136,7 @@ public abstract class GenericDao<T> {
     public void delete(T entity){
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
     /**
      * 可能有问题 以后还要再改
@@ -139,6 +145,7 @@ public abstract class GenericDao<T> {
     public void edit(T entity){
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
 }

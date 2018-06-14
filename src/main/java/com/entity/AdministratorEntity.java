@@ -4,10 +4,13 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
-
+/**
+ * 这个类用来储存管理员实体的数据
+ */
 @Entity
 @Table(name = "administrator", schema = "teacherworkmanagesystemdatabase")
 public class AdministratorEntity {
+
     private int id;
     private Timestamp createTime;
     private Timestamp updateTime;
@@ -16,6 +19,13 @@ public class AdministratorEntity {
     private Set<ExamEntity> examEntities;
     private Set<MissionEntity> missionEntities;
 
+    public AdministratorEntity() {
+    }
+
+    /**
+     * 与任务实体一对多的映射
+     * @return 任务实体
+     */
     @OneToMany(mappedBy = "administratorEntity")
     public Set<MissionEntity> getMissionEntities() {
         return missionEntities;
@@ -25,6 +35,10 @@ public class AdministratorEntity {
         this.missionEntities = missionEntities;
     }
 
+    /**
+     * 与考试实体一对多的映射
+     * @return 考试实体
+     */
     @OneToMany(mappedBy = "administratorEntity")
     public Set<ExamEntity> getExamEntities() {
         return examEntities;
@@ -34,6 +48,10 @@ public class AdministratorEntity {
         this.examEntities = examEntities;
     }
 
+    /**
+     * 与课程实体一对多的映射
+     * @return 课程实体
+     */
     @OneToMany(mappedBy = "administratorEntity")
     public Set<CourseEntity> getCourseEntities() {
         return courseEntities;
@@ -43,6 +61,10 @@ public class AdministratorEntity {
         this.courseEntities = courseEntities;
     }
 
+    /**
+     * 与老师实体一对一的映射
+     * @return 老师实体
+     */
     @OneToOne(mappedBy = "administratorEntity")
     public TeacherEntity getTeacherEntity() {
         return teacherEntity;
@@ -52,6 +74,10 @@ public class AdministratorEntity {
         this.teacherEntity = teacherEntity;
     }
 
+    /**
+     * 管理员编号
+     * @return id
+     */
     @Id
     @Column(name = "adm_no")
     public int getId() {
@@ -61,6 +87,7 @@ public class AdministratorEntity {
     public void setId(int id) {
         this.id = id;
     }
+
 
     @Basic
     @Column(name = "adm_createTime")
@@ -98,6 +125,7 @@ public class AdministratorEntity {
         return Objects.hash(id, createTime, updateTime);
     }
 
+
     @Override
     public String toString() {
         return "AdministratorEntity{" +
@@ -109,5 +137,15 @@ public class AdministratorEntity {
                 ", examEntities=" + examEntities +
                 ", missionEntities=" + missionEntities +
                 '}';
+    }
+
+    public AdministratorEntity(int id, Timestamp createTime, Timestamp updateTime, TeacherEntity teacherEntity, Set<CourseEntity> courseEntities, Set<ExamEntity> examEntities, Set<MissionEntity> missionEntities) {
+        this.id = id;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.teacherEntity = teacherEntity;
+        this.courseEntities = courseEntities;
+        this.examEntities = examEntities;
+        this.missionEntities = missionEntities;
     }
 }

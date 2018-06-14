@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * 这个类用来储存老师实体的数据
+ */
 @Entity
 @Table(name = "teacher", schema = "teacherworkmanagesystemdatabase")
 public class TeacherEntity {
@@ -22,6 +25,13 @@ public class TeacherEntity {
     private Set<ReplyEntity> replyEntities;
     private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
 
+    public TeacherEntity() {
+    }
+
+    /**
+     * 与老师监考考试实体一对多的映射
+     * @return 老师监考考试实体
+     */
     @OneToMany(mappedBy = "teacherEntity")
     public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
         return teacherWatchExamEntities;
@@ -31,6 +41,10 @@ public class TeacherEntity {
         this.teacherWatchExamEntities = teacherWatchExamEntities;
     }
 
+    /**
+     * 与回复实体一对多的映射
+     * @return 回复实体
+     */
     @OneToMany(mappedBy = "teacherEntity")
     public Set<ReplyEntity> getReplyEntities() {
         return replyEntities;
@@ -40,6 +54,10 @@ public class TeacherEntity {
         this.replyEntities = replyEntities;
     }
 
+    /**
+     * 与管理员实体一对一的映射
+     * @return 管理员实体
+     */
     @OneToOne
     @JoinColumn(unique = true)
     public AdministratorEntity getAdministratorEntity() {
@@ -190,5 +208,21 @@ public class TeacherEntity {
                 ", replyEntities=" + replyEntities +
                 ", teacherWatchExamEntities=" + teacherWatchExamEntities +
                 '}';
+    }
+
+    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.description = description;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.replyEntities = replyEntities;
+        this.teacherWatchExamEntities = teacherWatchExamEntities;
     }
 }

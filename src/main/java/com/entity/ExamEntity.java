@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * 这个类用来储存考试实体的数据
+ */
 @Entity
 @Table(name = "exam", schema = "teacherworkmanagesystemdatabase")
 public class ExamEntity {
@@ -22,6 +25,13 @@ public class ExamEntity {
     private Set<ClassroomEntity> classroomEntities;
     private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
 
+    public ExamEntity() {
+    }
+
+    /**
+     * 与老师监考实体一对多的映射
+     * @return 考试监考实体
+     */
     @OneToMany(mappedBy = "examEntity")
     public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
         return teacherWatchExamEntities;
@@ -31,6 +41,10 @@ public class ExamEntity {
         this.teacherWatchExamEntities = teacherWatchExamEntities;
     }
 
+    /**
+     * 与教室实体一对多的映射
+     * @return 教室实体
+     */
     @OneToMany(mappedBy = "examEntity")
     public Set<ClassroomEntity> getClassroomEntities() {
         return classroomEntities;
@@ -40,6 +54,10 @@ public class ExamEntity {
         this.classroomEntities = classroomEntities;
     }
 
+    /**
+     * 与课程实体多对一的映射
+     * @return 课程实体
+     */
     @ManyToOne
     public CourseEntity getCourseEntity() {
         return courseEntity;
@@ -49,6 +67,10 @@ public class ExamEntity {
         this.courseEntity = courseEntity;
     }
 
+    /**
+     * 与管理员实体多对一的映射
+     * @return 管理员实体
+     */
     @ManyToOne
     public AdministratorEntity getAdministratorEntity() {
         return administratorEntity;
@@ -108,6 +130,10 @@ public class ExamEntity {
         this.lastTime = lastTime;
     }
 
+    /**
+     * 考试应包含学生的人数
+     * @return 学生人数
+     */
     @Basic
     @Column(name = "studentNumber")
     public Integer getStudentNumber() {
@@ -118,6 +144,10 @@ public class ExamEntity {
         this.studentNumber = studentNumber;
     }
 
+    /**
+     * 考试信息分配状态/是否分配给老师 一共用3种状态：①未分配 ②已分配 3.已完成
+     * @return 考试信息分配状态
+     */
     @Basic
     @Column(name = "examInformationStatus")
     public String getExamInformationStatus() {
@@ -188,4 +218,21 @@ public class ExamEntity {
                 ", teacherWatchExamEntities=" + teacherWatchExamEntities +
                 '}';
     }
+
+    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, Timestamp lastTime, Integer studentNumber, String examInformationStatus, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+        this.id = id;
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.lastTime = lastTime;
+        this.studentNumber = studentNumber;
+        this.examInformationStatus = examInformationStatus;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.courseEntity = courseEntity;
+        this.classroomEntities = classroomEntities;
+        this.teacherWatchExamEntities = teacherWatchExamEntities;
+    }
+
 }

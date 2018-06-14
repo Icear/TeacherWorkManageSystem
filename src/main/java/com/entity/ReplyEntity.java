@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * 这个类用来储存回复实体的数据
+ */
 @Entity
 @Table(name = "reply", schema = "teacherworkmanagesystemdatabase")
 public class ReplyEntity {
@@ -14,6 +17,13 @@ public class ReplyEntity {
     private TeacherEntity teacherEntity;
     private ReplyMissionEntity replyMissionEntity;
 
+    public ReplyEntity() {
+    }
+
+    /**
+     * 与回复任务实体多对一的映射
+     * @return 回复任务实体
+     */
     @ManyToOne
     public ReplyMissionEntity getReplyMissionEntity() {
         return replyMissionEntity;
@@ -23,6 +33,10 @@ public class ReplyEntity {
         this.replyMissionEntity = replyMissionEntity;
     }
 
+    /**
+     * 与老师实体多对一的映射
+     * @return 老师实体
+     */
     @ManyToOne
     public TeacherEntity getTeacherEntity() {
         return teacherEntity;
@@ -42,6 +56,10 @@ public class ReplyEntity {
         this.id = id;
     }
 
+    /**
+     * 回复内容
+     * @return 回复内容
+     */
     @Basic
     @Column(name = "rep_information")
     public String getReplyInformation() {
@@ -62,6 +80,10 @@ public class ReplyEntity {
         this.replyTime = replyTime;
     }
 
+    /**
+     * 是否在规定时间内回复
+     * @return 是/否
+     */
     @Basic
     @Column(name = "whetherInTime")
     public Byte getWhetherInTime() {
@@ -99,5 +121,14 @@ public class ReplyEntity {
                 ", teacherEntity=" + teacherEntity +
                 ", replyMissionEntity=" + replyMissionEntity +
                 '}';
+    }
+
+    public ReplyEntity(int id, String replyInformation, Timestamp replyTime, Byte whetherInTime, TeacherEntity teacherEntity, ReplyMissionEntity replyMissionEntity) {
+        this.id = id;
+        this.replyInformation = replyInformation;
+        this.replyTime = replyTime;
+        this.whetherInTime = whetherInTime;
+        this.teacherEntity = teacherEntity;
+        this.replyMissionEntity = replyMissionEntity;
     }
 }

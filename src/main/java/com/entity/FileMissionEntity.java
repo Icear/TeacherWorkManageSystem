@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * 这个类用来储存文件任务实体的数据
+ */
 @Entity
 @Table(name = "file_mission", schema = "teacherworkmanagesystemdatabase")
 public class FileMissionEntity {
@@ -18,6 +21,13 @@ public class FileMissionEntity {
     private MissionEntity missionEntity;
     private Set<ResourceEntity> resourceEntities;
 
+    public FileMissionEntity() {
+    }
+
+    /**
+     * 与资源实体的一对多的映射
+     * @return 资源实体
+     */
     @OneToMany(mappedBy = "fileMissionEntity")
     public Set<ResourceEntity> getResourceEntities() {
         return resourceEntities;
@@ -27,6 +37,10 @@ public class FileMissionEntity {
         this.resourceEntities = resourceEntities;
     }
 
+    /**
+     * 与任务实体一对一的映射
+     * @return 任务实体
+     */
     @OneToOne (mappedBy = "fileMissionEntity")
     public MissionEntity getMissionEntity() {
         return missionEntity;
@@ -76,6 +90,10 @@ public class FileMissionEntity {
         this.deadline = deadline;
     }
 
+    /**
+     * 文件任务的状态 共两种状态 未过期/已过期
+     * @return 文件任务状态
+     */
     @Basic
     @Column(name = "fil_mis_status")
     public String getStatus() {
@@ -139,5 +157,17 @@ public class FileMissionEntity {
                 ", missionEntity=" + missionEntity +
                 ", resourceEntities=" + resourceEntities +
                 '}';
+    }
+
+    public FileMissionEntity(int id, String name, String description, Timestamp deadline, String status, Timestamp createTime, Timestamp updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.status = status;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.missionEntity = missionEntity;
+        this.resourceEntities = resourceEntities;
     }
 }

@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * 这个类用来储存老师监考考试PK实体的数据 因为是多对多的映射关系 所以产生出了两个表
+ */
 public class TeacherWatchExamEntityPK implements Serializable {
     private int examId;
     private int teacherId;
@@ -50,5 +53,13 @@ public class TeacherWatchExamEntityPK implements Serializable {
                 "examId=" + examId +
                 ", teacherId=" + teacherId +
                 '}';
+    }
+
+    public TeacherWatchExamEntityPK(int examId, int teacherId) {
+        this.examId = examId;
+        this.teacherId = teacherId;
+    }
+
+    public TeacherWatchExamEntityPK() {
     }
 }

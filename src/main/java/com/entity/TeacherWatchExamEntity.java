@@ -3,6 +3,9 @@ package com.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * 这个类用来储存老师监考考试实体的数据
+ */
 @Entity
 @Table(name = "teacher_watch_exam", schema = "teacherworkmanagesystemdatabase")
 @IdClass(TeacherWatchExamEntityPK.class)
@@ -11,6 +14,9 @@ public class TeacherWatchExamEntity {
     private int teacherId;
     private TeacherEntity teacherEntity;
     private ExamEntity examEntity;
+
+    public TeacherWatchExamEntity() {
+    }
 
 
     @ManyToOne
@@ -74,5 +80,12 @@ public class TeacherWatchExamEntity {
                 ", teacherEntity=" + teacherEntity +
                 ", examEntity=" + examEntity +
                 '}';
+    }
+
+    public TeacherWatchExamEntity(int examId, int teacherId, TeacherEntity teacherEntity, ExamEntity examEntity) {
+        this.examId = examId;
+        this.teacherId = teacherId;
+        this.teacherEntity = teacherEntity;
+        this.examEntity = examEntity;
     }
 }

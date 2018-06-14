@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * 这个类用来储存教室实体的数据
+ */
 @Entity
 @Table(name = "classroom", schema = "teacherworkmanagesystemdatabase")
 public class ClassroomEntity {
@@ -13,6 +16,13 @@ public class ClassroomEntity {
     private Timestamp updateTime;
     private ExamEntity examEntity;
 
+    public ClassroomEntity() {
+    }
+
+    /**
+     * 与考试实体多对一的映射
+     * @return 考试实体
+     */
     @ManyToOne
     public ExamEntity getExamEntity() {
         return examEntity;
@@ -32,6 +42,10 @@ public class ClassroomEntity {
         this.id = id;
     }
 
+    /**
+     * 教室的地点信息 如：丹青楼925 或者 城栋楼 1002
+     * @return 教室地点
+     */
     @Basic
     @Column(name = "cla_information")
     public String getClassInformation() {
@@ -88,5 +102,13 @@ public class ClassroomEntity {
                 ", updateTime=" + updateTime +
                 ", examEntity=" + examEntity +
                 '}';
+    }
+
+    public ClassroomEntity(int id, String classInformation, Timestamp createTime, Timestamp updateTime, ExamEntity examEntity) {
+        this.id = id;
+        this.classInformation = classInformation;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.examEntity = examEntity;
     }
 }
