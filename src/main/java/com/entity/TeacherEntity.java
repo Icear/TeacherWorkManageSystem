@@ -24,8 +24,22 @@ public class TeacherEntity {
     private AdministratorEntity administratorEntity;
     private Set<ReplyEntity> replyEntities;
     private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
+    private TitleEntity titleEntity;
 
     public TeacherEntity() {
+    }
+
+    /**
+     * 和职称实体多对一的映射
+     * @return 职称实体
+     */
+    @ManyToOne
+    public TitleEntity getTitleEntity() {
+        return titleEntity;
+    }
+
+    public void setTitleEntity(TitleEntity titleEntity) {
+        this.titleEntity = titleEntity;
     }
 
     /**
@@ -207,10 +221,11 @@ public class TeacherEntity {
                 ", administratorEntity=" + administratorEntity +
                 ", replyEntities=" + replyEntities +
                 ", teacherWatchExamEntities=" + teacherWatchExamEntities +
+                ", titleEntity=" + titleEntity +
                 '}';
     }
 
-    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities, TitleEntity titleEntity) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -224,5 +239,8 @@ public class TeacherEntity {
         this.administratorEntity = administratorEntity;
         this.replyEntities = replyEntities;
         this.teacherWatchExamEntities = teacherWatchExamEntities;
+        this.titleEntity = titleEntity;
     }
+
+
 }
