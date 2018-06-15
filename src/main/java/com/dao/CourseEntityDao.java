@@ -7,7 +7,8 @@ import javax.persistence.Query;
 
 
 /**
- * CourseEntityDao 类 相对于父类新增根据课程名查找课程实体的方法
+ * CourseEntityDao 类
+ * 相对于父类新增根据课程名查找课程实体的方法
  */
 public class CourseEntityDao extends GenericDao<CourseEntity> {
 

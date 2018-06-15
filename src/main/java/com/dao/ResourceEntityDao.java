@@ -5,6 +5,10 @@ import com.entity.ResourceEntity;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+/**
+ * ResourceEntityDao 类
+ * 相对于父类新增根据资源名称查找资源任务实体的方法
+ */
 public class ResourceEntityDao extends GenericDao<ResourceEntity> {
     public ResourceEntityDao() {
     }

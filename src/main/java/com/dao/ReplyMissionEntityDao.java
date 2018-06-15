@@ -5,6 +5,10 @@ import com.entity.ReplyMissionEntity;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+/**
+ * ReplyMssionEntityDao 类
+ * 相对于父类新增根据回复任务名称查找回复任务实体的方法
+ */
 public class ReplyMissionEntityDao extends GenericDao<ReplyMissionEntity> {
     public ReplyMissionEntityDao() {
     }

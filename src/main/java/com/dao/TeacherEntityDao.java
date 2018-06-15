@@ -7,7 +7,9 @@ import javax.persistence.Query;
 
 
 /**
- * TeacherEntityDao 类 相对于父类新增根据姓名查找老师实体的方法 以及 根据账号查找老师实体的方法
+ * TeacherEntityDao 类
+ * 相对于父类新增根据姓名查找老师实体的方法
+ * 相对与父类新增根据账号查找老师实体的方法
  */
 public class TeacherEntityDao extends GenericDao<TeacherEntity> {
 

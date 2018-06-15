@@ -5,7 +5,8 @@ import com.entity.FileMissionEntity;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 /**
- * FileMssionEntityDao 类 相对于父类新增根据文件任务名称查找文件实体的方法
+ * FileMssionEntityDao 类
+ * 相对于父类新增根据文件任务名称查找文件任务实体的方法
  */
 public class FileMissionEntityDao extends GenericDao<FileMissionEntity> {
     public FileMissionEntityDao() {
