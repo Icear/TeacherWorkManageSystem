@@ -90,7 +90,8 @@ public class AdministratorEntity {
 
 
     @Basic
-    @Column(name = "adm_createTime")
+    @Column(name = "adm_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -100,7 +101,8 @@ public class AdministratorEntity {
     }
 
     @Basic
-    @Column(name = "adm_updateTime")
+    @Column(name = "adm_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getUpdateTime() {
         return updateTime;
     }

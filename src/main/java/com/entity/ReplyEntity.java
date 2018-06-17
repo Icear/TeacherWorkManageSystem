@@ -1,6 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -72,6 +73,7 @@ public class ReplyEntity {
 
     @Basic
     @Column(name = "rep_time")
+    @NotNull
     public Timestamp getReplyTime() {
         return replyTime;
     }

@@ -1,6 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -47,6 +48,7 @@ public class ResourceEntity {
 
     @Basic
     @Column(name = "res_name")
+    @NotNull
     public String getName() {
         return name;
     }
@@ -61,6 +63,7 @@ public class ResourceEntity {
      */
     @Basic
     @Column(name = "format")
+    @NotNull
     public String getFormat() {
         return format;
     }
@@ -75,6 +78,7 @@ public class ResourceEntity {
      */
     @Basic
     @Column(name = "physicalPath")
+    @NotNull
     public String getPhysicalPath() {
         return physicalPath;
     }
@@ -113,6 +117,7 @@ public class ResourceEntity {
      */
     @Basic
     @Column(name = "hash")
+    @NotNull
     public String getHash() {
         return hash;
     }

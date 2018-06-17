@@ -1,6 +1,9 @@
 package com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
@@ -84,6 +87,7 @@ public class TeacherEntity {
 
     @Id
     @Column(name = "tea_no")
+    @NotNull
     public int getId() {
         return id;
     }
@@ -92,8 +96,14 @@ public class TeacherEntity {
         this.id = id;
     }
 
+    /**
+     * 教师账号必须是6-18位
+     * @return 教师的账号
+     */
     @Basic
     @Column(name = "account")
+    @NotNull
+    @Size( min = 6, max = 18)
     public String getAccount() {
         return account;
     }
@@ -102,8 +112,14 @@ public class TeacherEntity {
         this.account = account;
     }
 
+    /**
+     * 教师的密码最少是6位
+     * @return 教师的密码
+     */
     @Basic
     @Column(name = "password")
+    @NotNull
+    @Size( max = 6)
     public String getPassword() {
         return password;
     }
@@ -154,6 +170,7 @@ public class TeacherEntity {
 
     @Basic
     @Column(name = "email")
+    @Email
     public String getEmail() {
         return email;
     }
@@ -163,7 +180,8 @@ public class TeacherEntity {
     }
 
     @Basic
-    @Column(name = "tea_createTime")
+    @Column(name = "tea_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -173,7 +191,8 @@ public class TeacherEntity {
     }
 
     @Basic
-    @Column(name = "tea_updateTime")
+    @Column(name = "tea_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getUpdateTime() {
         return updateTime;
     }

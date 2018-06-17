@@ -1,6 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +16,7 @@ public class ExamEntity {
     private String name;
     private Timestamp startTime;
     private Timestamp endTime;
-    private Timestamp lastTime;
+    private int lastTime;
     private Integer studentNumber;
     private String examInformationStatus;
     private Timestamp createTime;
@@ -92,6 +93,7 @@ public class ExamEntity {
 
     @Basic
     @Column(name = "exa_name")
+    @NotNull
     public String getName() {
         return name;
     }
@@ -122,11 +124,11 @@ public class ExamEntity {
 
     @Basic
     @Column(name = "lastTime")
-    public Timestamp getLastTime() {
+    public int getLastTime() {
         return lastTime;
     }
 
-    public void setLastTime(Timestamp lastTime) {
+    public void setLastTime(int lastTime) {
         this.lastTime = lastTime;
     }
 
@@ -159,7 +161,8 @@ public class ExamEntity {
     }
 
     @Basic
-    @Column(name = "exa_createTime")
+    @Column(name = "exa_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -169,7 +172,8 @@ public class ExamEntity {
     }
 
     @Basic
-    @Column(name = "exa_updateTime")
+    @Column(name = "exa_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getUpdateTime() {
         return updateTime;
     }
@@ -219,7 +223,7 @@ public class ExamEntity {
                 '}';
     }
 
-    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, Timestamp lastTime, Integer studentNumber, String examInformationStatus, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, int lastTime, Integer studentNumber, String examInformationStatus, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
         this.id = id;
         this.name = name;
         this.startTime = startTime;

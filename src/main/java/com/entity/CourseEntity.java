@@ -1,6 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
@@ -63,6 +64,7 @@ public class CourseEntity {
 
     @Basic
     @Column(name = "cou_name")
+    @NotNull
     public String getCourseName() {
         return courseName;
     }
@@ -72,7 +74,8 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name = "cou_createTime")
+    @Column(name = "cou_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -82,7 +85,8 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name = "cou_updateTime")
+    @Column(name = "cou_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getUpdateTime() {
         return updateTime;
     }

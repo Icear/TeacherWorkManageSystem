@@ -1,6 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,6 +33,7 @@ public class TitleEntity {
 
     @Id
     @Column(name = "tit_no")
+    @NotNull
     public int getId() {
         return id;
     }
