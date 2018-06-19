@@ -42,7 +42,8 @@ public class FileMissionEntity {
      * 与任务实体一对一的映射
      * @return 任务实体
      */
-    @OneToOne (mappedBy = "fileMissionEntity")
+    @OneToOne
+    @JoinColumn(unique = true)
     public MissionEntity getMissionEntity() {
         return missionEntity;
     }
