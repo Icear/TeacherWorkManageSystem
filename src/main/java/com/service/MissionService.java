@@ -4,6 +4,7 @@ import com.entity.MissionEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface MissionService {
     /**
@@ -63,4 +64,11 @@ public interface MissionService {
      * @return mission对象
      */
     @NotNull Optional<MissionEntity> findMissionByReplyMissionId(int replyMissionId);
+
+    /**
+     * 查询所有任务
+     *
+     * @return 所有任务集合
+     */
+    @NotNull Set<MissionEntity> findAllMissions();
 }
