@@ -16,7 +16,6 @@ public class ReplyMissionEntity {
     private String name;
     private String description;
     private Timestamp deadline;
-    private Byte status;
     private Timestamp createTime;
     private Timestamp updateTime;
     private Set<ReplyEntity> replyEntities;
@@ -94,16 +93,6 @@ public class ReplyMissionEntity {
     }
 
     @Basic
-    @Column(name = "rep_mis_status")
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
-
-    @Basic
     @Column(name = "rep_mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     public Timestamp getCreateTime() {
@@ -134,7 +123,6 @@ public class ReplyMissionEntity {
                 Objects.equals(name, that.name) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(deadline, that.deadline) &&
-                Objects.equals(status, that.status) &&
                 Objects.equals(createTime, that.createTime) &&
                 Objects.equals(updateTime, that.updateTime);
     }
@@ -142,7 +130,7 @@ public class ReplyMissionEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, description, deadline, status, createTime, updateTime);
+        return Objects.hash(id, name, description, deadline, createTime, updateTime);
     }
 
     @Override
@@ -152,7 +140,6 @@ public class ReplyMissionEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +
-                ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", replyEntities=" + replyEntities +
@@ -160,12 +147,11 @@ public class ReplyMissionEntity {
                 '}';
     }
 
-    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Byte status, Timestamp createTime, Timestamp updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
+    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Timestamp createTime, Timestamp updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.deadline = deadline;
-        this.status = status;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.replyEntities = replyEntities;
