@@ -28,8 +28,7 @@ public class MissionEntity {
      * 与文件任务实体一对一的关系
      * @return 文件任务实体
      */
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(mappedBy = "missionEntity")
     public FileMissionEntity getFileMissionEntity() {
         return fileMissionEntity;
     }
@@ -42,8 +41,7 @@ public class MissionEntity {
      * 与回复任务实体的一对一的关系
      * @return 回复任务实体
      */
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(mappedBy = "missionEntity")
     public ReplyMissionEntity getReplyMissionEntity() {
         return replyMissionEntity;
     }

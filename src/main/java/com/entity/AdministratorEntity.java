@@ -65,7 +65,7 @@ public class AdministratorEntity {
      * 与老师实体一对一的映射
      * @return 老师实体
      */
-    @OneToOne(mappedBy = "administratorEntity")
+    @OneToOne
     public TeacherEntity getTeacherEntity() {
         return teacherEntity;
     }

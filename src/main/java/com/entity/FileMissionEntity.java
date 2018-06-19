@@ -16,7 +16,6 @@ public class FileMissionEntity {
     private String name;
     private String description;
     private Timestamp deadline;
-    private String status;
     private Timestamp createTime;
     private Timestamp updateTime;
     private MissionEntity missionEntity;
@@ -42,7 +41,8 @@ public class FileMissionEntity {
      * 与任务实体一对一的映射
      * @return 任务实体
      */
-    @OneToOne (mappedBy = "fileMissionEntity")
+    @OneToOne
+    @JoinColumn(unique = true)
     public MissionEntity getMissionEntity() {
         return missionEntity;
     }
@@ -92,19 +92,6 @@ public class FileMissionEntity {
         this.deadline = deadline;
     }
 
-    /**
-     * 文件任务的状态 共两种状态 未过期/已过期
-     * @return 文件任务状态
-     */
-    @Basic
-    @Column(name = "fil_mis_status")
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Basic
     @Column(name = "fil_mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
@@ -137,7 +124,6 @@ public class FileMissionEntity {
                 Objects.equals(name, that.name) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(deadline, that.deadline) &&
-                Objects.equals(status, that.status) &&
                 Objects.equals(createTime, that.createTime) &&
                 Objects.equals(updateTime, that.updateTime);
     }
@@ -145,7 +131,7 @@ public class FileMissionEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, description, deadline, status, createTime, updateTime);
+        return Objects.hash(id, name, description, deadline, createTime, updateTime);
     }
 
     @Override
@@ -155,7 +141,6 @@ public class FileMissionEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +
-                ", status='" + status + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", missionEntity=" + missionEntity +
@@ -163,12 +148,11 @@ public class FileMissionEntity {
                 '}';
     }
 
-    public FileMissionEntity(int id, String name, String description, Timestamp deadline, String status, Timestamp createTime, Timestamp updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
+    public FileMissionEntity(int id, String name, String description, Timestamp deadline, Timestamp createTime, Timestamp updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.deadline = deadline;
-        this.status = status;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.missionEntity = missionEntity;
