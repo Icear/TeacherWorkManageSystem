@@ -43,7 +43,7 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
     //暂时只是个例子
     /**
      * 根据教室实体里考试实体的id的属性查找教室实体
-     * 教室实体可空 id不可空
+     * 教室实体不可空 id不可空
      * //应该是没错的 可能需要改进！
      * //以改进 应该不需要改了
      * 增加了 @SuppressWarnings("unchecked") 的声明 可能会有问题
