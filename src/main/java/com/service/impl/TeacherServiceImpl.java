@@ -35,7 +35,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public @NotNull List<TeacherEntity> findTeachers(@NotNull String name) {
+    public @NotNull Optional<TeacherEntity> findTeacherByName(@NotNull String name) {
+        return Optional.ofNullable(teacherEntityDao.findByName(name));
+    }
+
+    @Override
+    public @NotNull List<TeacherEntity> findTeachers() {
         return teacherEntityDao.list();
     }
 
