@@ -29,7 +29,7 @@ public interface TeacherService {
      * @param name 教师姓名
      * @return 教师实体
      */
-    @NotNull TeacherEntity findTeacherByName(@NotNull String name);
+    @NotNull Optional<TeacherEntity> findTeacherByName(@NotNull String name);
 
     /**
      * 查找所有教师
