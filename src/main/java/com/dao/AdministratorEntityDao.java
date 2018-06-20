@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.AdministratorEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
  * 相对于父类新增根据管理员实体类里老师实体的id查找管理员的方法
  * 待改进
  */
+@Repository
 public class AdministratorEntityDao extends GenericDao<AdministratorEntity> {
     public AdministratorEntityDao() {
     }

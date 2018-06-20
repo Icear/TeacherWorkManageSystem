@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.ClassroomEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -12,6 +13,7 @@ import java.util.List;
  * 相对于父类新增根据教室信息查找教室实体的方法
  * 相对与父类新增根据教室实体里考试实体的id的属性查找教室实体的方法
  */
+@Repository
 public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
 
     public ClassroomEntityDao() {

@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.ExamEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -12,6 +13,7 @@ import java.util.List;
  * 相对于父类新增根据考试实体里课程实体的id属性查找考试实体的方法
  * 相对于父类新增根据考试实体里管理员实体的id属性查找这个管理员创建的考试实体的方法
  */
+@Repository
 public class ExamEntityDao extends GenericDao<ExamEntity> {
     public ExamEntityDao() {
     }

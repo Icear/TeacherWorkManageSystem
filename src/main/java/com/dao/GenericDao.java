@@ -1,5 +1,7 @@
 package com.dao;
 
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -11,6 +13,7 @@ import java.util.List;
  * DAO层的抽象父类泛型 为子类提供重载方法
  * @param <T> 实体类泛型
  */
+@Repository
 public abstract class GenericDao<T> {
     @PersistenceContext
     private EntityManager entityManager;

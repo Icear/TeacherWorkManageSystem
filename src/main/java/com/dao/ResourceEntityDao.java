@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.ResourceEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -9,6 +10,7 @@ import javax.persistence.Query;
  * ResourceEntityDao 类
  * 相对于父类新增根据资源名称查找资源任务实体的方法
  */
+@Repository
 public class ResourceEntityDao extends GenericDao<ResourceEntity> {
     public ResourceEntityDao() {
     }
