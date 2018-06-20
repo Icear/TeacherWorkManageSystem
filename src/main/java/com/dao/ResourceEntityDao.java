@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.entity.ResourceEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -16,10 +18,11 @@ public class ResourceEntityDao extends GenericDao<ResourceEntity> {
     }
     /**
      * 采用资源名称查找资源任务实体
+     * 资源任务实体可空 资源任务名称不可空
      * @param name 资源任务名称
      * @return 资源任务实体
      */
-    public ResourceEntity findByName(String name){
+    public @Nullable ResourceEntity findByName(@NotNull String name){
         String jpql = "FROM ResourceEntity r WHERE r.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);

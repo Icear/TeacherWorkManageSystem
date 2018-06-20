@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.entity.FileMissionEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -16,10 +18,11 @@ public class FileMissionEntityDao extends GenericDao<FileMissionEntity> {
 
     /**
      * 采用文件任务名称查找文件任务实体
+     * 文件任务实体可空 文件任务名称不可空
      * @param name 文件任务名称
      * @return 文件任务实体
      */
-    public FileMissionEntity findByName(String name){
+    public @Nullable FileMissionEntity findByName(@NotNull String name){
         String jpql = "FROM FileMissionEntity f WHERE f.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);

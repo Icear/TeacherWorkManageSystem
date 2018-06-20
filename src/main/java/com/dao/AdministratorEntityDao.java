@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.entity.AdministratorEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -18,11 +20,12 @@ public class AdministratorEntityDao extends GenericDao<AdministratorEntity> {
 
     /**
      * 根据管理员实体类里老师实体的id查找管理员
+     * 返回的管理员实体可空 id不可空
      * 可能以后要添加判断功能 暂时先这样
      * @param id 老师的id
      * @return 管理员实体
      */
-    public AdministratorEntity findByTeacherId(String id){
+    public @Nullable AdministratorEntity findByTeacherId(int id){
         String jpql = "SELECT t.administratorEntity FROM TeacherEntity t WHERE t.id=:id";
         //String jpql = "SELECT e.classroomEntities FROM ExamEntity e WHERE e.id=:id";
         Query query = getEntityManager().createQuery(jpql);

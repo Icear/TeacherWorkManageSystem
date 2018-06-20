@@ -129,31 +129,34 @@ public abstract class GenericDao<T> {
     }
 
     /**
-     * 可能有问题 以后还要再改
-     * @param entity  实体泛型
+     * 添加方法 应该没有问题
+     * @param entity 实体泛型
+     * @return 添加的实体
      */
-    public void add(T entity){
+    public T add(T entity){
         entityManager.persist(entity);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        entityManager.detach(entity);
+        return entity;
     }
     /**
-     * 可能有问题 以后还要再改
+     * 删除方法
+     * 应该没有问题了吧
      * @param entity 实体泛型
      */
     public void delete(T entity){
         entityManager.remove(entity);
-        entityManager.getTransaction().commit();
-        entityManager.close();
     }
+
     /**
-     * 可能有问题 以后还要再改
-     * @param entity  实体泛型
+     * 更新修改方法 应该没有问题了
+     * @param entity 实体泛型
+     * @return 修改后的实体
      */
-    public void edit(T entity){
-        entityManager.persist(entity);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+    public T edit(T entity){
+        entityManager.merge(entity);
+        entityManager.detach(entity);
+        return entity;
+
     }
 
 }
