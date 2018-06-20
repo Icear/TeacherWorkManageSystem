@@ -47,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public @NotNull Optional<CourseEntity> findCoursesByCourseName(@NotNull String courseName) {
-        return Optional.ofNullable(courseEntityDao.findByCourseName(courseName));
+    public @NotNull List<CourseEntity> findCoursesByCourseName(@NotNull String courseName) {
+        return courseEntityDao.findByCourseName(courseName);
     }
 }

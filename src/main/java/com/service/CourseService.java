@@ -51,5 +51,5 @@ public interface CourseService {
      * @param courseName 课程名称
      * @return 课程对象
      */
-    @NotNull Optional<CourseEntity> findCoursesByCourseName(@NotNull String courseName);
+    @NotNull List<CourseEntity> findCoursesByCourseName(@NotNull String courseName);
 }
