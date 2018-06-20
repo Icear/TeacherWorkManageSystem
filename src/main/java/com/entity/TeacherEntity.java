@@ -129,7 +129,7 @@ public class TeacherEntity {
     }
 
     @Basic
-    @Column(name = "tea_name",unique = true)
+    @Column(name = "tea_name")
     public String getName() {
         return name;
     }
@@ -229,7 +229,6 @@ public class TeacherEntity {
         return "TeacherEntity{" +
                 "id=" + id +
                 ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", gender='" + gender + '\'' +

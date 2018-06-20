@@ -63,7 +63,7 @@ public class CourseEntity {
     }
 
     @Basic
-    @Column(name = "cou_name",unique = true)
+    @Column(name = "cou_name")
     @NotNull
     public String getCourseName() {
         return courseName;

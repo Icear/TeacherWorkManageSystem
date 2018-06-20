@@ -23,21 +23,22 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
 
     /**
      * 根据考试名称查找考试实体
-     * 考试实体可空 考试名称不可空
+     * 考试实体不可空 考试名称不可空
      * @param name 考试名称
      * @return 考试实体
      */
-    public @Nullable ExamEntity findByName(@NotNull String name){
+    @SuppressWarnings("unchecked")
+    public @NotNull List<ExamEntity> findByName(@NotNull String name){
         String jpql = "FROM ExamEntity e WHERE e.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
-        ExamEntity examEntity = null;
+        List<ExamEntity> examEntities = new ArrayList<>();
         try {
-            examEntity = (ExamEntity) query.getSingleResult();
+            examEntities = query.getResultList();
         } catch (NoResultException e){
             //采用统一异常处理
         }
-        return  examEntity;
+        return  examEntities;
     }
 
     /**
