@@ -27,9 +27,16 @@ public interface TeacherService {
      * 根据教师姓名查找
      *
      * @param name 教师姓名
-     * @return 教师的集合
+     * @return 教师实体集合
      */
-    @NotNull List<TeacherEntity> findTeachers(@NotNull String name);
+    @NotNull List<TeacherEntity> findTeacherByName(@NotNull String name);
+
+    /**
+     * 查找所有教师
+     *
+     * @return 教师集合
+     */
+    @NotNull List<TeacherEntity> findTeachers();
 
     /**
      * 增加教师
