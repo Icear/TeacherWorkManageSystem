@@ -14,15 +14,14 @@ public interface ClassroomService {
      * @param classroom 教室实体对象
      * @return 成功则返回新的教室实体，失败返回null
      */
-    @NotNull Optional<ClassroomEntity> addClassroom(@NotNull ClassroomEntity classroom);
+    @NotNull ClassroomEntity addClassroom(@NotNull ClassroomEntity classroom);
 
     /**
      * 删除教室
      *
      * @param classroom 有效的含有教室id的教室类
-     * @return 删除成功与否
      */
-    boolean deleteClassroom(ClassroomEntity classroom);
+    void deleteClassroom(ClassroomEntity classroom);
 
     /**
      * 更新教室

@@ -14,15 +14,14 @@ public interface ExamService {
      * @param exam 考试对象
      * @return 成功返回新的实体对象，失败返回null
      */
-    @NotNull Optional<ExamEntity> addExam(@NotNull ExamEntity exam);
+    @NotNull ExamEntity addExam(@NotNull ExamEntity exam);
 
     /**
      * 删除考试
      *
      * @param exam 有效的含有id的考试类
-     * @return 考试删除成功与否
      */
-    boolean deleteExam(@NotNull ExamEntity exam);
+    void deleteExam(@NotNull ExamEntity exam);
 
     /**
      * 根据考试id查询考试信息

@@ -13,15 +13,14 @@ public interface TeacherWatchExamService {
      * @param teacherWatchExamEntity 教师监考考试实体
      * @return 成功返回新的实体类
      */
-    @NotNull Optional<TeacherWatchExamEntity> addTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
+    @NotNull TeacherWatchExamEntity addTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
 
     /**
      * 删除指定监考信息
      *
      * @param teacherWatchExamEntity 教师监考考试实体
-     * @return 是否删除成功
      */
-    boolean deleteTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
+    void deleteTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
 
     // TODO: 2018/6/14 如何修改监考信息，两个都是主键，应该如何修改？
 

@@ -13,7 +13,7 @@ public interface FileMissionService {
      * @param fileMission fileMission对象
      * @return 成功返回新的fileMission对象，失败返回null
      */
-    @NotNull Optional<FileMissionEntity> addFileMission(@NotNull FileMissionEntity fileMission);
+    @NotNull FileMissionEntity addFileMission(@NotNull FileMissionEntity fileMission);
 
     /**
      * 修改文件类任务
@@ -27,9 +27,8 @@ public interface FileMissionService {
      * 删除指定的文件类任务
      *
      * @param fileMission 有效的含有id的fileMission实体
-     * @return 是否成功
      */
-    boolean deleteFileMission(@NotNull FileMissionEntity fileMission);
+    void deleteFileMission(@NotNull FileMissionEntity fileMission);
 
     /**
      * 根据fileMission的id查找文件类任务

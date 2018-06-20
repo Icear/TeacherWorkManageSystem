@@ -37,15 +37,14 @@ public interface TeacherService {
      * @param teacher teacher对象
      * @return 成功返回新的teacher实体, 失败返回null
      */
-    @NotNull Optional<TeacherEntity> addTeacher(@NotNull TeacherEntity teacher);
+    @NotNull TeacherEntity addTeacher(@NotNull TeacherEntity teacher);
 
     /**
      * 根据id删除教师
      *
      * @param teacher 有效的含有id的教师类
-     * @return 是否删除成功
      */
-    boolean deleteTeacher(@NotNull TeacherEntity teacher);
+    void deleteTeacher(@NotNull TeacherEntity teacher);
 
     /**
      * 根据新的教师信息修改旧的教师信息

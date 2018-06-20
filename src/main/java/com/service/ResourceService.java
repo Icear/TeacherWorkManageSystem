@@ -13,7 +13,7 @@ public interface ResourceService {
      * @param resource resource对象
      * @return 成功返回新的resource对象，失败返回null
      */
-    @NotNull Optional<ResourceEntity> addResource(@NotNull ResourceEntity resource);
+    @NotNull ResourceEntity addResource(@NotNull ResourceEntity resource);
 
     /**
      * 更新resource
@@ -27,9 +27,8 @@ public interface ResourceService {
      * 删除resource
      *
      * @param resource 有效的含有resourceId的实体
-     * @return 是否成功
      */
-    boolean deleteResource(@NotNull ResourceEntity resource);
+    void deleteResource(@NotNull ResourceEntity resource);
 
     /**
      * 根据resourceId查找resource实体

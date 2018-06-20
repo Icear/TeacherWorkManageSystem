@@ -4,7 +4,6 @@ import com.entity.ReplyEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ReplyService {
     /**
@@ -13,15 +12,14 @@ public interface ReplyService {
      * @param reply reply对象
      * @return 成功则返回新的reply对象，失败返回null
      */
-    @NotNull Optional<ReplyEntity> addReply(@NotNull ReplyEntity reply);
+    @NotNull ReplyEntity addReply(@NotNull ReplyEntity reply);
 
     /**
      * 撤回回复信息，即删除消息
      *
      * @param reply 有效的含id的回复消息实体
-     * @return 是否删除成功
      */
-    boolean recallReply(@NotNull ReplyEntity reply);
+    void recallReply(@NotNull ReplyEntity reply);
 
     /**
      * 查找指定replyMission下的所有回复信息
