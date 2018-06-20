@@ -48,12 +48,12 @@ public class MissionServiceImpl implements MissionService {
 
     @Override
     public @NotNull Optional<MissionEntity> findMissionByFileMissionId(int fileMissionId) {
-        return Optional.empty();
+        return Optional.ofNullable(missionEntityDao.findByFileMissionId(fileMissionId));
     }
 
     @Override
     public @NotNull Optional<MissionEntity> findMissionByReplyMissionId(int replyMissionId) {
-        return Optional.empty();
+        return Optional.ofNullable(missionEntityDao.findByReplyMissionId(replyMissionId));
     }
 
     @Override
