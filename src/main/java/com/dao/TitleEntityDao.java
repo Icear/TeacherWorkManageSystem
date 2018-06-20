@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.TitleEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -9,6 +10,7 @@ import javax.persistence.Query;
  * TitleEntityDao 类
  * 相对与父类新增根据职称名称查找职称实体方法
  */
+@Repository
 public class TitleEntityDao extends GenericDao<TitleEntity> {
     public TitleEntityDao() {
     }

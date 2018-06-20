@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.CourseEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
  * CourseEntityDao 类
  * 相对于父类新增根据课程名查找课程实体的方法
  */
+@Repository
 public class CourseEntityDao extends GenericDao<CourseEntity> {
 
     public CourseEntityDao() {

@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.FileMissionEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -8,6 +9,7 @@ import javax.persistence.Query;
  * FileMssionEntityDao 类
  * 相对于父类新增根据文件任务名称查找文件任务实体的方法
  */
+@Repository
 public class FileMissionEntityDao extends GenericDao<FileMissionEntity> {
     public FileMissionEntityDao() {
     }

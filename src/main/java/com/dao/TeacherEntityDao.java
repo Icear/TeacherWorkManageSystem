@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.TeacherEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -11,6 +12,7 @@ import javax.persistence.Query;
  * 相对于父类新增根据姓名查找老师实体的方法
  * 相对与父类新增根据账号查找老师实体的方法
  */
+@Repository
 public class TeacherEntityDao extends GenericDao<TeacherEntity> {
 
     public TeacherEntityDao() {
