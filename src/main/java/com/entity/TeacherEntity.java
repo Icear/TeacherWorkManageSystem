@@ -129,7 +129,7 @@ public class TeacherEntity {
     }
 
     @Basic
-    @Column(name = "tea_name")
+    @Column(name = "tea_name",unique = true)
     public String getName() {
         return name;
     }
