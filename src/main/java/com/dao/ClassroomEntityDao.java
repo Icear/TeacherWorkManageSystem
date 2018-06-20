@@ -51,7 +51,7 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
      * @return 教室实体集合
      */
     @SuppressWarnings("unchecked")
-    public List<ClassroomEntity> findByExamEntity (int id){
+    public @NotNull List<ClassroomEntity> findByExamEntity (int id){
         //String jpql = "FROM ClassroomEntity c WHERE c.examEntity.id=:id";
         String jpql = "SELECT e.classroomEntities FROM ExamEntity e WHERE e.id=:id";
         Query query = getEntityManager().createQuery(jpql);
