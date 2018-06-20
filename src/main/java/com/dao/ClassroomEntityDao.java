@@ -1,10 +1,13 @@
 package com.dao;
 
 import com.entity.ClassroomEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,10 +23,11 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
     }
     /**
      * 根据教室信息查找班级实体
+     * 返回的教室实体可空 教室信息不可空
      * @param classInformation 教室信息
      * @return 班级实体
      */
-    public ClassroomEntity findByClassInformation (String classInformation){
+    public @Nullable ClassroomEntity findByClassInformation (@NotNull String classInformation){
         String jpql ="FROM ClassroomEntity c WHERE c.classInformation=:classInformation";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("classInformation",classInformation);
@@ -39,18 +43,20 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
     //暂时只是个例子
     /**
      * 根据教室实体里考试实体的id的属性查找教室实体
-     * 应该是没错的 可能需要改进！
+     * 教室实体可空 id不可空
+     * //应该是没错的 可能需要改进！
+     * //以改进 应该不需要改了
      * 增加了 @SuppressWarnings("unchecked") 的声明 可能会有问题
      * @param id 考试id
      * @return 教室实体集合
      */
     @SuppressWarnings("unchecked")
-    public List<ClassroomEntity> findByExamEntity (String id){
+    public @Nullable List<ClassroomEntity> findByExamEntity (int id){
         //String jpql = "FROM ClassroomEntity c WHERE c.examEntity.id=:id";
         String jpql = "SELECT e.classroomEntities FROM ExamEntity e WHERE e.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
-        List<ClassroomEntity> classroomEntities = null;
+        List<ClassroomEntity> classroomEntities = new ArrayList<>();
         try{
             classroomEntities =  query.getResultList();
         }catch (NoResultException e){
