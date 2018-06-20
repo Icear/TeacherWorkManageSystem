@@ -13,7 +13,7 @@ public interface ReplyMissionService {
      * @param replyMission replyMission对象
      * @return 成功返回新的replyMission对象，失败返回null
      */
-    @NotNull Optional<ReplyMissionEntity> addReplyMission(@NotNull ReplyMissionEntity replyMission);
+    @NotNull ReplyMissionEntity addReplyMission(@NotNull ReplyMissionEntity replyMission);
 
     /**
      * 修改回复类任务

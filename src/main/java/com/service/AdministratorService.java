@@ -4,7 +4,6 @@ import com.entity.AdministratorEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface AdministratorService {
     /**
@@ -13,7 +12,7 @@ public interface AdministratorService {
      * @param administrator 需要设置有效的含有教师id的教师类
      * @return 成功返回新的管理员实体，失败则null
      */
-    @NotNull Optional<AdministratorEntity> addAdministrator(AdministratorEntity administrator);
+    @NotNull AdministratorEntity addAdministrator(AdministratorEntity administrator);
 
     /**
      * 删除管理员

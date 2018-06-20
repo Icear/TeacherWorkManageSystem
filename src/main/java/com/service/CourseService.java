@@ -13,7 +13,7 @@ public interface CourseService {
      * @param course 课程实体
      * @return 成功则返回新的此course实体, 失败返回null
      */
-    @NotNull Optional<CourseEntity> addCourse(@NotNull CourseEntity course);
+    @NotNull CourseEntity addCourse(@NotNull CourseEntity course);
 
     /**
      * 根据课程id删除课程

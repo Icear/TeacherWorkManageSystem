@@ -14,7 +14,7 @@ public interface ExamService {
      * @param exam 考试对象
      * @return 成功返回新的实体对象，失败返回null
      */
-    @NotNull Optional<ExamEntity> addExam(@NotNull ExamEntity exam);
+    @NotNull ExamEntity addExam(@NotNull ExamEntity exam);
 
     /**
      * 删除考试

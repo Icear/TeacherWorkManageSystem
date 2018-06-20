@@ -13,7 +13,7 @@ public interface TeacherWatchExamService {
      * @param teacherWatchExamEntity 教师监考考试实体
      * @return 成功返回新的实体类
      */
-    @NotNull Optional<TeacherWatchExamEntity> addTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
+    @NotNull TeacherWatchExamEntity addTeacherWatchExam(@NotNull TeacherWatchExamEntity teacherWatchExamEntity);
 
     /**
      * 删除指定监考信息

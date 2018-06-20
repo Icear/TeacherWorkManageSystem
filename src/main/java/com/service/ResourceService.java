@@ -13,7 +13,7 @@ public interface ResourceService {
      * @param resource resource对象
      * @return 成功返回新的resource对象，失败返回null
      */
-    @NotNull Optional<ResourceEntity> addResource(@NotNull ResourceEntity resource);
+    @NotNull ResourceEntity addResource(@NotNull ResourceEntity resource);
 
     /**
      * 更新resource

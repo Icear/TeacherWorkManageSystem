@@ -13,7 +13,7 @@ public interface FileMissionService {
      * @param fileMission fileMission对象
      * @return 成功返回新的fileMission对象，失败返回null
      */
-    @NotNull Optional<FileMissionEntity> addFileMission(@NotNull FileMissionEntity fileMission);
+    @NotNull FileMissionEntity addFileMission(@NotNull FileMissionEntity fileMission);
 
     /**
      * 修改文件类任务

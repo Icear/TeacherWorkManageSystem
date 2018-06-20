@@ -13,7 +13,7 @@ public interface MissionService {
      * @param mission mission对象
      * @return 成功返回新的mission实体，失败返回null
      */
-    @NotNull Optional<MissionEntity> addMission(@NotNull MissionEntity mission);
+    @NotNull MissionEntity addMission(@NotNull MissionEntity mission);
 
     /**
      * 修改指定任务信息
