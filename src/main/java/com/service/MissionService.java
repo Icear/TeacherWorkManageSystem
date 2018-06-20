@@ -27,9 +27,8 @@ public interface MissionService {
      * 根据id删除mission
      *
      * @param mission 有效的含id的mission类
-     * @return 是否删除成功
      */
-    boolean deleteMission(@NotNull MissionEntity mission);
+    void deleteMission(@NotNull MissionEntity mission);
 
     // TODO: 2018/6/19 关闭mission应该是修改状态吧，然后把updatable=false？这种？所以会返回实体吧？
 

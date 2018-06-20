@@ -19,9 +19,8 @@ public interface CourseService {
      * 根据课程id删除课程
      *
      * @param course 有效的课程类
-     * @return 是否删除成功
      */
-    boolean deleteCourse(@NotNull CourseEntity course);
+    void deleteCourse(@NotNull CourseEntity course);
 
     /**
      * 更新课程信息

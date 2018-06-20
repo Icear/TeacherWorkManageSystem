@@ -27,9 +27,8 @@ public interface ResourceService {
      * 删除resource
      *
      * @param resource 有效的含有resourceId的实体
-     * @return 是否成功
      */
-    boolean deleteResource(@NotNull ResourceEntity resource);
+    void deleteResource(@NotNull ResourceEntity resource);
 
     /**
      * 根据resourceId查找resource实体

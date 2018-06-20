@@ -20,9 +20,8 @@ public interface ClassroomService {
      * 删除教室
      *
      * @param classroom 有效的含有教室id的教室类
-     * @return 删除成功与否
      */
-    boolean deleteClassroom(ClassroomEntity classroom);
+    void deleteClassroom(ClassroomEntity classroom);
 
     /**
      * 更新教室

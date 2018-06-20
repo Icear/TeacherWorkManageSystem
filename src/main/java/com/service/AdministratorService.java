@@ -18,9 +18,8 @@ public interface AdministratorService {
      * 删除管理员
      *
      * @param administrator 有效的含有id的管理员
-     * @return 是否成功删除管理员
      */
-    boolean deleteAdministrator(AdministratorEntity administrator);
+    void deleteAdministrator(AdministratorEntity administrator);
 
     /**
      * 查询所有的adminstrator

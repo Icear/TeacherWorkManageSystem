@@ -20,9 +20,8 @@ public interface ExamService {
      * 删除考试
      *
      * @param exam 有效的含有id的考试类
-     * @return 考试删除成功与否
      */
-    boolean deleteExam(@NotNull ExamEntity exam);
+    void deleteExam(@NotNull ExamEntity exam);
 
     /**
      * 根据考试id查询考试信息

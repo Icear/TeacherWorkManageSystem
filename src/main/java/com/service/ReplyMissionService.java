@@ -27,9 +27,8 @@ public interface ReplyMissionService {
      * 删除指定的回复类任务
      *
      * @param replyMission 有效的含有id的replyMission实体
-     * @return 是否成功
      */
-    boolean deleteReplyMission(@NotNull ReplyMissionEntity replyMission);
+    void deleteReplyMission(@NotNull ReplyMissionEntity replyMission);
 
     /**
      * 根据replyMission的id查找回复类任务
