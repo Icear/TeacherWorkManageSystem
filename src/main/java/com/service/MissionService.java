@@ -32,13 +32,13 @@ public interface MissionService {
 
     // TODO: 2018/6/19 关闭mission应该是修改状态吧，然后把updatable=false？这种？所以会返回实体吧？
 
-    /**
-     * 关闭指定任务
-     *
-     * @param mission 有效的含id的mission类
-     * @return 返回新的mission实体
-     */
-    @NotNull Optional<MissionEntity> closeMission(@NotNull MissionEntity mission);
+//    /**
+//     * 关闭指定任务
+//     *
+//     * @param mission 有效的含id的mission类
+//     * @return 返回新的mission实体
+//     */
+//    @NotNull Optional<MissionEntity> closeMission(@NotNull MissionEntity mission);
 
     /**
      * 根据missionId查找mission
