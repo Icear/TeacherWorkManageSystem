@@ -42,13 +42,13 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
 
     /**
      * 根据考试实体里课程实体的id属性查找考试实体
-     * 考试实体集合可空 id不可空
+     * 考试实体集合不可空 id不可空
      * 增加了 @SuppressWarnings("unchecked") 的声明 可能会有问题
      * @param id 课程的id
      * @return 考试实体集合
      */
     @SuppressWarnings("unchecked")
-    public List<ExamEntity> findByCourseId(int id){
+    public @NotNull List<ExamEntity> findByCourseId(int id){
         String jpql = "SELECT c.examEntities FROM  CourseEntity c WHERE c.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
@@ -63,13 +63,13 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
 
     /**
      * 根据考试实体里管理员实体的id属性查找这个管理员创建的考试实体
-     * 考试实体可空 id不可空
+     * 考试实体不可空 id不可空
      * 增加了 @SuppressWarnings("unchecked") 的声明 可能会有问题
      * @param id 管理员的id
      * @return 考试实体集合
      */
     @SuppressWarnings("unchecked")
-    public List<ExamEntity> findByAdministratorId(int id){
+    public @NotNull List<ExamEntity> findByAdministratorId(int id){
         String jpql = "SELECT a.examEntities FROM AdministratorEntity a WHERE a.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
