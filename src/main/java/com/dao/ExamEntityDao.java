@@ -48,7 +48,7 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
      * @return 考试实体集合
      */
     @SuppressWarnings("unchecked")
-    public @Nullable List<ExamEntity> findByCourseId(int id){
+    public List<ExamEntity> findByCourseId(int id){
         String jpql = "SELECT c.examEntities FROM  CourseEntity c WHERE c.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
@@ -69,7 +69,7 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
      * @return 考试实体集合
      */
     @SuppressWarnings("unchecked")
-    public @Nullable List<ExamEntity> findByAdministratorId(int id){
+    public List<ExamEntity> findByAdministratorId(int id){
         String jpql = "SELECT a.examEntities FROM AdministratorEntity a WHERE a.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
