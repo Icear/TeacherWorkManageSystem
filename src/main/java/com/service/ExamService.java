@@ -3,8 +3,8 @@ package com.service;
 import com.entity.ExamEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface ExamService {
 
@@ -38,7 +38,7 @@ public interface ExamService {
      * @param courseId 课程id
      * @return 考试对象集合
      */
-    @NotNull Set<ExamEntity> findExamsByCourseId(int courseId);
+    @NotNull List<ExamEntity> findExamsByCourseId(int courseId);
 
     /**
      * 根据考试名称查询考试信息
@@ -46,7 +46,7 @@ public interface ExamService {
      * @param examName 考试名称
      * @return 考试对象集合
      */
-    @NotNull Set<ExamEntity> findExamsByExamName(@NotNull String examName);
+    @NotNull List<ExamEntity> findExamsByExamName(@NotNull String examName);
 
     /**
      * 根据管理员id查询管理员所创建的考试信息
@@ -54,14 +54,14 @@ public interface ExamService {
      * @param adminId 管理员id
      * @return 考试对象集合
      */
-    @NotNull Set<ExamEntity> findExamsByAdminId(int adminId);
+    @NotNull List<ExamEntity> findExamsByAdminId(int adminId);
 
     /**
      * 查询所有考试
      *
      * @return 考试对象集合
      */
-    @NotNull Set<ExamEntity> findAllExams();
+    @NotNull List<ExamEntity> findAllExams();
 
     /**
      * 更新考试信息

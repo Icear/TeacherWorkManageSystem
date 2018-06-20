@@ -3,8 +3,8 @@ package com.service;
 import com.entity.FileMissionEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface FileMissionService {
     /**
@@ -44,6 +44,6 @@ public interface FileMissionService {
      *
      * @return fileMission对象集合
      */
-    @NotNull Set<FileMissionEntity> findAllFileMissions();
+    @NotNull List<FileMissionEntity> findAllFileMissions();
 
 }

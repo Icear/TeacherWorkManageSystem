@@ -3,8 +3,8 @@ package com.service;
 import com.entity.ReplyEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface ReplyService {
     /**
@@ -29,7 +29,7 @@ public interface ReplyService {
      * @param replyMissionId replyMission的id
      * @return reply的对象集合
      */
-    @NotNull Set<ReplyEntity> findReplys(int replyMissionId);
+    @NotNull List<ReplyEntity> findReplys(int replyMissionId);
     // TODO: 2018/6/19  可以做成类似tim或wechat的"撤回了一条消息"么
 
 }

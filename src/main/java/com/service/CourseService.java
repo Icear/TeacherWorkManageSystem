@@ -3,8 +3,8 @@ package com.service;
 import com.entity.CourseEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface CourseService {
     /**
@@ -36,7 +36,7 @@ public interface CourseService {
      *
      * @return 课程对象集合
      */
-    @NotNull Set<CourseEntity> findCourses();
+    @NotNull List<CourseEntity> findCourses();
 
     /**
      * 根据课程id查询课程信息
@@ -52,5 +52,5 @@ public interface CourseService {
      * @param courseName 课程名称
      * @return 课程对象集合
      */
-    @NotNull Set<CourseEntity> findCoursesByCourseName(@NotNull String courseName);
+    @NotNull List<CourseEntity> findCoursesByCourseName(@NotNull String courseName);
 }
