@@ -3,8 +3,8 @@ package com.service;
 import com.entity.AdministratorEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface AdministratorService {
     /**
@@ -28,7 +28,7 @@ public interface AdministratorService {
      *
      * @return administrators
      */
-    @NotNull Set<AdministratorEntity> findAdminstrators();
+    @NotNull List<AdministratorEntity> findAdminstrators();
 
 //    /**
 //     * 根据教师id查找其是否为管理员

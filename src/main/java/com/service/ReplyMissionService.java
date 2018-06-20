@@ -3,8 +3,8 @@ package com.service;
 import com.entity.ReplyMissionEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface ReplyMissionService {
     /**
@@ -44,6 +44,6 @@ public interface ReplyMissionService {
      *
      * @return replyMission对象集合
      */
-    @NotNull Set<ReplyMissionEntity> findAllReplyMissions();
+    @NotNull List<ReplyMissionEntity> findAllReplyMissions();
 
 }

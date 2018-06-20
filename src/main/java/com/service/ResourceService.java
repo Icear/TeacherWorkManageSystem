@@ -3,8 +3,8 @@ package com.service;
 import com.entity.ResourceEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface ResourceService {
     /**
@@ -45,5 +45,5 @@ public interface ResourceService {
      * @param fileMissionId 文件类任务id
      * @return 文件实体集合
      */
-    @NotNull Set<ResourceEntity> findResources(int fileMissionId);
+    @NotNull List<ResourceEntity> findResources(int fileMissionId);
 }

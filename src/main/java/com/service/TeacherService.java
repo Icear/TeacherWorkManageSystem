@@ -3,8 +3,8 @@ package com.service;
 import com.entity.TeacherEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface TeacherService {
     /**
@@ -29,7 +29,7 @@ public interface TeacherService {
      * @param name 教师姓名
      * @return 教师的集合
      */
-    @NotNull Set<TeacherEntity> findTeachers(@NotNull String name);
+    @NotNull List<TeacherEntity> findTeachers(@NotNull String name);
 
     /**
      * 增加教师

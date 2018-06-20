@@ -3,8 +3,8 @@ package com.service;
 import com.entity.TeacherWatchExamEntity;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface TeacherWatchExamService {
     /**
@@ -38,8 +38,8 @@ public interface TeacherWatchExamService {
      *
      * @return 监考信息实体集合
      */
-    @NotNull Set<TeacherWatchExamEntity> findTeacherWatchExams();
+    @NotNull List<TeacherWatchExamEntity> findTeacherWatchExams();
 
 
-    // @NotNull Set<TeacherEntity> findTeachersInOneExam(int examId);
+    // @NotNull List<TeacherEntity> findTeachersInOneExam(int examId);
 }
