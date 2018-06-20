@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -59,21 +61,22 @@ public class TeacherEntityDao extends GenericDao<TeacherEntity> {
 
     /**
      * 根据姓名查找老师实体
-     * 老师实体可空 姓名不可空
+     * 老师实体不可空 姓名不可空
      * @param name 姓名
      * @return 查找到的老师实体
      */
-    public @Nullable TeacherEntity findByName(@NotNull String name){
+    @SuppressWarnings("unchecked")
+    public @NotNull List<TeacherEntity> findByName(@NotNull String name){
         String jpql = "FROM TeacherEntity t WHERE t.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
-        TeacherEntity teacherEntity = null;
+        List<TeacherEntity> teacherEntities = new ArrayList<>();
         try {
-            teacherEntity = (TeacherEntity) query.getSingleResult();
+            teacherEntities = query.getResultList();
         } catch (NoResultException e){
             //同上 暂时没写 应该采用统一异常处理？
         }
-        return  teacherEntity;
+        return  teacherEntities;
     }
 
 

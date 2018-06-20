@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,21 +22,22 @@ public class CourseEntityDao extends GenericDao<CourseEntity> {
     }
     /**
      * 根据课程名查找课程实体
-     * 课程实体可空 课程名不可空
+     * 课程实体不可空 课程名不可空
      * @param courseName 课程名
      * @return 课程实体
      */
-    public @Nullable CourseEntity findByCourseName(@NotNull String courseName){
+    @SuppressWarnings("unchecked")
+    public @NotNull List<CourseEntity> findByCourseName(@NotNull String courseName){
         String jpql ="FROM CourseEntity c WHERE c.courseName=:courseName";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("courseName",courseName);
-        CourseEntity courseEntity = null;
+        List<CourseEntity> courseEntities = new ArrayList<>();
         try {
-            courseEntity = (CourseEntity) query.getSingleResult();
+            courseEntities = query.getResultList();
         }catch (NoResultException e){
             //采用统一异常处理
         }
-        return courseEntity;
+        return courseEntities;
     }
 
 
