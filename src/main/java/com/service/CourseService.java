@@ -49,7 +49,7 @@ public interface CourseService {
      * 根据课程名称查询课程信息
      *
      * @param courseName 课程名称
-     * @return 课程对象集合
+     * @return 课程对象
      */
-    @NotNull List<CourseEntity> findCoursesByCourseName(@NotNull String courseName);
+    @NotNull Optional<CourseEntity> findCoursesByCourseName(@NotNull String courseName);
 }
