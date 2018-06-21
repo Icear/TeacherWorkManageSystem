@@ -23,6 +23,16 @@
     <task:annotation-driven/>
     <!-- 启用注解 -->
     <mvc:annotation-driven/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/authorize"/>
+            <bean class="com.filter.RESTAuthorizeFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
     <!-- 自动读取配置的功能模块 -->
     <bean id="setting" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">

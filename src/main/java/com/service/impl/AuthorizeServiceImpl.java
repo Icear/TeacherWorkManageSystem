@@ -76,7 +76,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
         Optional<TokenInfo> tokenInfo = Optional.ofNullable(tokenMap.get(token));
         TeacherEntity identity = null;
         if (tokenInfo.isPresent()) {
-            if (checkTokenExpire(tokenInfo.get().getLastActiveTime())) {
+            if (checkTokenEffect(tokenInfo.get().getLastActiveTime())) {
                 identity = tokenInfo.get().getIdentity();
             } else {
                 tokenMap.remove(token);
@@ -101,12 +101,12 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     }
 
     /**
-     * 检查Token是否过期
+     * 检查Token是否有效
      *
      * @param lastActiveTime 上一次活跃时间
-     * @return 是否已过期
+     * @return 是否有效
      */
-    private boolean checkTokenExpire(@NotNull Calendar lastActiveTime) {
+    private boolean checkTokenEffect(@NotNull Calendar lastActiveTime) {
         Calendar currentTime = Calendar.getInstance();
         return currentTime.getTimeInMillis() - lastActiveTime.getTimeInMillis() < expireTime;
     }
