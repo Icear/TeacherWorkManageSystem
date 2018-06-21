@@ -19,6 +19,8 @@ public class TeacherWatchExamEntity {
     public TeacherWatchExamEntity() {
     }
 
+    @Id
+    //@Column(name = "tea_watch_exam_no")
     public int getId() {
         return id;
     }
@@ -45,57 +47,34 @@ public class TeacherWatchExamEntity {
         this.teacherEntity = teacherEntity;
     }
 
-    @Id
-    @Column(name = "exa_no")
-    public int getExamId() {
-        return examId;
-    }
-
-    public void setExamId(int examId) {
-        this.examId = examId;
-    }
-
-    @Id
-    @Column(name = "tea_no")
-    public int getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeacherWatchExamEntity that = (TeacherWatchExamEntity) o;
-        return examId == that.examId &&
-                teacherId == that.teacherId;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(examId, teacherId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "TeacherWatchExamEntity{" +
                 "id=" + id +
-                ", examId=" + examId +
-                ", teacherId=" + teacherId +
                 ", teacherEntity=" + teacherEntity +
                 ", examEntity=" + examEntity +
                 '}';
     }
 
-    public TeacherWatchExamEntity(int id, int examId, int teacherId, TeacherEntity teacherEntity, ExamEntity examEntity) {
+    public TeacherWatchExamEntity(int id,TeacherEntity teacherEntity, ExamEntity examEntity) {
         this.id = id;
-        this.examId = examId;
-        this.teacherId = teacherId;
         this.teacherEntity = teacherEntity;
         this.examEntity = examEntity;
     }
+
 }
