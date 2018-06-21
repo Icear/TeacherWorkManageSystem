@@ -2,7 +2,7 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -13,8 +13,8 @@ import java.util.Objects;
 public class ClassroomEntity {
     private int id;
     private String classInformation;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private ExamEntity examEntity;
 
     public ClassroomEntity() {
@@ -58,26 +58,30 @@ public class ClassroomEntity {
         this.classInformation = classInformation;
     }
 
+    public ClassroomEntity(int id, String classInformation, Calendar createTime, Calendar updateTime, ExamEntity examEntity) {
+        this.id = id;
+        this.classInformation = classInformation;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.examEntity = examEntity;
+    }
+
     @Basic
     @Column(name = "cla_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "cla_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "cla_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     @Override
@@ -108,11 +112,7 @@ public class ClassroomEntity {
                 '}';
     }
 
-    public ClassroomEntity(int id, String classInformation, Timestamp createTime, Timestamp updateTime, ExamEntity examEntity) {
-        this.id = id;
-        this.classInformation = classInformation;
-        this.createTime = createTime;
+    public void setUpdateTime(Calendar updateTime) {
         this.updateTime = updateTime;
-        this.examEntity = examEntity;
     }
 }

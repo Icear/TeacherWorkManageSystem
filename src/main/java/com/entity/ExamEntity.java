@@ -3,6 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,28 +20,28 @@ public class ExamEntity {
     private int lastTime;
     private Integer studentNumber;
     private String examInformationStatus;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private AdministratorEntity administratorEntity;
     private CourseEntity courseEntity;
     private Set<ClassroomEntity> classroomEntities;
-    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
+//    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
 
     public ExamEntity() {
     }
 
-    /**
-     * 与老师监考实体一对多的映射
-     * @return 考试监考实体
-     */
-    @OneToMany(mappedBy = "examEntity")
-    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
-        return teacherWatchExamEntities;
-    }
-
-    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
-        this.teacherWatchExamEntities = teacherWatchExamEntities;
-    }
+//    /**
+//     * 与老师监考实体一对多的映射
+//     * @return 考试监考实体
+//     */
+//    @OneToMany(mappedBy = "examEntity")
+//    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
+//        return teacherWatchExamEntities;
+//    }
+//
+//    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+//        this.teacherWatchExamEntities = teacherWatchExamEntities;
+//    }
 
     /**
      * 与教室实体一对多的映射
@@ -160,26 +161,38 @@ public class ExamEntity {
         this.examInformationStatus = examInformationStatus;
     }
 
+    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, int lastTime, Integer studentNumber, String examInformationStatus, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/) {
+        this.id = id;
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.lastTime = lastTime;
+        this.studentNumber = studentNumber;
+        this.examInformationStatus = examInformationStatus;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.courseEntity = courseEntity;
+        this.classroomEntities = classroomEntities;
+//        this.teacherWatchExamEntities = teacherWatchExamEntities;
+    }
+
     @Basic
     @Column(name = "exa_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "exa_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "exa_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     @Override
@@ -204,6 +217,10 @@ public class ExamEntity {
         return Objects.hash(id, name, startTime, endTime, lastTime, studentNumber, examInformationStatus, createTime, updateTime);
     }
 
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         return "ExamEntity{" +
@@ -219,24 +236,8 @@ public class ExamEntity {
                 ", administratorEntity=" + administratorEntity +
                 ", courseEntity=" + courseEntity +
                 ", classroomEntities=" + classroomEntities +
-                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
+//                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
                 '}';
-    }
-
-    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, int lastTime, Integer studentNumber, String examInformationStatus, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
-        this.id = id;
-        this.name = name;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.lastTime = lastTime;
-        this.studentNumber = studentNumber;
-        this.examInformationStatus = examInformationStatus;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.courseEntity = courseEntity;
-        this.classroomEntities = classroomEntities;
-        this.teacherWatchExamEntities = teacherWatchExamEntities;
     }
 
 }

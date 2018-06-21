@@ -3,6 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,8 +17,8 @@ public class ReplyMissionEntity {
     private String name;
     private String description;
     private Timestamp deadline;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private Set<ReplyEntity> replyEntities;
     private MissionEntity missionEntity;
 
@@ -92,26 +93,33 @@ public class ReplyMissionEntity {
         this.deadline = deadline;
     }
 
+    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Calendar createTime, Calendar updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.replyEntities = replyEntities;
+        this.missionEntity = missionEntity;
+    }
+
     @Basic
     @Column(name = "rep_mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "rep_mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "rep_mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     @Override
@@ -147,14 +155,7 @@ public class ReplyMissionEntity {
                 '}';
     }
 
-    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Timestamp createTime, Timestamp updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.deadline = deadline;
-        this.createTime = createTime;
+    public void setUpdateTime(Calendar updateTime) {
         this.updateTime = updateTime;
-        this.replyEntities = replyEntities;
-        this.missionEntity = missionEntity;
     }
 }

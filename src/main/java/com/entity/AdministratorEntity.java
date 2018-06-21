@@ -1,7 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Set;
 /**
@@ -12,8 +12,8 @@ import java.util.Set;
 public class AdministratorEntity {
 
     private int id;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private TeacherEntity teacherEntity;
     private Set<CourseEntity> courseEntities;
     private Set<ExamEntity> examEntities;
@@ -89,26 +89,32 @@ public class AdministratorEntity {
     }
 
 
+    public AdministratorEntity(int id, Calendar createTime, Calendar updateTime, TeacherEntity teacherEntity, Set<CourseEntity> courseEntities, Set<ExamEntity> examEntities, Set<MissionEntity> missionEntities) {
+        this.id = id;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.teacherEntity = teacherEntity;
+        this.courseEntities = courseEntities;
+        this.examEntities = examEntities;
+        this.missionEntities = missionEntities;
+    }
+
     @Basic
     @Column(name = "adm_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "adm_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "adm_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     @Override
@@ -141,13 +147,7 @@ public class AdministratorEntity {
                 '}';
     }
 
-    public AdministratorEntity(int id, Timestamp createTime, Timestamp updateTime, TeacherEntity teacherEntity, Set<CourseEntity> courseEntities, Set<ExamEntity> examEntities, Set<MissionEntity> missionEntities) {
-        this.id = id;
-        this.createTime = createTime;
+    public void setUpdateTime(Calendar updateTime) {
         this.updateTime = updateTime;
-        this.teacherEntity = teacherEntity;
-        this.courseEntities = courseEntities;
-        this.examEntities = examEntities;
-        this.missionEntities = missionEntities;
     }
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,11 +22,11 @@ public class TeacherEntity {
     private String gender;
     private Integer phone;
     private String email;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private AdministratorEntity administratorEntity;
     private Set<ReplyEntity> replyEntities;
-    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
+    //    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
     private TitleEntity titleEntity;
 
     public TeacherEntity() {
@@ -45,18 +45,18 @@ public class TeacherEntity {
         this.titleEntity = titleEntity;
     }
 
-    /**
-     * 与老师监考考试实体一对多的映射
-     * @return 老师监考考试实体
-     */
-    @OneToMany(mappedBy = "teacherEntity")
-    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
-        return teacherWatchExamEntities;
-    }
-
-    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
-        this.teacherWatchExamEntities = teacherWatchExamEntities;
-    }
+//    /**
+//     * 与老师监考考试实体一对多的映射
+//     * @return 老师监考考试实体
+//     */
+//    @OneToMany(mappedBy = "teacherEntity")
+//    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
+//        return teacherWatchExamEntities;
+//    }
+//
+//    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
+//        this.teacherWatchExamEntities = teacherWatchExamEntities;
+//    }
 
     /**
      * 与回复实体一对多的映射
@@ -179,26 +179,39 @@ public class TeacherEntity {
         this.email = email;
     }
 
+    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/, TitleEntity titleEntity) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.description = description;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.replyEntities = replyEntities;
+//        this.teacherWatchExamEntities = teacherWatchExamEntities;
+        this.titleEntity = titleEntity;
+    }
+
     @Basic
     @Column(name = "tea_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "tea_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "tea_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     @Override
@@ -224,6 +237,10 @@ public class TeacherEntity {
         return Objects.hash(id, account, password, name, description, gender, phone, email, createTime, updateTime);
     }
 
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         return "TeacherEntity{" +
@@ -238,26 +255,9 @@ public class TeacherEntity {
                 ", updateTime=" + updateTime +
                 ", administratorEntity=" + administratorEntity +
                 ", replyEntities=" + replyEntities +
-                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
+//                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
                 ", titleEntity=" + titleEntity +
                 '}';
-    }
-
-    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchExamEntity> teacherWatchExamEntities, TitleEntity titleEntity) {
-        this.id = id;
-        this.account = account;
-        this.password = password;
-        this.name = name;
-        this.description = description;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.replyEntities = replyEntities;
-        this.teacherWatchExamEntities = teacherWatchExamEntities;
-        this.titleEntity = titleEntity;
     }
 
 
