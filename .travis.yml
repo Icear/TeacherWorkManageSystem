@@ -15,7 +15,7 @@ deploy:
     branch: master
 
 addons:
-  ssh_known_hosts: $SERVER:$PORT
+  ssh_known_hosts: $SERVER
 
 notifications:
     email:
