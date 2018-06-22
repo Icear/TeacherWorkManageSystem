@@ -104,13 +104,15 @@ public class ReplyEntity {
         return id == that.id &&
                 Objects.equals(replyInformation, that.replyInformation) &&
                 Objects.equals(replyTime, that.replyTime) &&
-                Objects.equals(whetherInTime, that.whetherInTime);
+                Objects.equals(whetherInTime, that.whetherInTime) &&
+                Objects.equals(teacherEntity, that.teacherEntity) &&
+                Objects.equals(replyMissionEntity, that.replyMissionEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, replyInformation, replyTime, whetherInTime);
+        return Objects.hash(id, replyInformation, replyTime, whetherInTime, teacherEntity, replyMissionEntity);
     }
 
     @Override

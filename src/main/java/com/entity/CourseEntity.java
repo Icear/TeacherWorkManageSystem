@@ -100,21 +100,8 @@ public class CourseEntity {
         return updateTime;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CourseEntity that = (CourseEntity) o;
-        return id == that.id &&
-                Objects.equals(courseName, that.courseName) &&
-                Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, courseName, createTime, updateTime);
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -129,7 +116,24 @@ public class CourseEntity {
                 '}';
     }
 
-    public void setUpdateTime(Calendar updateTime) {
-        this.updateTime = updateTime;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseEntity that = (CourseEntity) o;
+        return id == that.id &&
+                Objects.equals(courseName, that.courseName) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(administratorEntity, that.administratorEntity) &&
+                Objects.equals(examEntities, that.examEntities);
     }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, courseName, createTime, updateTime, administratorEntity, examEntities);
+    }
+
+
 }

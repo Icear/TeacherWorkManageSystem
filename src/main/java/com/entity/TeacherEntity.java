@@ -26,7 +26,7 @@ public class TeacherEntity {
     private Calendar updateTime;
     private AdministratorEntity administratorEntity;
     private Set<ReplyEntity> replyEntities;
-    //    private Set<TeacherWatchExamEntity> teacherWatchExamEntities;
+    private Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities;
     private TitleEntity titleEntity;
 
     public TeacherEntity() {
@@ -45,18 +45,34 @@ public class TeacherEntity {
         this.titleEntity = titleEntity;
     }
 
-//    /**
-//     * 与老师监考考试实体一对多的映射
-//     * @return 老师监考考试实体
-//     */
-//    @OneToMany(mappedBy = "teacherEntity")
-//    public Set<TeacherWatchExamEntity> getTeacherWatchExamEntities() {
-//        return teacherWatchExamEntities;
-//    }
-//
-//    public void setTeacherWatchExamEntities(Set<TeacherWatchExamEntity> teacherWatchExamEntities) {
-//        this.teacherWatchExamEntities = teacherWatchExamEntities;
-//    }
+
+    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities, TitleEntity titleEntity) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.description = description;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.replyEntities = replyEntities;
+        this.teacherWatchClassroomEntities = teacherWatchClassroomEntities;
+        this.titleEntity = titleEntity;
+    }
+
+    /**
+     * 与老师监考教室实体一对多的映射
+     *
+     * @return 老师监考教室实体
+     */
+    @OneToMany(mappedBy = "teacherEntity")
+    public Set<TeacherWatchClassroomEntity> getTeacherWatchClassroomEntities() {
+        return teacherWatchClassroomEntities;
+    }
+
 
     /**
      * 与回复实体一对多的映射
@@ -179,21 +195,8 @@ public class TeacherEntity {
         this.email = email;
     }
 
-    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/, TitleEntity titleEntity) {
-        this.id = id;
-        this.account = account;
-        this.password = password;
-        this.name = name;
-        this.description = description;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.replyEntities = replyEntities;
-//        this.teacherWatchExamEntities = teacherWatchExamEntities;
-        this.titleEntity = titleEntity;
+    public void setTeacherWatchClassroomEntities(Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities) {
+        this.teacherWatchClassroomEntities = teacherWatchClassroomEntities;
     }
 
     @Basic
@@ -214,6 +217,27 @@ public class TeacherEntity {
         return updateTime;
     }
 
+    //    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/, TitleEntity titleEntity) {
+//        this.id = id;
+//        this.account = account;
+//        this.password = password;
+//        this.name = name;
+//        this.description = description;
+//        this.gender = gender;
+//        this.phone = phone;
+//        this.email = email;
+//        this.createTime = createTime;
+//        this.updateTime = updateTime;
+//        this.administratorEntity = administratorEntity;
+//        this.replyEntities = replyEntities;
+//        this.teacherWatchExamEntities = teacherWatchExamEntities;
+//        this.titleEntity = titleEntity;
+//    }
+
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -228,17 +252,17 @@ public class TeacherEntity {
                 Objects.equals(phone, that.phone) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(administratorEntity, that.administratorEntity) &&
+                Objects.equals(replyEntities, that.replyEntities) &&
+                Objects.equals(teacherWatchClassroomEntities, that.teacherWatchClassroomEntities) &&
+                Objects.equals(titleEntity, that.titleEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, account, password, name, description, gender, phone, email, createTime, updateTime);
-    }
-
-    public void setUpdateTime(Calendar updateTime) {
-        this.updateTime = updateTime;
+        return Objects.hash(id, account, password, name, description, gender, phone, email, createTime, updateTime, administratorEntity, replyEntities, teacherWatchClassroomEntities, titleEntity);
     }
 
     @Override
@@ -246,6 +270,7 @@ public class TeacherEntity {
         return "TeacherEntity{" +
                 "id=" + id +
                 ", account='" + account + '\'' +
+//                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", gender='" + gender + '\'' +
@@ -255,10 +280,8 @@ public class TeacherEntity {
                 ", updateTime=" + updateTime +
                 ", administratorEntity=" + administratorEntity +
                 ", replyEntities=" + replyEntities +
-//                ", teacherWatchExamEntities=" + teacherWatchExamEntities +
+                ", teacherWatchClassroomEntities=" + teacherWatchClassroomEntities +
                 ", titleEntity=" + titleEntity +
                 '}';
     }
-
-
 }

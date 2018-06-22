@@ -117,6 +117,10 @@ public class AdministratorEntity {
         return updateTime;
     }
 
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,15 +128,18 @@ public class AdministratorEntity {
         AdministratorEntity that = (AdministratorEntity) o;
         return id == that.id &&
                 Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(teacherEntity, that.teacherEntity) &&
+                Objects.equals(courseEntities, that.courseEntities) &&
+                Objects.equals(examEntities, that.examEntities) &&
+                Objects.equals(missionEntities, that.missionEntities);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, createTime, updateTime);
+        return Objects.hash(id, createTime, updateTime, teacherEntity, courseEntities, examEntities, missionEntities);
     }
-
 
     @Override
     public String toString() {
@@ -147,7 +154,5 @@ public class AdministratorEntity {
                 '}';
     }
 
-    public void setUpdateTime(Calendar updateTime) {
-        this.updateTime = updateTime;
-    }
+
 }

@@ -123,6 +123,10 @@ public class MissionEntity {
         return updateTime;
     }
 
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,13 +136,16 @@ public class MissionEntity {
                 Objects.equals(missionType, that.missionType) &&
                 Objects.equals(missionStatus, that.missionStatus) &&
                 Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(administratorEntity, that.administratorEntity) &&
+                Objects.equals(replyMissionEntity, that.replyMissionEntity) &&
+                Objects.equals(fileMissionEntity, that.fileMissionEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, missionType, missionStatus, createTime, updateTime);
+        return Objects.hash(id, missionType, missionStatus, createTime, updateTime, administratorEntity, replyMissionEntity, fileMissionEntity);
     }
 
     @Override
@@ -155,7 +162,5 @@ public class MissionEntity {
                 '}';
     }
 
-    public void setUpdateTime(Calendar updateTime) {
-        this.updateTime = updateTime;
-    }
+
 }

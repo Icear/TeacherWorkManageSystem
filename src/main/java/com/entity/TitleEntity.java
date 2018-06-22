@@ -53,27 +53,28 @@ public class TitleEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TitleEntity that = (TitleEntity) o;
-        return id == that.id &&
-                Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, name);
-    }
-
-    @Override
     public String toString() {
         return "TitleEntity{" +
                 "titNo=" + id +
                 ", tilName='" + name + '\'' +
                 ", teacherEntities=" + teacherEntities +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TitleEntity that = (TitleEntity) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(teacherEntities, that.teacherEntities);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name, teacherEntities);
     }
 
     public TitleEntity(int titNo, String tilName, Set<TeacherEntity> teacherEntities) {

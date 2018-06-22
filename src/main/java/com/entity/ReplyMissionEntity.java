@@ -122,6 +122,10 @@ public class ReplyMissionEntity {
         return updateTime;
     }
 
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,13 +136,15 @@ public class ReplyMissionEntity {
                 Objects.equals(description, that.description) &&
                 Objects.equals(deadline, that.deadline) &&
                 Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(replyEntities, that.replyEntities) &&
+                Objects.equals(missionEntity, that.missionEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, description, deadline, createTime, updateTime);
+        return Objects.hash(id, name, description, deadline, createTime, updateTime, replyEntities, missionEntity);
     }
 
     @Override
@@ -155,7 +161,5 @@ public class ReplyMissionEntity {
                 '}';
     }
 
-    public void setUpdateTime(Calendar updateTime) {
-        this.updateTime = updateTime;
-    }
+
 }

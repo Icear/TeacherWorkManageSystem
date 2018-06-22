@@ -195,30 +195,33 @@ public class ExamEntity {
         return updateTime;
     }
 
+    public void setUpdateTime(Calendar updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ExamEntity that = (ExamEntity) o;
         return id == that.id &&
+                lastTime == that.lastTime &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(startTime, that.startTime) &&
                 Objects.equals(endTime, that.endTime) &&
-                Objects.equals(lastTime, that.lastTime) &&
                 Objects.equals(studentNumber, that.studentNumber) &&
                 Objects.equals(examInformationStatus, that.examInformationStatus) &&
                 Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(administratorEntity, that.administratorEntity) &&
+                Objects.equals(courseEntity, that.courseEntity) &&
+                Objects.equals(classroomEntities, that.classroomEntities);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, startTime, endTime, lastTime, studentNumber, examInformationStatus, createTime, updateTime);
-    }
-
-    public void setUpdateTime(Calendar updateTime) {
-        this.updateTime = updateTime;
+        return Objects.hash(id, name, startTime, endTime, lastTime, studentNumber, examInformationStatus, createTime, updateTime, administratorEntity, courseEntity, classroomEntities);
     }
 
     @Override
