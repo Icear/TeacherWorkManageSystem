@@ -2,7 +2,7 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,8 +14,8 @@ import java.util.Set;
 public class CourseEntity {
     private int id;
     private String courseName;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private AdministratorEntity administratorEntity;
     private Set<ExamEntity> examEntities;
 
@@ -73,43 +73,35 @@ public class CourseEntity {
         this.courseName = courseName;
     }
 
+    public CourseEntity(int id, String courseName, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ExamEntity> examEntities) {
+        this.id = id;
+        this.courseName = courseName;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.examEntities = examEntities;
+    }
+
     @Basic
     @Column(name = "cou_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "cou_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "cou_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Calendar updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CourseEntity that = (CourseEntity) o;
-        return id == that.id &&
-                Objects.equals(courseName, that.courseName) &&
-                Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, courseName, createTime, updateTime);
     }
 
     @Override
@@ -124,12 +116,24 @@ public class CourseEntity {
                 '}';
     }
 
-    public CourseEntity(int id, String courseName, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, Set<ExamEntity> examEntities) {
-        this.id = id;
-        this.courseName = courseName;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.examEntities = examEntities;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseEntity that = (CourseEntity) o;
+        return id == that.id &&
+                Objects.equals(courseName, that.courseName) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(administratorEntity, that.administratorEntity) &&
+                Objects.equals(examEntities, that.examEntities);
     }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, courseName, createTime, updateTime, administratorEntity, examEntities);
+    }
+
+
 }

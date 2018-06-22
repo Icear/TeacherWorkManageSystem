@@ -2,7 +2,7 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -15,8 +15,8 @@ public class MissionEntity {
     private int id;
     private String missionType;
     private String missionStatus;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Calendar createTime;
+    private Calendar updateTime;
     private AdministratorEntity administratorEntity;
     private ReplyMissionEntity replyMissionEntity;
     private FileMissionEntity fileMissionEntity;
@@ -94,25 +94,36 @@ public class MissionEntity {
         this.missionStatus = missionStatus;
     }
 
+    public MissionEntity(int id, String missionType, String missionStatus, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, ReplyMissionEntity replyMissionEntity, FileMissionEntity fileMissionEntity) {
+        this.id = id;
+        this.missionType = missionType;
+        this.missionStatus = missionStatus;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.replyMissionEntity = replyMissionEntity;
+        this.fileMissionEntity = fileMissionEntity;
+    }
+
     @Basic
     @Column(name = "mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getCreateTime() {
+    public Calendar getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP" + "ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Timestamp getUpdateTime() {
+    public Calendar getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Calendar updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -125,13 +136,16 @@ public class MissionEntity {
                 Objects.equals(missionType, that.missionType) &&
                 Objects.equals(missionStatus, that.missionStatus) &&
                 Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateTime, that.updateTime);
+                Objects.equals(updateTime, that.updateTime) &&
+                Objects.equals(administratorEntity, that.administratorEntity) &&
+                Objects.equals(replyMissionEntity, that.replyMissionEntity) &&
+                Objects.equals(fileMissionEntity, that.fileMissionEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, missionType, missionStatus, createTime, updateTime);
+        return Objects.hash(id, missionType, missionStatus, createTime, updateTime, administratorEntity, replyMissionEntity, fileMissionEntity);
     }
 
     @Override
@@ -148,14 +162,5 @@ public class MissionEntity {
                 '}';
     }
 
-    public MissionEntity(int id, String missionType, String missionStatus, Timestamp createTime, Timestamp updateTime, AdministratorEntity administratorEntity, ReplyMissionEntity replyMissionEntity, FileMissionEntity fileMissionEntity) {
-        this.id = id;
-        this.missionType = missionType;
-        this.missionStatus = missionStatus;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.replyMissionEntity = replyMissionEntity;
-        this.fileMissionEntity = fileMissionEntity;
-    }
+
 }

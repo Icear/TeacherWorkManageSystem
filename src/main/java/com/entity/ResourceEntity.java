@@ -137,13 +137,14 @@ public class ResourceEntity {
                 Objects.equals(format, that.format) &&
                 Objects.equals(physicalPath, that.physicalPath) &&
                 Objects.equals(uploadTime, that.uploadTime) &&
-                Objects.equals(hash, that.hash);
+                Objects.equals(hash, that.hash) &&
+                Objects.equals(fileMissionEntity, that.fileMissionEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, format, physicalPath, uploadTime, isFailed, hash);
+        return Objects.hash(id, name, format, physicalPath, uploadTime, isFailed, hash, fileMissionEntity);
     }
 
     @Override
