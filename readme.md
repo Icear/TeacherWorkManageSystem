@@ -6,7 +6,7 @@
 ## Environment Configuration
 - [x] maven
 - [x] log4j
-- [ ] docker
+- [x] docker
 - [x] hibernate
 - [x] spring-framework
 - [x] spring-MVC
