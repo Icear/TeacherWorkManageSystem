@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sshpass -p $PASSWORD scp -P $PORT -r ./target/ROOT.war $USER@$SERVER:$DEPLOY_FILE_LOCATION
+ssh $USER@$SERVER $DEPLOY_SCRIPT_LOCATION --branch TRAVIS_BRANCH
