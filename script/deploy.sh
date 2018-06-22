@@ -1,4 +1,6 @@
 #!/bin/bash
 
-scp -i id_rsa -P $PORT ./target/ROOT.war root@project.oooooreo.xyz:/root/docker-TMS/webapps/
-ssh -i id_rsa -p $PORT root@project.oooooreo "/root/docker-TMS/depoloy-docker-TMS.sh"
+echo $PWD
+
+scp -i $TRAVIS_BUILD_DIR/id_rsa -P $PORT $TRAVIS_BUILD_DIR/target/ROOT.war root@project.oooooreo.xyz:/root/docker-TMS/webapps/
+ssh -i $TRAVIS_BUILD_DIR/id_rsa -p $PORT root@project.oooooreo "/root/docker-TMS/depoloy-docker-TMS.sh"
