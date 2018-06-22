@@ -1,0 +1,35 @@
+version: '3'
+
+networks:
+  database_bridge:
+
+services:
+
+  database:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE='eacherworkmanagesystemdatabase
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - database_bridge
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  webserver:
+    build:
+      context: .
+      dockerfile: tomcat-dockerfile
+    ports:
+      - "127.0.0.1:5100:8080"
+    depends_on:
+      - database
+    links:
+      - database
+    networks:
+      - database_bridge
+    environment:
+      - DATASOURCE_URL=jdbc:mysql://database:3306/teacherworkmanagesystemdatabase
+      - DATASOUCE_USERNAME=root
+      - DATASOURCE_PASSWORD=root

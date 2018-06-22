@@ -3,6 +3,20 @@ language: java
 jdk:
   - oraclejdk8
 
+script:
+  - mvn test
+  - mvn clean package -DskipTests=true -f pom-docker.xml
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash deploy.sh
+  on:
+    branch: master
+
+addons:
+  ssh_known_hosts: $SERVER:$PORT
+
 notifications:
     email:
     - Icear.Github@outlook.com

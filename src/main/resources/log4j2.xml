@@ -7,16 +7,20 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern}"/>
         </Console>
-        <Console name="developConsole" target="SYSTEM_OUT">
+        <Console name="erroroutput" target="SYSTEM_ERROR">
+            <filter class="org.apache.log4j.varia.LevelRangeFilter">
+                <param name="LevelMin" value="WARNING"/>
+                <param name="LevelMax" value="ERROR"/>
+            </filter>
             <PatternLayout pattern="${pattern}"/>
         </Console>
     </appenders>
 
     <loggers>
         <logger name="org.springframework" level="error"/>
-        <root level="error">
+        <root level="info">
+            <AppenderRef ref="erroroutput"/>
             <AppenderRef ref="console"/>
-            <!-- <AppenderRef ref="warnfile" /> -->
         </root>
     </loggers>
 </configuration>
