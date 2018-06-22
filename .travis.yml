@@ -3,7 +3,8 @@ jdk:
 - oraclejdk8
 script:
 - mvn test
-- mvn clean package -DskipTests=true -f pom-docker.xml
+- mvn package -DskipTests=true -f pom-docker.xml
+
 deploy:
   provider: script
   skip_cleanup: true
