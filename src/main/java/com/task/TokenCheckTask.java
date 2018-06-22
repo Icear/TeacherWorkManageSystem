@@ -21,7 +21,7 @@ public class TokenCheckTask {
     /**
      * 过期时间，单位：毫秒
      */
-    @Value("${Token.expireTime}")
+    @Value("${TOKEN_EXPIRE_TIME}")
     private long expireTime;
 
     @Autowired
