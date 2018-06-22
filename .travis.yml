@@ -10,11 +10,10 @@ deploy:
   script: bash ./script/deploy.sh
   on:
     branch: master
-addons:
-  ssh_known_hosts: 140.143.11.157
 notifications:
   email:
   - Icear.Github@outlook.com
 before_install:
   - openssl aes-256-cbc -K $encrypted_906226319d35_key -iv $encrypted_906226319d35_iv -in id_rsa.enc -out ./script/id_rsa -d
   - chmod 600 ./script/id_rsa
+  - echo $HOST_KEY >> $HOME/.ssh/known_hosts
