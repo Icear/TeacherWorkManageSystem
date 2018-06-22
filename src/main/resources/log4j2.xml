@@ -9,7 +9,7 @@
         </Console>
         <Console name="erroroutput" target="SYSTEM_ERROR">
             <filter class="org.apache.log4j.varia.LevelRangeFilter">
-                <param name="LevelMin" value="ERROR"/>
+                <param name="LevelMin" value="WARNING"/>
                 <param name="LevelMax" value="ERROR"/>
             </filter>
             <PatternLayout pattern="${pattern}"/>
