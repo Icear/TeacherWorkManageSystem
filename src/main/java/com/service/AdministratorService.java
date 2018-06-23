@@ -4,6 +4,7 @@ import com.entity.AdministratorEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AdministratorService {
     /**
@@ -26,15 +27,23 @@ public interface AdministratorService {
      *
      * @return administrators
      */
-    @NotNull List<AdministratorEntity> findAdminstrators();
+    @NotNull List<AdministratorEntity> findAdministrators();
 
-//    /**
-//     * 根据教师id查找其是否为管理员
-//     *
-//     * @param teacherId 教师id
-//     * @return 返回找到的对象
-//     */
-//    @Nullable AdministratorEntity findAdministrator(int teacherId);
+    /**
+     * 根据教师id查找其是否为管理员
+     *
+     * @param teacherId 教师id
+     * @return 返回找到的对象
+     */
+    @NotNull Optional<AdministratorEntity> findAdministratorByTeacherId(int teacherId);
+
+    /**
+     * 根据管理员id查找
+     *
+     * @param administratorId 管理员id
+     * @return 对象
+     */
+    @NotNull Optional<AdministratorEntity> findAdministratorById(int administratorId);
 
 
 }

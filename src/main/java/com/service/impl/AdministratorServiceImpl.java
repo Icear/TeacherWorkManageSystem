@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,7 +32,17 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public @NotNull List<AdministratorEntity> findAdminstrators() {
+    public @NotNull List<AdministratorEntity> findAdministrators() {
         return administratorEntityDao.list();
+    }
+
+    @Override
+    public @NotNull Optional<AdministratorEntity> findAdministratorByTeacherId(int teacherId) {
+        return Optional.ofNullable(administratorEntityDao.findByTeacherId(teacherId));
+    }
+
+    @Override
+    public @NotNull Optional<AdministratorEntity> findAdministratorById(int administratorId) {
+        return Optional.ofNullable(administratorEntityDao.find(administratorId));
     }
 }
