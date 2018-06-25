@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -26,12 +25,8 @@ public class TitleEntityDao extends GenericDao<TitleEntity> {
         String jpql = "FROM TitleEntity t WHERE t.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
-        TitleEntity titleEntity = null;
-        try {
-            titleEntity = (TitleEntity) query.getSingleResult();
-        } catch (NoResultException e){
-            //采用统一异常处理
-        }
+        TitleEntity titleEntity;
+        titleEntity = (TitleEntity) query.getSingleResult();
         return  titleEntity;
     }
 }

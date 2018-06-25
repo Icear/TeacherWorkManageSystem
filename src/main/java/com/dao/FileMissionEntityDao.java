@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 /**
  * FileMssionEntityDao 类
@@ -26,12 +25,8 @@ public class FileMissionEntityDao extends GenericDao<FileMissionEntity> {
         String jpql = "FROM FileMissionEntity f WHERE f.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
-        FileMissionEntity fileMissionEntity = null;
-        try {
-            fileMissionEntity = (FileMissionEntity) query.getSingleResult();
-        } catch (NoResultException e){
-            //采用统一异常处理
-        }
+        FileMissionEntity fileMissionEntity;
+        fileMissionEntity = (FileMissionEntity) query.getSingleResult();
         return  fileMissionEntity;
     }
 }
