@@ -1,6 +1,6 @@
-package com.aop.authorize.annotation;
+package com.annotation;
 
-import com.aop.authorize.identity.Identity;
+import com.identity.Identity;
 
 import java.lang.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.aop.authorize.annotation;
+package com.annotation;
 
 
 import java.lang.annotation.*;
