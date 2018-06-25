@@ -2,11 +2,12 @@ package com.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.NoResultException;
-import javax.servlet.http.HttpServletResponse;
 
 @ControllerAdvice
 public class ExceptionController {
@@ -49,19 +50,19 @@ public class ExceptionController {
 
     /**
      * 没有找到对应的实体
-     * @param response 传进来的参数
-     * @return 设置好的respone.status = 404
+     * @param e 未找到结果异常
      */
     @ExceptionHandler(NoResultException.class)
-    public HttpServletResponse getNoResultException(HttpServletResponse response) {
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public void getNoResultException(NoResultException e) {
         logger.debug("未找到对应的实体");
-        response.setStatus(404);
-        return response;
+        e.printStackTrace();
     }
 
-    //    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-//    public void getNoResultException(NoResultException e) {
+    //    public HttpServletResponse getNoResultException(HttpServletResponse response) {
 //        logger.debug("未找到对应的实体");
+//        response.setStatus(404);
+//        return response;
 //    }
 
 }
