@@ -2,12 +2,9 @@ package com.dao;
 
 import com.entity.CourseEntity;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,12 +28,8 @@ public class CourseEntityDao extends GenericDao<CourseEntity> {
         String jpql ="FROM CourseEntity c WHERE c.courseName=:courseName";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("courseName",courseName);
-        List<CourseEntity> courseEntities = new ArrayList<>();
-        try {
-            courseEntities = query.getResultList();
-        }catch (NoResultException e){
-            //采用统一异常处理
-        }
+        List<CourseEntity> courseEntities;
+        courseEntities = query.getResultList();
         return courseEntities;
     }
 

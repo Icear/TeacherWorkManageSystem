@@ -1,11 +1,9 @@
 package com.dao;
 
 import com.entity.AdministratorEntity;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -30,12 +28,8 @@ public class AdministratorEntityDao extends GenericDao<AdministratorEntity> {
         //String jpql = "SELECT e.classroomEntities FROM ExamEntity e WHERE e.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
-        AdministratorEntity administratorEntity = null;
-        try {
-            administratorEntity = (AdministratorEntity) query.getSingleResult();
-        }catch (NoResultException e){
-            //采用统一异常处理
-        }
+        AdministratorEntity administratorEntity;
+        administratorEntity = (AdministratorEntity) query.getSingleResult();
         return administratorEntity;
     }
 

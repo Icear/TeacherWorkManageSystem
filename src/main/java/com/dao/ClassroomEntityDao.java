@@ -5,9 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,12 +29,8 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
         String jpql ="FROM ClassroomEntity c WHERE c.classInformation=:classInformation";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("classInformation",classInformation);
-        ClassroomEntity classroomEntity = null;
-        try {
-            classroomEntity = (ClassroomEntity) query.getSingleResult();
-        }catch (NoResultException e){
-            //采用统一异常处理
-        }
+        ClassroomEntity classroomEntity;
+        classroomEntity = (ClassroomEntity) query.getSingleResult();
         return classroomEntity;
     }
 
@@ -56,12 +50,8 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
         String jpql = "SELECT e.classroomEntities FROM ExamEntity e WHERE e.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
-        List<ClassroomEntity> classroomEntities = new ArrayList<>();
-        try{
-            classroomEntities =  query.getResultList();
-        }catch (NoResultException e){
-            //采用统一异常处理
-        }
+        List<ClassroomEntity> classroomEntities;
+        classroomEntities = query.getResultList();
         return classroomEntities;
     }
 

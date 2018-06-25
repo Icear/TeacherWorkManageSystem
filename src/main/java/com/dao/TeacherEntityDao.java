@@ -5,9 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -50,12 +48,8 @@ public class TeacherEntityDao extends GenericDao<TeacherEntity> {
         String jpql ="FROM TeacherEntity t WHERE t.account=:account";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("account",account);
-        TeacherEntity teacherEntity = null;
-        try {
-            teacherEntity = (TeacherEntity) query.getSingleResult();
-        }catch (NoResultException e){
-            //异常还没有写
-        }
+        TeacherEntity teacherEntity;
+        teacherEntity = (TeacherEntity) query.getSingleResult();
         return teacherEntity;
     }
 
@@ -70,14 +64,8 @@ public class TeacherEntityDao extends GenericDao<TeacherEntity> {
         String jpql = "FROM TeacherEntity t WHERE t.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
-        List<TeacherEntity> teacherEntities = new ArrayList<>();
-        try {
-            teacherEntities = query.getResultList();
-        } catch (NoResultException e){
-            //同上 暂时没写 应该采用统一异常处理？
-        }
+        List<TeacherEntity> teacherEntities;
+        teacherEntities = query.getResultList();
         return  teacherEntities;
     }
-
-
 }

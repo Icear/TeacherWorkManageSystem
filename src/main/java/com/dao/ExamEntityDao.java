@@ -2,12 +2,9 @@ package com.dao;
 
 import com.entity.ExamEntity;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,12 +29,8 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
         String jpql = "FROM ExamEntity e WHERE e.name=:name";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
-        List<ExamEntity> examEntities = new ArrayList<>();
-        try {
-            examEntities = query.getResultList();
-        } catch (NoResultException e){
-            //采用统一异常处理
-        }
+        List<ExamEntity> examEntities;
+        examEntities = query.getResultList();
         return  examEntities;
     }
 
@@ -53,12 +46,8 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
         String jpql = "SELECT c.examEntities FROM  CourseEntity c WHERE c.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
-        List<ExamEntity> examEntities = new ArrayList<>();
-        try {
-            examEntities = query.getResultList();
-        }catch (NoResultException e){
-            //采用统一异常处理
-        }
+        List<ExamEntity> examEntities;
+        examEntities = query.getResultList();
         return examEntities;
     }
 
@@ -74,12 +63,8 @@ public class ExamEntityDao extends GenericDao<ExamEntity> {
         String jpql = "SELECT a.examEntities FROM AdministratorEntity a WHERE a.id=:id";
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
-        List<ExamEntity> examEntities = new ArrayList<>();
-        try {
-            examEntities = query.getResultList();
-        }catch (NoResultException e){
-            //采用统一异常处理
-        }
+        List<ExamEntity> examEntities;
+        examEntities = query.getResultList();
         return examEntities;
     }
 }
