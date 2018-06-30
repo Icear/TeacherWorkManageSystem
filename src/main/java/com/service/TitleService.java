@@ -44,4 +44,6 @@ public interface TitleService {
      * @return 实体
      */
     @NotNull Optional<TitleEntity> findTitleByName(@NotNull String titleName);
+
+    @NotNull Optional<TitleEntity> findById(@NotNull Integer id);
 }

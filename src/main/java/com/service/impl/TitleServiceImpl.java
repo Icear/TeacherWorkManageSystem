@@ -45,4 +45,9 @@ public class TitleServiceImpl implements TitleService {
     public @NotNull Optional<TitleEntity> findTitleByName(@NotNull String titleName) {
         return Optional.ofNullable(titleEntityDao.findByName(titleName));
     }
+
+    @Override
+    public @NotNull Optional<TitleEntity> findById(@NotNull Integer id) {
+        return Optional.ofNullable(titleEntityDao.find(id));
+    }
 }
