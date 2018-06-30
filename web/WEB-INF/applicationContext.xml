@@ -92,7 +92,7 @@
         <!-- 内存占用最大值，默认10240，5MB -->
         <property name="maxInMemorySize" value="${UPLOAD_MAX_IN_MEMOR_YSIZE}"/>
         <!-- 临时文件目录，默认为Web容器默认临时目录 -->
-        <property name="uploadTempDir" value="${UPLOAD_DIRECTORY}"/>
+        <property name="uploadTempDir" value="${UPLOAD_TEMP_DIRECTORY}"/>
         <!-- 请求编码格式 -->
         <property name="defaultEncoding" value="UTF-8"/>
         <!-- 延迟文件解析，可用于判断文件大小、获取名称等操作 -->
