@@ -57,6 +57,10 @@ public class TeacherEntity {
         return resourceEntity;
     }
 
+    public void setResourceEntity(ResourceEntity resourceEntity) {
+        this.resourceEntity = resourceEntity;
+    }
+
     /**
      * 和职称实体多对一的映射
      * @return 职称实体
@@ -229,9 +233,6 @@ public class TeacherEntity {
         this.updateTime = updateTime;
     }
 
-    public void setResourceEntity(ResourceEntity resourceEntity) {
-        this.resourceEntity = resourceEntity;
-    }
 
     @Override
     public String toString() {

@@ -14,7 +14,7 @@ public class ReplyEntity {
     private int id;
     private String replyInformation;
     private Timestamp replyTime;
-    private Byte whetherInTime;
+    private boolean whetherInTime;
     private TeacherEntity teacherEntity;
     private ReplyMissionEntity replyMissionEntity;
 
@@ -71,15 +71,24 @@ public class ReplyEntity {
         this.replyInformation = replyInformation;
     }
 
-    @Basic
-    @Column(name = "rep_time")
-    @NotNull
-    public Timestamp getReplyTime() {
-        return replyTime;
+    public ReplyEntity(int id, String replyInformation, Timestamp replyTime, boolean whetherInTime, TeacherEntity teacherEntity, ReplyMissionEntity replyMissionEntity) {
+        this.id = id;
+        this.replyInformation = replyInformation;
+        this.replyTime = replyTime;
+        this.whetherInTime = whetherInTime;
+        this.teacherEntity = teacherEntity;
+        this.replyMissionEntity = replyMissionEntity;
     }
 
     public void setReplyTime(Timestamp replyTime) {
         this.replyTime = replyTime;
+    }
+
+    @Basic
+    @Column(name = "rep_time", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @NotNull
+    public Timestamp getReplyTime() {
+        return replyTime;
     }
 
     /**
@@ -88,12 +97,8 @@ public class ReplyEntity {
      */
     @Basic
     @Column(name = "whetherInTime")
-    public Byte getWhetherInTime() {
+    public boolean getWhetherInTime() {
         return whetherInTime;
-    }
-
-    public void setWhetherInTime(Byte whetherInTime) {
-        this.whetherInTime = whetherInTime;
     }
 
     @Override
@@ -127,12 +132,7 @@ public class ReplyEntity {
                 '}';
     }
 
-    public ReplyEntity(int id, String replyInformation, Timestamp replyTime, Byte whetherInTime, TeacherEntity teacherEntity, ReplyMissionEntity replyMissionEntity) {
-        this.id = id;
-        this.replyInformation = replyInformation;
-        this.replyTime = replyTime;
+    public void setWhetherInTime(boolean whetherInTime) {
         this.whetherInTime = whetherInTime;
-        this.teacherEntity = teacherEntity;
-        this.replyMissionEntity = replyMissionEntity;
     }
 }

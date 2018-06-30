@@ -2,7 +2,6 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -16,7 +15,7 @@ public class FileMissionEntity {
     private int id;
     private String name;
     private String description;
-    private Timestamp deadline;
+    private Date deadline;
     private Date createTime;
     private Date updateTime;
     private MissionEntity missionEntity;
@@ -83,18 +82,7 @@ public class FileMissionEntity {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "fil_mis_deadline")
-    public Timestamp getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Timestamp deadline) {
-        this.deadline = deadline;
-    }
-
-
-    public FileMissionEntity(int id, String name, String description, Timestamp deadline, Date createTime, Date updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
+    public FileMissionEntity(int id, String name, String description, Date deadline, Date createTime, Date updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -106,7 +94,17 @@ public class FileMissionEntity {
     }
 
     @Basic
-    @Column(name = "fil_mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "fil_mis_deadline")
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    @Basic
+    @Column(name = "fil_mis_createTime", insertable = false, updatable = false, columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreateTime() {
         return createTime;
@@ -117,7 +115,7 @@ public class FileMissionEntity {
     }
 
     @Basic
-    @Column(name = "fil_mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "fil_mis_updateTime", columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date ON UPDATE CURRENT_Date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getUpdateTime() {
         return updateTime;
