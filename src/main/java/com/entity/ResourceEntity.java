@@ -31,18 +31,6 @@ public class ResourceEntity {
         return teacherEntity;
     }
 
-    public ResourceEntity(int id, String name, FileMissionEntity fileMissionEntity, TeacherEntity teacherEntity) {
-        this.id = id;
-        this.name = name;
-        this.fileMissionEntity = fileMissionEntity;
-        this.teacherEntity = teacherEntity;
-    }
-
-    @OneToOne
-    public TeacherEntity getTeacherEntity() {
-        return teacherEntity;
-    }
-
     public void setTeacherEntity(TeacherEntity teacherEntity) {
         this.teacherEntity = teacherEntity;
     }
