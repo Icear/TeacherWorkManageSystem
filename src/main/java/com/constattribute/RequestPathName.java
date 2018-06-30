@@ -7,4 +7,5 @@ public class RequestPathName {
     public static final String TEACHER_WATCH_CLASSROOMS = "/teacherWatchClassRooms";
     public static final String TITLES = "/titles";
     public static final String MISSIONS = "/missions";
+    public static final String REPLIES = "/replies";
 }
