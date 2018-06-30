@@ -36,7 +36,7 @@ public class ClassroomEntity {
      *
      * @return 老师监考教室实体
      */
-    @OneToMany(mappedBy = "classroomEntity")
+    @OneToMany(mappedBy = "classroomEntity", fetch = FetchType.EAGER)
     public Set<TeacherWatchClassroomEntity> getTeacherWatchClassroomEntities() {
         return teacherWatchClassroomEntities;
     }

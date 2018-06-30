@@ -43,7 +43,7 @@ public class ReplyMissionEntity {
      * 与回复实体一对多的映射
      * @return 回复实体
      */
-    @OneToMany(mappedBy = "replyMissionEntity")
+    @OneToMany(mappedBy = "replyMissionEntity", fetch = FetchType.EAGER)
     public Set<ReplyEntity> getReplyEntities() {
         return replyEntities;
     }
