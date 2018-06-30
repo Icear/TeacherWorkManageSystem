@@ -21,6 +21,7 @@ public class ResourceEntity {
     private FileMissionEntity fileMissionEntity;
 
     public ResourceEntity() {
+
     }
 
     /**
