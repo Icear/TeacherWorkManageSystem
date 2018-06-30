@@ -28,8 +28,33 @@ public class TeacherEntity {
     private Set<ReplyEntity> replyEntities;
     private Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities;
     private TitleEntity titleEntity;
+    private ResourceEntity resourceEntity;
 
     public TeacherEntity() {
+    }
+
+    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Date createTime, Date updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities, TitleEntity titleEntity, ResourceEntity resourceEntity) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.description = description;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.replyEntities = replyEntities;
+        this.teacherWatchClassroomEntities = teacherWatchClassroomEntities;
+        this.titleEntity = titleEntity;
+        this.resourceEntity = resourceEntity;
+    }
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    public ResourceEntity getResourceEntity() {
+        return resourceEntity;
     }
 
     /**
@@ -45,23 +70,6 @@ public class TeacherEntity {
         this.titleEntity = titleEntity;
     }
 
-
-    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Date createTime, Date updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities, TitleEntity titleEntity) {
-        this.id = id;
-        this.account = account;
-        this.password = password;
-        this.name = name;
-        this.description = description;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.replyEntities = replyEntities;
-        this.teacherWatchClassroomEntities = teacherWatchClassroomEntities;
-        this.titleEntity = titleEntity;
-    }
 
     /**
      * 与老师监考教室实体一对多的映射
@@ -217,25 +225,33 @@ public class TeacherEntity {
         return updateTime;
     }
 
-    //    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Date createTime, Date updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/, TitleEntity titleEntity) {
-//        this.id = id;
-//        this.account = account;
-//        this.password = password;
-//        this.name = name;
-//        this.description = description;
-//        this.gender = gender;
-//        this.phone = phone;
-//        this.email = email;
-//        this.createTime = createTime;
-//        this.updateTime = updateTime;
-//        this.administratorEntity = administratorEntity;
-//        this.replyEntities = replyEntities;
-//        this.teacherWatchExamEntities = teacherWatchExamEntities;
-//        this.titleEntity = titleEntity;
-//    }
-
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public void setResourceEntity(ResourceEntity resourceEntity) {
+        this.resourceEntity = resourceEntity;
+    }
+
+    @Override
+    public String toString() {
+        return "TeacherEntity{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", administratorEntity=" + administratorEntity +
+                ", replyEntities=" + replyEntities +
+                ", teacherWatchClassroomEntities=" + teacherWatchClassroomEntities +
+                ", titleEntity=" + titleEntity +
+                ", resourceEntity=" + resourceEntity +
+                '}';
     }
 
     @Override
@@ -256,32 +272,13 @@ public class TeacherEntity {
                 Objects.equals(administratorEntity, that.administratorEntity) &&
                 Objects.equals(replyEntities, that.replyEntities) &&
                 Objects.equals(teacherWatchClassroomEntities, that.teacherWatchClassroomEntities) &&
-                Objects.equals(titleEntity, that.titleEntity);
+                Objects.equals(titleEntity, that.titleEntity) &&
+                Objects.equals(resourceEntity, that.resourceEntity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, account, password, name, description, gender, phone, email, createTime, updateTime, administratorEntity, replyEntities, teacherWatchClassroomEntities, titleEntity);
-    }
-
-    @Override
-    public String toString() {
-        return "TeacherEntity{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
-//                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", administratorEntity=" + administratorEntity +
-                ", replyEntities=" + replyEntities +
-                ", teacherWatchClassroomEntities=" + teacherWatchClassroomEntities +
-                ", titleEntity=" + titleEntity +
-                '}';
+        return Objects.hash(id, account, password, name, description, gender, phone, email, createTime, updateTime, administratorEntity, replyEntities, teacherWatchClassroomEntities, titleEntity, resourceEntity);
     }
 }
