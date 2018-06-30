@@ -137,5 +137,6 @@ public class Initialize {
         replyEntity.setReplyMissionEntity(replyMissionEntity);
         replyEntityDao.persist(replyEntity);
 
+
     }
 }
