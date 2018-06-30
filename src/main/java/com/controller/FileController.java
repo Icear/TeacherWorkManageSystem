@@ -1,7 +1,9 @@
 package com.controller;
 
+import com.annotation.Authority;
 import com.constattribute.RequestPathName;
 import com.exception.FileReadFailedException;
+import com.identity.Identity;
 import com.service.FileService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +33,8 @@ public class FileController {
         this.fileService = fileService;
     }
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @GetMapping(RequestPathName.FILES + "/{fileName}")
     public ResponseEntity<byte[]> getFile(@PathVariable String fileName) {
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -44,6 +48,8 @@ public class FileController {
     }
 
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @PostMapping(RequestPathName.FILES)
     public ResponseEntity uploadFile(MultipartFile multipartFile) {
         if (multipartFile.isEmpty()) {

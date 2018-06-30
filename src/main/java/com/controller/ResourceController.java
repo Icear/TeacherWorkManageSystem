@@ -1,7 +1,9 @@
 package com.controller;
 
+import com.annotation.Authority;
 import com.constattribute.RequestPathName;
 import com.entity.ResourceEntity;
+import com.identity.Identity;
 import com.service.ResourceService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,14 +30,18 @@ public class ResourceController {
         this.resourceService = resourceService;
     }
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @GetMapping(RequestPathName.RESOURCES)
     public ResponseEntity getAllResource() {
 //        //TODO 加入缓存控制
 //        return resourceService.findResources();
+        logger.info("get all resources");
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
     }
 
-
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @GetMapping(RequestPathName.RESOURCES + "/{id}")
     @ResponseBody
     @Validated
@@ -44,13 +50,20 @@ public class ResourceController {
         return resourceService.findResourceByResourceId(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @PostMapping(RequestPathName.RESOURCES)
     @Validated
     public ResponseEntity<ResourceEntity> createResource(@NotNull ResourceEntity resourceEntity) throws URISyntaxException {
+        logger.debug(resourceEntity);
         ResourceEntity createdResourceEntity = resourceService.addResource(resourceEntity);
+        logger.info("resource " + createdResourceEntity.getId() + " created");
+        logger.debug(createdResourceEntity);
         return ResponseEntity.created(new URI(RequestPathName.RESOURCES + "/" + createdResourceEntity.getId())).build();
     }
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @PatchMapping(RequestPathName.RESOURCES + "/{id}")
     @Validated
     public ResponseEntity updateResource(@NotNull ResourceEntity resourceEntity, @NotNull @PathVariable Integer id) {
@@ -65,11 +78,14 @@ public class ResourceController {
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
     }
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
     @DeleteMapping(RequestPathName.RESOURCES + "/{id}")
     @Validated
     public ResponseEntity<ResourceEntity> deleteResource(@NotNull @PathVariable Integer id) {
         ResourceEntity resourceEntity = resourceService.findResourceByResourceId(id).orElseThrow(EntityNotFoundException::new);
         resourceService.deleteResource(resourceEntity);
+        logger.info("resource " + id + " removed");
         return ResponseEntity.ok().build();
     }
 
