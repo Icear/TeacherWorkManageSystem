@@ -2,7 +2,7 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -15,8 +15,8 @@ public class MissionEntity {
     private int id;
     private String missionType;
     private String missionStatus;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private AdministratorEntity administratorEntity;
     private ReplyMissionEntity replyMissionEntity;
     private FileMissionEntity fileMissionEntity;
@@ -94,7 +94,7 @@ public class MissionEntity {
         this.missionStatus = missionStatus;
     }
 
-    public MissionEntity(int id, String missionType, String missionStatus, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, ReplyMissionEntity replyMissionEntity, FileMissionEntity fileMissionEntity) {
+    public MissionEntity(int id, String missionType, String missionStatus, Date createTime, Date updateTime, AdministratorEntity administratorEntity, ReplyMissionEntity replyMissionEntity, FileMissionEntity fileMissionEntity) {
         this.id = id;
         this.missionType = missionType;
         this.missionStatus = missionStatus;
@@ -108,22 +108,22 @@ public class MissionEntity {
     @Basic
     @Column(name = "mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

@@ -1,7 +1,7 @@
 package com.entity;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 /**
@@ -12,8 +12,8 @@ import java.util.Set;
 public class AdministratorEntity {
 
     private int id;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private TeacherEntity teacherEntity;
     private Set<CourseEntity> courseEntities;
     private Set<ExamEntity> examEntities;
@@ -26,7 +26,7 @@ public class AdministratorEntity {
      * 与任务实体一对多的映射
      * @return 任务实体
      */
-    @OneToMany(mappedBy = "administratorEntity")
+    @OneToMany(mappedBy = "administratorEntity", fetch = FetchType.EAGER)
     public Set<MissionEntity> getMissionEntities() {
         return missionEntities;
     }
@@ -39,7 +39,7 @@ public class AdministratorEntity {
      * 与考试实体一对多的映射
      * @return 考试实体
      */
-    @OneToMany(mappedBy = "administratorEntity")
+    @OneToMany(mappedBy = "administratorEntity", fetch = FetchType.EAGER)
     public Set<ExamEntity> getExamEntities() {
         return examEntities;
     }
@@ -52,7 +52,7 @@ public class AdministratorEntity {
      * 与课程实体一对多的映射
      * @return 课程实体
      */
-    @OneToMany(mappedBy = "administratorEntity")
+    @OneToMany(mappedBy = "administratorEntity", fetch = FetchType.EAGER)
     public Set<CourseEntity> getCourseEntities() {
         return courseEntities;
     }
@@ -89,7 +89,7 @@ public class AdministratorEntity {
     }
 
 
-    public AdministratorEntity(int id, Calendar createTime, Calendar updateTime, TeacherEntity teacherEntity, Set<CourseEntity> courseEntities, Set<ExamEntity> examEntities, Set<MissionEntity> missionEntities) {
+    public AdministratorEntity(int id, Date createTime, Date updateTime, TeacherEntity teacherEntity, Set<CourseEntity> courseEntities, Set<ExamEntity> examEntities, Set<MissionEntity> missionEntities) {
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -102,22 +102,22 @@ public class AdministratorEntity {
     @Basic
     @Column(name = "adm_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "adm_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

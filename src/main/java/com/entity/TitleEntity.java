@@ -22,7 +22,7 @@ public class TitleEntity {
      * 和教师实体一对多的映射
      * @return 老师实体
      */
-    @OneToMany(mappedBy = "titleEntity")
+    @OneToMany(mappedBy = "titleEntity", fetch = FetchType.EAGER)
     public Set<TeacherEntity> getTeacherEntities() {
         return teacherEntities;
     }

@@ -3,7 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,8 +17,8 @@ public class FileMissionEntity {
     private String name;
     private String description;
     private Timestamp deadline;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private MissionEntity missionEntity;
     private Set<ResourceEntity> resourceEntities;
 
@@ -29,7 +29,7 @@ public class FileMissionEntity {
      * 与资源实体的一对多的映射
      * @return 资源实体
      */
-    @OneToMany(mappedBy = "fileMissionEntity")
+    @OneToMany(mappedBy = "fileMissionEntity", fetch = FetchType.EAGER)
     public Set<ResourceEntity> getResourceEntities() {
         return resourceEntities;
     }
@@ -94,7 +94,7 @@ public class FileMissionEntity {
     }
 
 
-    public FileMissionEntity(int id, String name, String description, Timestamp deadline, Calendar createTime, Calendar updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
+    public FileMissionEntity(int id, String name, String description, Timestamp deadline, Date createTime, Date updateTime, MissionEntity missionEntity, Set<ResourceEntity> resourceEntities) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -108,22 +108,22 @@ public class FileMissionEntity {
     @Basic
     @Column(name = "fil_mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "fil_mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

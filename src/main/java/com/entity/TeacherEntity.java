@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,8 +22,8 @@ public class TeacherEntity {
     private String gender;
     private Integer phone;
     private String email;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private AdministratorEntity administratorEntity;
     private Set<ReplyEntity> replyEntities;
     private Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities;
@@ -46,7 +46,7 @@ public class TeacherEntity {
     }
 
 
-    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities, TitleEntity titleEntity) {
+    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Date createTime, Date updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities, Set<TeacherWatchClassroomEntity> teacherWatchClassroomEntities, TitleEntity titleEntity) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -68,7 +68,7 @@ public class TeacherEntity {
      *
      * @return 老师监考教室实体
      */
-    @OneToMany(mappedBy = "teacherEntity")
+    @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.EAGER)
     public Set<TeacherWatchClassroomEntity> getTeacherWatchClassroomEntities() {
         return teacherWatchClassroomEntities;
     }
@@ -78,7 +78,7 @@ public class TeacherEntity {
      * 与回复实体一对多的映射
      * @return 回复实体
      */
-    @OneToMany(mappedBy = "teacherEntity")
+    @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.EAGER)
     public Set<ReplyEntity> getReplyEntities() {
         return replyEntities;
     }
@@ -202,22 +202,22 @@ public class TeacherEntity {
     @Basic
     @Column(name = "tea_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "tea_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    //    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/, TitleEntity titleEntity) {
+    //    public TeacherEntity(int id, String account, String password, String name, String description, String gender, Integer phone, String email, Date createTime, Date updateTime, AdministratorEntity administratorEntity, Set<ReplyEntity> replyEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/, TitleEntity titleEntity) {
 //        this.id = id;
 //        this.account = account;
 //        this.password = password;
@@ -234,7 +234,7 @@ public class TeacherEntity {
 //        this.titleEntity = titleEntity;
 //    }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

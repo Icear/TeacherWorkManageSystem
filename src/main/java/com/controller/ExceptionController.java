@@ -94,21 +94,21 @@ public class ExceptionController {
      * @param e 超时异常
      */
     @ExceptionHandler(QueryTimeoutException.class)
-    @ResponseStatus(value = HttpStatus.REQUEST_TIMEOUT)
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void getQueryTimeoutException(QueryTimeoutException e) {
         logger.error("本次回话超时，这次语句声明回滚", e);
     }
 
-    /**
-     * 暂时无事务
-     *
-     * @param e 需要事务异常
-     */
-    @ExceptionHandler(TransactionRequiredException.class)
-    @ResponseStatus(value = HttpStatus.FORBIDDEN)
-    public void getTransactionRequiredException(TransactionRequiredException e) {
-        logger.error("暂时无事务", e);
-    }
+//    /**
+//     * 暂时无事务
+//     *
+//     * @param e 需要事务异常
+//     */
+//    @ExceptionHandler(TransactionRequiredException.class)
+//    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+//    public void getTransactionRequiredException(TransactionRequiredException e) {
+//        logger.error("暂时无事务", e);
+//    }
 
     /**
      * 悲观锁异常，整个事务回滚
@@ -132,17 +132,7 @@ public class ExceptionController {
         logger.error("悲观锁异常，这次语句声明回滚", e);
     }
 
-    /**
-     * 持久化异常，本次事务回滚
-     * 403不知道怎么描述这种异常，就404吧
-     *
-     * @param e 持久化异常
-     */
-    @ExceptionHandler(PersistenceException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void getPersistenceException(PersistenceException e) {
-        logger.error("持久化异常，本次事务回滚", e);
-    }
+
 
     /**
      * 未找到实体
@@ -155,6 +145,33 @@ public class ExceptionController {
         logger.error("未找到实体", e);
     }
 
+
+
+    /**
+     * 得到多个实体
+     *
+     * @param e 非单个结果异常
+     */
+    @ExceptionHandler(NonUniqueResultException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    public void getNonUniqueResultException(NonUniqueResultException e) {
+        logger.info("得到多个实体", e);
+    }
+
+//    /**
+//     * if called for a Java Persistence query language UPDATE or DELETE statement
+//     * 状态非法 不知道用什么Http状态码表示
+//     * 非法状态异常
+//     *
+//     * @param e 非法状态异常
+//     */
+//    @ExceptionHandler(IllegalStateException.class)
+//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+//    public void getIllegalStateException(IllegalStateException e) {
+//        logger.error("非法状态异常", e);
+//    }
+
+    //todo 暂时用302？？？ 等麻瓜开
     /**
      * 实体已存在
      *
@@ -166,28 +183,17 @@ public class ExceptionController {
         logger.error("实体已存在", e);
     }
 
-    /**
-     * 得到多个实体
-     *
-     * @param e 非单个结果异常
-     */
-    @ExceptionHandler(NonUniqueResultException.class)
-    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
-    public void getNonUniqueResultException(NonUniqueResultException e) {
-        logger.info("得到多个实体", e);
-    }
-
-    /**
-     * if called for a Java Persistence query language UPDATE or DELETE statement
-     * 状态非法 不知道用什么Http状态码表示
-     * 非法状态异常
-     *
-     * @param e 非法状态异常
-     */
-    @ExceptionHandler(IllegalStateException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void getIllegalStateException(IllegalStateException e) {
-        logger.error("非法状态异常", e);
-    }
+    //todo 拆分成多总情况，查
+//        /**
+//     * 持久化异常，本次事务回滚
+//     * 403不知道怎么描述这种异常，就404吧
+//     *
+//     * @param e 持久化异常
+//     */
+//    @ExceptionHandler(PersistenceException.class)
+//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+//    public void getPersistenceException(PersistenceException e) {
+//        logger.error("持久化异常，本次事务回滚", e);
+//    }
 
 }

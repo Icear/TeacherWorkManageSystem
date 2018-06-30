@@ -2,7 +2,7 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,8 +14,8 @@ import java.util.Set;
 public class CourseEntity {
     private int id;
     private String courseName;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private AdministratorEntity administratorEntity;
     private Set<ExamEntity> examEntities;
 
@@ -26,7 +26,7 @@ public class CourseEntity {
      * 与考试实体一对多的映射
      * @return 考试实体
      */
-    @OneToMany(mappedBy = "courseEntity")
+    @OneToMany(mappedBy = "courseEntity", fetch = FetchType.EAGER)
     public Set<ExamEntity> getExamEntities() {
         return examEntities;
     }
@@ -73,7 +73,7 @@ public class CourseEntity {
         this.courseName = courseName;
     }
 
-    public CourseEntity(int id, String courseName, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, Set<ExamEntity> examEntities) {
+    public CourseEntity(int id, String courseName, Date createTime, Date updateTime, AdministratorEntity administratorEntity, Set<ExamEntity> examEntities) {
         this.id = id;
         this.courseName = courseName;
         this.createTime = createTime;
@@ -85,22 +85,22 @@ public class CourseEntity {
     @Basic
     @Column(name = "cou_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "cou_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
