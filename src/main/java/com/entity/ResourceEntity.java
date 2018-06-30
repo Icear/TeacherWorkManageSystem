@@ -36,6 +36,10 @@ public class ResourceEntity {
     }
 
 
+    public void setTeacherEntity(TeacherEntity teacherEntity) {
+        this.teacherEntity = teacherEntity;
+    }
+
     /**
      * 与文件任务多对一的映射
      * @return 文件任务

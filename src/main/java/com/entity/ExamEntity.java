@@ -2,7 +2,6 @@ package com.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -15,8 +14,8 @@ import java.util.Set;
 public class ExamEntity {
     private int id;
     private String name;
-    private Timestamp startTime;
-    private Timestamp endTime;
+    private Date startTime;
+    private Date endTime;
     private int lastTime;
     private Integer studentNumber;
     private String examInformationStatus;
@@ -103,24 +102,35 @@ public class ExamEntity {
         this.name = name;
     }
 
+    public ExamEntity(int id, String name, Date startTime, Date endTime, int lastTime, Integer studentNumber, String examInformationStatus, Date createTime, Date updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities) {
+        this.id = id;
+        this.name = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.lastTime = lastTime;
+        this.studentNumber = studentNumber;
+        this.examInformationStatus = examInformationStatus;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.administratorEntity = administratorEntity;
+        this.courseEntity = courseEntity;
+        this.classroomEntities = classroomEntities;
+    }
+
     @Basic
     @Column(name = "startTime")
-    public Timestamp getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
     @Basic
     @Column(name = "endTime")
-    public Timestamp getEndTime() {
+    public Date getEndTime() {
         return endTime;
-    }
-
-    public void setEndTime(Timestamp endTime) {
-        this.endTime = endTime;
     }
 
     @Basic
@@ -161,24 +171,12 @@ public class ExamEntity {
         this.examInformationStatus = examInformationStatus;
     }
 
-
-    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, int lastTime, Integer studentNumber, String examInformationStatus, Date createTime, Date updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities) {
-        this.id = id;
-        this.name = name;
-        this.startTime = startTime;
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
-        this.lastTime = lastTime;
-        this.studentNumber = studentNumber;
-        this.examInformationStatus = examInformationStatus;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.administratorEntity = administratorEntity;
-        this.courseEntity = courseEntity;
-        this.classroomEntities = classroomEntities;
     }
 
     @Basic
-    @Column(name = "exa_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "exa_createTime", insertable = false, updatable = false, columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreateTime() {
         return createTime;
@@ -189,7 +187,7 @@ public class ExamEntity {
     }
 
     @Basic
-    @Column(name = "exa_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "exa_updateTime", columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date ON UPDATE CURRENT_Date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getUpdateTime() {
         return updateTime;
