@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,5 +32,10 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public @NotNull List<ReplyEntity> findReplys() {
         return replyEntityDao.list();
+    }
+
+    @Override
+    public @NotNull Optional<ReplyEntity> findReplyByReplyId(int id) {
+        return Optional.ofNullable(replyEntityDao.find(id));
     }
 }

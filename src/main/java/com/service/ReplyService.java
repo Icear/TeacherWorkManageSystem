@@ -4,6 +4,7 @@ import com.entity.ReplyEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReplyService {
     /**
@@ -27,5 +28,13 @@ public interface ReplyService {
      * @return reply的对象集合
      */
     @NotNull List<ReplyEntity> findReplys();
+
+    /**
+     * 根据replyid查找reply
+     *
+     * @param id replyid
+     * @return 实体
+     */
+    @NotNull Optional<ReplyEntity> findReplyByReplyId(int id);
 
 }
