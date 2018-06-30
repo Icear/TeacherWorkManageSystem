@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.constattribute.RequestPathName;
 import com.entity.TeacherEntity;
 import com.service.TeacherService;
 import org.apache.logging.log4j.LogManager;
@@ -27,14 +28,14 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @GetMapping("/teachers")
+    @GetMapping(RequestPathName.TEACHERS)
     public List<TeacherEntity> getAllTeacher() {
         //TODO 加入缓存控制
         return teacherService.findTeachers();
     }
 
 
-    @GetMapping("/teachers/{id}")
+    @GetMapping(RequestPathName.TEACHERS + "/{id}")
     @ResponseBody
     @Validated
     public TeacherEntity getTeacher(@PathVariable @NotNull Integer id) {
@@ -42,14 +43,14 @@ public class TeacherController {
         return teacherService.findTeacher(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    @PostMapping("/teachers")
+    @PostMapping(RequestPathName.TEACHERS)
     @Validated
     public ResponseEntity<TeacherEntity> createTeacher(@NotNull TeacherEntity teacherEntity) throws URISyntaxException {
         TeacherEntity createdTeacherEntity = teacherService.addTeacher(teacherEntity);
-        return ResponseEntity.created(new URI("/teachers/" + createdTeacherEntity.getId())).build();
+        return ResponseEntity.created(new URI(RequestPathName.TEACHERS + "/" + createdTeacherEntity.getId())).build();
     }
 
-    @PatchMapping("/teachers/{id}")
+    @PatchMapping(RequestPathName.TEACHERS + "/{id}")
     @Validated
     public ResponseEntity<TeacherEntity> updateTeacher(@NotNull TeacherEntity teacherEntity, @NotNull @PathVariable Integer id) {
         teacherEntity.setId(id);
@@ -62,7 +63,7 @@ public class TeacherController {
         }
     }
 
-    @DeleteMapping("/teachers/{id}")
+    @DeleteMapping(RequestPathName.TEACHERS + "/{id}")
     @Validated
     public ResponseEntity<TeacherEntity> deleteTeacher(@NotNull @PathVariable Integer id) {
         TeacherEntity teacherEntity = teacherService.findTeacher(id).orElseThrow(EntityNotFoundException::new);
