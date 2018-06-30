@@ -28,14 +28,14 @@ public class ClassroomController {
         this.classroomService = classroomService;
     }
 
-    @GetMapping(RequestPathName.CLASS_ROOMS)
+    @GetMapping(RequestPathName.CLASSROOMS)
     public List<ClassroomEntity> getAllClassroom() {
         //TODO 加入缓存控制
         return classroomService.findClassrooms();
     }
 
 
-    @GetMapping(RequestPathName.CLASS_ROOMS + "/{id}")
+    @GetMapping(RequestPathName.CLASSROOMS + "/{id}")
     @ResponseBody
     @Validated
     public ClassroomEntity getClassroom(@PathVariable @NotNull Integer id) {
@@ -43,14 +43,14 @@ public class ClassroomController {
         return classroomService.findClassroomByClassroomId(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    @PostMapping(RequestPathName.CLASS_ROOMS)
+    @PostMapping(RequestPathName.CLASSROOMS)
     @Validated
     public ResponseEntity<ClassroomEntity> createClassroom(@NotNull ClassroomEntity classroomEntity) throws URISyntaxException {
         ClassroomEntity createdClassroomEntity = classroomService.addClassroom(classroomEntity);
-        return ResponseEntity.created(new URI(RequestPathName.CLASS_ROOMS + "/" + createdClassroomEntity.getId())).build();
+        return ResponseEntity.created(new URI(RequestPathName.CLASSROOMS + "/" + createdClassroomEntity.getId())).build();
     }
 
-    @PatchMapping(RequestPathName.CLASS_ROOMS + "/{id}")
+    @PatchMapping(RequestPathName.CLASSROOMS + "/{id}")
     @Validated
     public ResponseEntity<ClassroomEntity> updateClassroom(@NotNull ClassroomEntity classroomEntity, @NotNull @PathVariable Integer id) {
         classroomEntity.setId(id);
@@ -63,7 +63,7 @@ public class ClassroomController {
         }
     }
 
-    @DeleteMapping(RequestPathName.CLASS_ROOMS + "/{id}")
+    @DeleteMapping(RequestPathName.CLASSROOMS + "/{id}")
     @Validated
     public ResponseEntity<ClassroomEntity> deleteClassroom(@NotNull @PathVariable Integer id) {
         ClassroomEntity classroomEntity = classroomService.findClassroomByClassroomId(id).orElseThrow(EntityNotFoundException::new);
