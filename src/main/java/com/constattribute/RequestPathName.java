@@ -9,4 +9,5 @@ public class RequestPathName {
     public static final String MISSIONS = "/missions";
     public static final String REPLIES = "/replies";
     public static final String FILE_MISSIONS = "/fileMissions";
+    public static final String EXAMS = "/exams";
 }
