@@ -123,11 +123,6 @@ public class Initialize {
         replyMissionEntity.setMissionEntity(missionEntity1);
         replyMissionEntityDao.persist(replyMissionEntity);
 
-        ResourceEntity resourceEntity = new ResourceEntity();
-        resourceEntity.setName("this is a resource");
-        resourceEntity.setTeacherEntity(teacherEntity2);
-        resourceEntity.setFileMissionEntity(fileMissionEntity);
-        resourceEntityDao.persist(resourceEntity);
 
         ReplyEntity replyEntity = new ReplyEntity();
         replyEntity.setReplyInformation("this is my reply");
@@ -136,6 +131,7 @@ public class Initialize {
         replyEntity.setTeacherEntity(teacherEntity1);
         replyEntity.setReplyMissionEntity(replyMissionEntity);
         replyEntityDao.persist(replyEntity);
+
 
     }
 }
