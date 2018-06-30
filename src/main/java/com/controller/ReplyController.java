@@ -41,7 +41,7 @@ public class ReplyController {
     @Validated
     public ReplyEntity getReply(@PathVariable @NotNull Integer id) {
         logger.info("get Reply, id: " + id);
-        return replyService.find(id).orElseThrow(EntityNotFoundException::new);
+        return replyService.findReplyByReplyId(id).orElseThrow(EntityNotFoundException::new);
     }
 
     @PostMapping(RequestPathName.REPLIES)
@@ -68,7 +68,7 @@ public class ReplyController {
     @DeleteMapping(RequestPathName.REPLIES + "/{id}")
     @Validated
     public ResponseEntity<ReplyEntity> deleteReply(@NotNull @PathVariable Integer id) {
-        ReplyEntity replyEntity = replyService.find(id).orElseThrow(EntityNotFoundException::new);
+        ReplyEntity replyEntity = replyService.findReplyByReplyId(id).orElseThrow(EntityNotFoundException::new);
         replyService.recallReply(replyEntity);
         return ResponseEntity.ok().build();
     }
