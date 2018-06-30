@@ -8,4 +8,5 @@ public class RequestPathName {
     public static final String TITLES = "/titles";
     public static final String MISSIONS = "/missions";
     public static final String REPLIES = "/replies";
+    public static final String FILE_MISSIONS = "/fileMissions";
 }
