@@ -47,7 +47,7 @@ public class ExamEntity {
      * 与教室实体一对多的映射
      * @return 教室实体
      */
-    @OneToMany(mappedBy = "examEntity")
+    @OneToMany(mappedBy = "examEntity", fetch = FetchType.EAGER)
     public Set<ClassroomEntity> getClassroomEntities() {
         return classroomEntities;
     }

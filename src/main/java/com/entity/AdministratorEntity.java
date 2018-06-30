@@ -26,7 +26,7 @@ public class AdministratorEntity {
      * 与任务实体一对多的映射
      * @return 任务实体
      */
-    @OneToMany(mappedBy = "administratorEntity")
+    @OneToMany(mappedBy = "administratorEntity", fetch = FetchType.EAGER)
     public Set<MissionEntity> getMissionEntities() {
         return missionEntities;
     }
@@ -39,7 +39,7 @@ public class AdministratorEntity {
      * 与考试实体一对多的映射
      * @return 考试实体
      */
-    @OneToMany(mappedBy = "administratorEntity")
+    @OneToMany(mappedBy = "administratorEntity", fetch = FetchType.EAGER)
     public Set<ExamEntity> getExamEntities() {
         return examEntities;
     }
@@ -52,7 +52,7 @@ public class AdministratorEntity {
      * 与课程实体一对多的映射
      * @return 课程实体
      */
-    @OneToMany(mappedBy = "administratorEntity")
+    @OneToMany(mappedBy = "administratorEntity", fetch = FetchType.EAGER)
     public Set<CourseEntity> getCourseEntities() {
         return courseEntities;
     }

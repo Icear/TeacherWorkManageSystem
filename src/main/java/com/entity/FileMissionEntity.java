@@ -29,7 +29,7 @@ public class FileMissionEntity {
      * 与资源实体的一对多的映射
      * @return 资源实体
      */
-    @OneToMany(mappedBy = "fileMissionEntity")
+    @OneToMany(mappedBy = "fileMissionEntity", fetch = FetchType.EAGER)
     public Set<ResourceEntity> getResourceEntities() {
         return resourceEntities;
     }

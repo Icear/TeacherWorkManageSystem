@@ -68,7 +68,7 @@ public class TeacherEntity {
      *
      * @return 老师监考教室实体
      */
-    @OneToMany(mappedBy = "teacherEntity")
+    @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.EAGER)
     public Set<TeacherWatchClassroomEntity> getTeacherWatchClassroomEntities() {
         return teacherWatchClassroomEntities;
     }
@@ -78,7 +78,7 @@ public class TeacherEntity {
      * 与回复实体一对多的映射
      * @return 回复实体
      */
-    @OneToMany(mappedBy = "teacherEntity")
+    @OneToMany(mappedBy = "teacherEntity", fetch = FetchType.EAGER)
     public Set<ReplyEntity> getReplyEntities() {
         return replyEntities;
     }
