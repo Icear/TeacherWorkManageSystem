@@ -31,17 +31,10 @@ public class ResourceEntity {
         return teacherEntity;
     }
 
-    public ResourceEntity(int id, String name, FileMissionEntity fileMissionEntity, TeacherEntity teacherEntity) {
-        this.id = id;
-        this.name = name;
-        this.fileMissionEntity = fileMissionEntity;
+    public void setTeacherEntity(TeacherEntity teacherEntity) {
         this.teacherEntity = teacherEntity;
     }
 
-    @OneToOne
-    public TeacherEntity getTeacherEntity() {
-        return teacherEntity;
-    }
 
     /**
      * 与文件任务多对一的映射
@@ -77,9 +70,6 @@ public class ResourceEntity {
         this.name = name;
     }
 
-    public void setTeacherEntity(TeacherEntity teacherEntity) {
-        this.teacherEntity = teacherEntity;
-    }
 
     @Override
     public String toString() {
