@@ -24,10 +24,8 @@ public interface ReplyService {
     /**
      * 查找指定replyMission下的所有回复信息
      *
-     * @param replyMissionId replyMission的id
      * @return reply的对象集合
      */
-    @NotNull List<ReplyEntity> findReplys(int replyMissionId);
-    // TODO: 2018/6/19  可以做成类似tim或wechat的"撤回了一条消息"么
+    @NotNull List<ReplyEntity> findReplys();
 
 }
