@@ -50,15 +50,19 @@ public class AuthorizeController {
                     String password) {
         Map<String, String> responseBodyMap = new HashMap<>();
 
+        logger.debug("account: " + account + ", password: " + password);
+
         Optional<TeacherEntity> teacher = teacherService.findTeacher(account);
 
         //查找教师身份并核对密码，通过则返回成功
         if (teacher.isPresent() && PasswordUtil.compare(password, teacher.get().getPassword())) {
             responseBodyMap.put("isSuccess", "true");
             responseBodyMap.put("token", authorizeService.applyToken(teacher.get()));
+            logger.info("login success for account " + account);
         } else {
             responseBodyMap.put("isSuccess", "false");
             responseBodyMap.put("reason", "account or password error");
+            logger.info("login failed for account " + account);
         }
 
         return responseBodyMap;
@@ -72,6 +76,8 @@ public class AuthorizeController {
             @NotNull
                     String token) {
         authorizeService.destroyToken(token);
+        logger.info("token removed");
+        logger.debug("token " + token + " removed");
         return new HashMap<>();
     }
 

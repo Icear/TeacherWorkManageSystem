@@ -16,6 +16,19 @@ public class ResourceEntity {
     private TeacherEntity teacherEntity;
 
     public ResourceEntity() {
+
+    }
+
+    public ResourceEntity(int id, String name, FileMissionEntity fileMissionEntity, TeacherEntity teacherEntity) {
+        this.id = id;
+        this.name = name;
+        this.fileMissionEntity = fileMissionEntity;
+        this.teacherEntity = teacherEntity;
+    }
+
+    @OneToOne
+    public TeacherEntity getTeacherEntity() {
+        return teacherEntity;
     }
 
     public ResourceEntity(int id, String name, FileMissionEntity fileMissionEntity, TeacherEntity teacherEntity) {
