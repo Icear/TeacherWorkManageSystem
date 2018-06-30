@@ -40,4 +40,9 @@ public class TeacherWatchClassroomServiceImpl implements TeacherWatchClassroomSe
     public @NotNull List<TeacherWatchClassroomEntity> findTeacherWatchClassrooms() {
         return teacherWatchClassroomEntityDao.list();
     }
+
+    @Override
+    public Optional<TeacherWatchClassroomEntity> findById(@NotNull Integer id) {
+        return Optional.ofNullable(teacherWatchClassroomEntityDao.find(id));
+    }
 }

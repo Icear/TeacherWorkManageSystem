@@ -39,6 +39,7 @@ public interface TeacherWatchClassroomService {
      */
     @NotNull List<TeacherWatchClassroomEntity> findTeacherWatchClassrooms();
 
+    Optional<TeacherWatchClassroomEntity> findById(@NotNull Integer id);
 
     // @NotNull List<TeacherEntity> findTeachersInOneExam(int examId);
 }
