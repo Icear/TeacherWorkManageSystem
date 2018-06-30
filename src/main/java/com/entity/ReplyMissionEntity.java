@@ -3,7 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,8 +17,8 @@ public class ReplyMissionEntity {
     private String name;
     private String description;
     private Timestamp deadline;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private Set<ReplyEntity> replyEntities;
     private MissionEntity missionEntity;
 
@@ -93,7 +93,7 @@ public class ReplyMissionEntity {
         this.deadline = deadline;
     }
 
-    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Calendar createTime, Calendar updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
+    public ReplyMissionEntity(int id, String name, String description, Timestamp deadline, Date createTime, Date updateTime, Set<ReplyEntity> replyEntities, MissionEntity missionEntity) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -107,22 +107,22 @@ public class ReplyMissionEntity {
     @Basic
     @Column(name = "rep_mis_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "rep_mis_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

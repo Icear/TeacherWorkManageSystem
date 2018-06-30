@@ -3,7 +3,7 @@ package com.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,8 +20,8 @@ public class ExamEntity {
     private int lastTime;
     private Integer studentNumber;
     private String examInformationStatus;
-    private Calendar createTime;
-    private Calendar updateTime;
+    private Date createTime;
+    private Date updateTime;
     private AdministratorEntity administratorEntity;
     private CourseEntity courseEntity;
     private Set<ClassroomEntity> classroomEntities;
@@ -161,7 +161,8 @@ public class ExamEntity {
         this.examInformationStatus = examInformationStatus;
     }
 
-    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, int lastTime, Integer studentNumber, String examInformationStatus, Calendar createTime, Calendar updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities/*, Set<TeacherWatchExamEntity> teacherWatchExamEntities*/) {
+
+    public ExamEntity(int id, String name, Timestamp startTime, Timestamp endTime, int lastTime, Integer studentNumber, String examInformationStatus, Date createTime, Date updateTime, AdministratorEntity administratorEntity, CourseEntity courseEntity, Set<ClassroomEntity> classroomEntities) {
         this.id = id;
         this.name = name;
         this.startTime = startTime;
@@ -174,28 +175,27 @@ public class ExamEntity {
         this.administratorEntity = administratorEntity;
         this.courseEntity = courseEntity;
         this.classroomEntities = classroomEntities;
-//        this.teacherWatchExamEntities = teacherWatchExamEntities;
     }
 
     @Basic
     @Column(name = "exa_createTime",insertable = false, updatable = false, columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Calendar createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "exa_updateTime", columnDefinition = "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Calendar updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
