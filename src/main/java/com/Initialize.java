@@ -1,42 +1,28 @@
 package com;
 
-import com.dao.*;
 import com.entity.*;
+import com.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Transactional
 public class Initialize {
-    private AdministratorEntityDao administratorEntityDao;
-    private ClassroomEntityDao classroomEntityDao;
-    private CourseEntityDao courseEntityDao;
-    private ExamEntityDao examEntityDao;
-    private FileMissionEntityDao fileMissionEntityDao;
-    private MissionEntityDao missionEntityDao;
-    private ReplyEntityDao replyEntityDao;
-    private ReplyMissionEntityDao replyMissionEntityDao;
-    private ResourceEntityDao resourceEntityDao;
-    private TeacherEntityDao teacherEntityDao;
-    private TeacherWatchClassroomEntityDao teacherWatchClassroomEntityDao;
-    private TitleEntityDao titleEntityDao;
-
     @Autowired
-    public Initialize(AdministratorEntityDao administratorEntityDao, ClassroomEntityDao classroomEntityDao, CourseEntityDao courseEntityDao, ExamEntityDao examEntityDao, FileMissionEntityDao fileMissionEntityDao, MissionEntityDao missionEntityDao, ReplyEntityDao replyEntityDao, ReplyMissionEntityDao replyMissionEntityDao, ResourceEntityDao resourceEntityDao, TeacherEntityDao teacherEntityDao, TeacherWatchClassroomEntityDao teacherWatchClassroomEntityDao, TitleEntityDao titleEntityDao) {
-        this.administratorEntityDao = administratorEntityDao;
-        this.classroomEntityDao = classroomEntityDao;
-        this.courseEntityDao = courseEntityDao;
-        this.examEntityDao = examEntityDao;
-        this.fileMissionEntityDao = fileMissionEntityDao;
-        this.missionEntityDao = missionEntityDao;
-        this.replyEntityDao = replyEntityDao;
-        this.replyMissionEntityDao = replyMissionEntityDao;
-        this.resourceEntityDao = resourceEntityDao;
-        this.teacherEntityDao = teacherEntityDao;
-        this.teacherWatchClassroomEntityDao = teacherWatchClassroomEntityDao;
-        this.titleEntityDao = titleEntityDao;
+    public Initialize(AdministratorServiceImpl administratorService, ClassroomServiceImpl classroomService, CourseServiceImpl courseService, ExamServiceImpl examService, FileMissionServiceImpl fileMissionService, MissionServiceImpl missionService, ReplyServiceImpl replyService, ReplyMissionServiceImpl replyMissionService, ResourceServiceImpl resourceService, TeacherServiceImpl teacherService, TeacherWatchClassroomServiceImpl teacherWatchClassroomService, TitleServiceImpl titleService) {
+
+        TitleEntity titleEntity = new TitleEntity();
+        titleEntity.setName("professor");
+        titleService.addTitle(titleEntity);
+
+        TitleEntity titleEntity1 = new TitleEntity();
+        titleEntity.setName("vice professor");
+        titleService.addTitle(titleEntity1);
+
+        TitleEntity titleEntity2 = new TitleEntity();
+        titleEntity2.setName("normal teacher");
+        titleService.addTitle(titleEntity2);
 
         TeacherEntity teacherEntity = new TeacherEntity();
         teacherEntity.setAccount("admin123");
@@ -46,7 +32,8 @@ public class Initialize {
         teacherEntity.setGender("male");
         teacherEntity.setPhone(123456789);
         teacherEntity.setEmail("123456@gmail.com");
-        teacherEntityDao.persist(teacherEntity);
+        teacherEntity.setTitleEntity(titleEntity);
+        teacherService.addTeacher(teacherEntity);
 
         TeacherEntity teacherEntity1 = new TeacherEntity();
         teacherEntity1.setAccount("user123");
@@ -56,7 +43,8 @@ public class Initialize {
         teacherEntity1.setGender("female");
         teacherEntity1.setPhone(1234567890);
         teacherEntity1.setEmail("111111@gmail.com");
-        teacherEntityDao.persist(teacherEntity1);
+        teacherEntity1.setTitleEntity(titleEntity1);
+        teacherService.addTeacher(teacherEntity1);
 
         TeacherEntity teacherEntity2 = new TeacherEntity();
         teacherEntity2.setAccount("user456");
@@ -66,16 +54,17 @@ public class Initialize {
         teacherEntity2.setGender("male");
         teacherEntity2.setPhone(123123123);
         teacherEntity2.setEmail("123123@gmail.com");
-        teacherEntityDao.persist(teacherEntity2);
+        teacherEntity2.setTitleEntity(titleEntity2);
+        teacherService.addTeacher(teacherEntity2);
 
         AdministratorEntity administratorEntity = new AdministratorEntity();
         administratorEntity.setTeacherEntity(teacherEntity);
-        administratorEntityDao.persist(administratorEntity);
+        administratorService.addAdministrator(administratorEntity);
 
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setCourseName("system design");
         courseEntity.setAdministratorEntity(administratorEntity);
-        courseEntityDao.persist(courseEntity);
+        courseService.addCourse(courseEntity);
 
         ExamEntity examEntity = new ExamEntity();
         examEntity.setName("system design first");
@@ -85,49 +74,49 @@ public class Initialize {
         examEntity.setStudentNumber(50);
         examEntity.setExamInformationStatus("created");
         examEntity.setCourseEntity(courseEntity);
-        examEntityDao.persist(examEntity);
+        examService.addExam(examEntity);
 
         ClassroomEntity classroomEntity = new ClassroomEntity();
         classroomEntity.setClassInformation("classroom 1");
         classroomEntity.setExamEntity(examEntity);
-        classroomEntityDao.persist(classroomEntity);
+        classroomService.addClassroom(classroomEntity);
 
         ClassroomEntity classroomEntity1 = new ClassroomEntity();
         classroomEntity1.setClassInformation("classroom 2");
         classroomEntity1.setExamEntity(examEntity);
-        classroomEntityDao.persist(classroomEntity1);
+        classroomService.addClassroom(classroomEntity1);
 
         MissionEntity missionEntity = new MissionEntity();
         missionEntity.setMissionType("fileMission");
         missionEntity.setMissionStatus("created");
         missionEntity.setAdministratorEntity(administratorEntity);
-        missionEntityDao.persist(missionEntity);
+        missionService.addMission(missionEntity);
 
         MissionEntity missionEntity1 = new MissionEntity();
         missionEntity1.setMissionType("replyMission");
         missionEntity1.setMissionStatus("created");
         missionEntity1.setAdministratorEntity(administratorEntity);
-        missionEntityDao.persist(missionEntity1);
+        missionService.addMission(missionEntity1);
 
         FileMissionEntity fileMissionEntity = new FileMissionEntity();
         fileMissionEntity.setName("upload personal file");
         fileMissionEntity.setDescription("upload every teacher's file");
 //        fileMissionEntity.setDeadline();
         fileMissionEntity.setMissionEntity(missionEntity);
-        fileMissionEntityDao.persist(fileMissionEntity);
+        fileMissionService.addFileMission(fileMissionEntity);
 
         ReplyMissionEntity replyMissionEntity = new ReplyMissionEntity();
         replyMissionEntity.setName("reply the request");
         replyMissionEntity.setDescription("every teacher should reply the request");
 //        replyMissionEntity.setDeadline();
         replyMissionEntity.setMissionEntity(missionEntity1);
-        replyMissionEntityDao.persist(replyMissionEntity);
+        replyMissionService.addReplyMission(replyMissionEntity);
 
         ResourceEntity resourceEntity = new ResourceEntity();
         resourceEntity.setName("this is a resource");
         resourceEntity.setTeacherEntity(teacherEntity2);
         resourceEntity.setFileMissionEntity(fileMissionEntity);
-        resourceEntityDao.persist(resourceEntity);
+        resourceService.addResource(resourceEntity);
 
         ReplyEntity replyEntity = new ReplyEntity();
         replyEntity.setReplyInformation("this is my reply");
@@ -135,7 +124,14 @@ public class Initialize {
 //     默认为当前时间   replyEntity.setReplyTime();
         replyEntity.setTeacherEntity(teacherEntity1);
         replyEntity.setReplyMissionEntity(replyMissionEntity);
-        replyEntityDao.persist(replyEntity);
+        replyService.addReply(replyEntity);
+
+        TeacherWatchClassroomEntity teacherWatchClassroomEntity = new TeacherWatchClassroomEntity();
+        teacherWatchClassroomEntity.setClassroomEntity(classroomEntity);
+        teacherWatchClassroomEntity.setTeacherEntity(teacherEntity1);
+        teacherWatchClassroomEntity.setTeacherEntity(teacherEntity2);
+        teacherWatchClassroomService.addTeacherWatchClassroom(teacherWatchClassroomEntity);
+
 
     }
 }

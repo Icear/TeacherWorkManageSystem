@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.*;
+import java.net.URISyntaxException;
 
 @ControllerAdvice
 public class ExceptionController {
@@ -50,15 +51,17 @@ public class ExceptionController {
 //        return "redirect:" + request.getHeader("referer");
 //    }
 
-    /**
-     * 没有找到对应的实体
-     * @param e 未找到结果异常
-     */
-    @ExceptionHandler(NoResultException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void getNoResultException(NoResultException e) {
-        logger.info("未找到对应的实体", e);
-    }
+
+    //这个异常应该自己在dao层定义
+//    /**
+//     * 没有找到对应的实体
+//     * @param e 未找到结果异常
+//     */
+//    @ExceptionHandler(NoResultException.class)
+//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+//    public void getNoResultException(NoResultException e) {
+//        logger.info("未找到对应的实体", e);
+//    }
 
     //    public HttpServletResponse getNoResultException(HttpServletResponse response) {
 //        logger.debug("未找到对应的实体");
@@ -195,5 +198,11 @@ public class ExceptionController {
 //    public void getPersistenceException(PersistenceException e) {
 //        logger.error("持久化异常，本次事务回滚", e);
 //    }
+
+    @ExceptionHandler(URISyntaxException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public void getURISyntaxException(URISyntaxException e) {
+        logger.error("URI错误", e);
+    }
 
 }
