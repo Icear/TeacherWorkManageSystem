@@ -50,6 +50,16 @@ public class TeacherController {
         return teacherService.findTeacher(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    @Authority(role = Identity.User)
+    @Authority(role = Identity.Administrator)
+    @GetMapping(RequestPathName.TEACHERS + "/{name}")
+    @ResponseBody
+    @Validated
+    public List<TeacherEntity> getTeachers(@PathVariable @NotNull String name) {
+        logger.info("get Teachers by name: " + name);
+        return teacherService.findTeacherByName(name);
+    }
+
     @Authority(role = Identity.Administrator)
     @PostMapping(RequestPathName.TEACHERS)
     @Validated

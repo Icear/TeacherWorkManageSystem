@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Component
 @Transactional
 public class Initialize {
-
     @Autowired
     public Initialize(AdministratorServiceImpl administratorService, ClassroomServiceImpl classroomService, CourseServiceImpl courseService, ExamServiceImpl examService, FileMissionServiceImpl fileMissionService, MissionServiceImpl missionService, ReplyServiceImpl replyService, ReplyMissionServiceImpl replyMissionService, ResourceServiceImpl resourceService, TeacherServiceImpl teacherService, TeacherWatchClassroomServiceImpl teacherWatchClassroomService, TitleServiceImpl titleService) {
 
