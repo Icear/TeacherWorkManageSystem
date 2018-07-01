@@ -12,7 +12,7 @@ public class EMSServiceImpl implements EMSService {
     private static Logger logger = LogManager.getLogger(EMSServiceImpl.class);
 
     @Override
-    public void sendEMS(String emsContent) {
-        logger.debug(emsContent);
+    public void sendEMS(String phoneNumber, String emsContent) {
+        logger.info("send content: " + emsContent + " to" + phoneNumber);
     }
 }

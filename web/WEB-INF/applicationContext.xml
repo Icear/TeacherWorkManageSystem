@@ -54,9 +54,9 @@
     <!-- 配置数据源 -->
     <!-- spring自带实现没有连接池管理能力，只是单纯地在需要时启动了一个连接，高负载时需要注意 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${DATASOURCE_DRIVERNAME}"/>
+        <property name="driverClassName" value="${DATASOURCE_DRIVER_NAME}"/>
         <property name="url" value="${DATASOURCE_URL}"/>
-        <property name="username" value="${DATASOUCE_USERNAME}"/>
+        <property name="username" value="${DATASOURCE_USERNAME}"/>
         <property name="password" value="${DATASOURCE_PASSWORD}"/>
     </bean>
     <bean id="persistenceProvider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
@@ -90,7 +90,7 @@
         <!-- 上传文件的最大值，单位字节-->
         <property name="maxUploadSize" value="${UPLOAD_MAX_UPLOAD_SIZE}"/>
         <!-- 内存占用最大值，默认10240，5MB -->
-        <property name="maxInMemorySize" value="${UPLOAD_MAX_IN_MEMOR_YSIZE}"/>
+        <property name="maxInMemorySize" value="${UPLOAD_MAX_IN_MEMORY_SIZE}"/>
         <!-- 临时文件目录，默认为Web容器默认临时目录 -->
         <property name="uploadTempDir" value="${UPLOAD_TEMP_DIRECTORY}"/>
         <!-- 请求编码格式 -->

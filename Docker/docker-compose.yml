@@ -31,5 +31,5 @@ services:
       - database_bridge
     environment:
       - DATASOURCE_URL=jdbc:mysql://database:3306/teacherworkmanagesystemdatabase
-      - DATASOUCE_USERNAME=root
+      - DATASOURCE_USERNAME=root
       - DATASOURCE_PASSWORD=root
