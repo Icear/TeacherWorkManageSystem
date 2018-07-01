@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.persistence.*;
+import java.net.URISyntaxException;
 
 @ControllerAdvice
 public class ExceptionController {
@@ -197,5 +198,11 @@ public class ExceptionController {
 //    public void getPersistenceException(PersistenceException e) {
 //        logger.error("持久化异常，本次事务回滚", e);
 //    }
+
+    @ExceptionHandler(URISyntaxException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public void getURISyntaxException(URISyntaxException e) {
+        logger.error("URI错误", e);
+    }
 
 }
