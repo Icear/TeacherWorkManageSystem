@@ -1,9 +1,12 @@
 package com.dao;
 
 import com.entity.AdministratorEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -15,6 +18,8 @@ import javax.persistence.Query;
 public class AdministratorEntityDao extends GenericDao<AdministratorEntity> {
     public AdministratorEntityDao() {
     }
+
+    private static Logger logger = LogManager.getLogger(AdministratorEntityDao.class);
 
     /**
      * 根据管理员实体类里老师实体的id查找管理员
@@ -29,7 +34,12 @@ public class AdministratorEntityDao extends GenericDao<AdministratorEntity> {
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("id",id);
         AdministratorEntity administratorEntity;
-        administratorEntity = (AdministratorEntity) query.getSingleResult();
+        try {
+            administratorEntity = (AdministratorEntity) query.getSingleResult();
+        } catch (NoResultException e) {
+            logger.info("未找到实体");
+            return null;
+        }
         return administratorEntity;
     }
 

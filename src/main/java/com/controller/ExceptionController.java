@@ -50,15 +50,17 @@ public class ExceptionController {
 //        return "redirect:" + request.getHeader("referer");
 //    }
 
-    /**
-     * 没有找到对应的实体
-     * @param e 未找到结果异常
-     */
-    @ExceptionHandler(NoResultException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void getNoResultException(NoResultException e) {
-        logger.info("未找到对应的实体", e);
-    }
+
+    //这个异常应该自己在dao层定义
+//    /**
+//     * 没有找到对应的实体
+//     * @param e 未找到结果异常
+//     */
+//    @ExceptionHandler(NoResultException.class)
+//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+//    public void getNoResultException(NoResultException e) {
+//        logger.info("未找到对应的实体", e);
+//    }
 
     //    public HttpServletResponse getNoResultException(HttpServletResponse response) {
 //        logger.debug("未找到对应的实体");
