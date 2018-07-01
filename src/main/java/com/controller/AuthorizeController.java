@@ -13,9 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -44,9 +43,9 @@ public class AuthorizeController {
     @ResponseStatus(code = HttpStatus.OK)
     public @ResponseBody
     Map<String, String> authorize(
-            @RequestAttribute @NotNull @Max(value = 18) @Min(value = 6)
+            @NotNull @Size(min = 6, max = 18)
                     String account,
-            @RequestAttribute @NotNull @Max(value = 255) @Min(value = 6)
+            @NotNull @Size(min = 6, max = 18)
                     String password) {
         Map<String, String> responseBodyMap = new HashMap<>();
 
@@ -55,6 +54,7 @@ public class AuthorizeController {
         Optional<TeacherEntity> teacher = teacherService.findTeacher(account);
 
         //查找教师身份并核对密码，通过则返回成功
+        //TODO 等待下层修复EntityNotFound异常
         if (teacher.isPresent() && PasswordUtil.compare(password, teacher.get().getPassword())) {
             responseBodyMap.put("isSuccess", "true");
             responseBodyMap.put("token", authorizeService.applyToken(teacher.get()));
@@ -72,7 +72,6 @@ public class AuthorizeController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public @ResponseBody
     Map<String, String> removeToken(
-            @RequestAttribute
             @NotNull
                     String token) {
         authorizeService.destroyToken(token);
