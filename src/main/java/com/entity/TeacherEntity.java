@@ -147,7 +147,7 @@ public class TeacherEntity {
     @Basic
     @Column(name = "password")
     @NotNull
-    @Size( max = 6)
+    @Size(min = 6)
     public String getPassword() {
         return password;
     }
