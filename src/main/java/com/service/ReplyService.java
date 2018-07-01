@@ -2,10 +2,12 @@ package com.service;
 
 import com.entity.ReplyEntity;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public interface ReplyService {
     /**
      * 教师回复信息，即添加reply至replyEntity中

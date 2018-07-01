@@ -5,6 +5,7 @@
        xmlns:task="http://www.springframework.org/schema/task"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
     http://www.springframework.org/schema/context
@@ -14,7 +15,9 @@
     http://www.springframework.org/schema/task
     http://www.springframework.org/schema/task/spring-task.xsd
     http://www.springframework.org/schema/mvc
-    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="com"/>
     <!-- 启用cglib代理 -->
@@ -23,11 +26,12 @@
     <task:annotation-driven/>
     <!-- 启用注解 -->
     <mvc:annotation-driven/>
-
+    <tx:annotation-driven/>
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*"/>
             <mvc:exclude-mapping path="/authorize"/>
+            <mvc:exclude-mapping path="/initialize"/>
             <bean class="com.filter.RESTAuthorizeFilter"/>
         </mvc:interceptor>
     </mvc:interceptors>

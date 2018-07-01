@@ -1,17 +1,52 @@
-package com;
+package com.controller;
 
 import com.entity.*;
-import com.service.impl.*;
+import com.service.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Component
-@Transactional
-public class Initialize {
+@Controller
+public class InitializeController {
+    private Logger logger = LogManager.getLogger(InitializeController.class);
+    private TitleService titleService;
+    private TeacherService teacherService;
+    private AdministratorService administratorService;
+    private CourseService courseService;
+    private ExamService examService;
+    private MissionService missionService;
+    private ClassroomService classroomService;
+    private FileMissionService fileMissionService;
+    private ReplyMissionService replyMissionService;
+    private ResourceService resourceService;
+    private ReplyService replyService;
+    private TeacherWatchClassroomService teacherWatchClassroomService;
+
+
     @Autowired
-    public Initialize(AdministratorServiceImpl administratorService, ClassroomServiceImpl classroomService, CourseServiceImpl courseService, ExamServiceImpl examService, FileMissionServiceImpl fileMissionService, MissionServiceImpl missionService, ReplyServiceImpl replyService, ReplyMissionServiceImpl replyMissionService, ResourceServiceImpl resourceService, TeacherServiceImpl teacherService, TeacherWatchClassroomServiceImpl teacherWatchClassroomService, TitleServiceImpl titleService) {
+    public InitializeController(TitleService titleService, TeacherService teacherService, AdministratorService administratorService, CourseService courseService, ExamService examService, MissionService missionService, ClassroomService classroomService, FileMissionService fileMissionService, ReplyMissionService replyMissionService, ResourceService resourceService, ReplyService replyService, TeacherWatchClassroomService teacherWatchClassroomService) {
+        this.titleService = titleService;
+        this.teacherService = teacherService;
+        this.administratorService = administratorService;
+        this.courseService = courseService;
+        this.examService = examService;
+        this.missionService = missionService;
+        this.classroomService = classroomService;
+        this.fileMissionService = fileMissionService;
+        this.replyMissionService = replyMissionService;
+        this.resourceService = resourceService;
+        this.replyService = replyService;
+        this.teacherWatchClassroomService = teacherWatchClassroomService;
+    }
 
+    @RequestMapping("/initialize")
+    @ResponseStatus(HttpStatus.OK)
+    public void initialize() {
+        logger.info("start initialize");
         TitleEntity titleEntity = new TitleEntity();
         titleEntity.setName("professor");
         titleService.addTitle(titleEntity);
@@ -132,6 +167,6 @@ public class Initialize {
         teacherWatchClassroomEntity.setTeacherEntity(teacherEntity2);
         teacherWatchClassroomService.addTeacherWatchClassroom(teacherWatchClassroomEntity);
 
-
+        logger.info("initialize finished");
     }
 }

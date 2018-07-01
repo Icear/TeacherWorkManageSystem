@@ -2,10 +2,12 @@ package com.service;
 
 import com.entity.ResourceEntity;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public interface ResourceService {
     /**
      * 添加新的resource到表中

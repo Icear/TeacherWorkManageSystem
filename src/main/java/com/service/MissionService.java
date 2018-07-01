@@ -2,10 +2,12 @@ package com.service;
 
 import com.entity.MissionEntity;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public interface MissionService {
     /**
      * 管理员创建指定类型任务

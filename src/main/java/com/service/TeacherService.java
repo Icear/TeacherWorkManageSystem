@@ -2,10 +2,12 @@ package com.service;
 
 import com.entity.TeacherEntity;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public interface TeacherService {
     /**
      * 根据id查询教师信息

@@ -2,10 +2,12 @@ package com.service;
 
 import com.entity.ReplyMissionEntity;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public interface ReplyMissionService {
     /**
      * 添加replyMission
