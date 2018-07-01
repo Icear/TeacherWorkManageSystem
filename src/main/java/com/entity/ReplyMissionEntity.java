@@ -104,7 +104,7 @@ public class ReplyMissionEntity {
     }
 
     @Basic
-    @Column(name = "rep_mis_createTime", insertable = false, updatable = false, columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date")
+    @Column(name = "rep_mis_createTime", insertable = false, updatable = false, columnDefinition = "Date NOT NULL DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreateTime() {
         return createTime;
@@ -115,7 +115,7 @@ public class ReplyMissionEntity {
     }
 
     @Basic
-    @Column(name = "rep_mis_updateTime", columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date ON UPDATE CURRENT_Date")
+    @Column(name = "rep_mis_updateTime", columnDefinition = "Date NOT NULL DEFAULT CURRENT_Date ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getUpdateTime() {
         return updateTime;
