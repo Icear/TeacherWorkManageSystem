@@ -1,10 +1,13 @@
 package com.dao;
 
 import com.entity.ClassroomEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -16,6 +19,8 @@ import java.util.List;
  */
 @Repository
 public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
+
+    private static Logger logger = LogManager.getLogger(ClassroomEntityDao.class);
 
     public ClassroomEntityDao() {
     }
@@ -30,7 +35,13 @@ public class ClassroomEntityDao extends GenericDao<ClassroomEntity> {
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("classInformation",classInformation);
         ClassroomEntity classroomEntity;
-        classroomEntity = (ClassroomEntity) query.getSingleResult();
+        try {
+            classroomEntity = (ClassroomEntity) query.getSingleResult();
+        } catch (NoResultException e) {
+            logger.info("未找到实体");
+            return null;
+        }
+
         return classroomEntity;
     }
 

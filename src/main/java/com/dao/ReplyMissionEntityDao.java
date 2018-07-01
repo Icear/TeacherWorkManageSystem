@@ -1,10 +1,13 @@
 package com.dao;
 
 import com.entity.ReplyMissionEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -13,6 +16,9 @@ import javax.persistence.Query;
  */
 @Repository
 public class ReplyMissionEntityDao extends GenericDao<ReplyMissionEntity> {
+
+    private static Logger logger = LogManager.getLogger(ReplyMissionEntityDao.class);
+
     public ReplyMissionEntityDao() {
     }
     /**
@@ -26,7 +32,13 @@ public class ReplyMissionEntityDao extends GenericDao<ReplyMissionEntity> {
         Query query = getEntityManager().createQuery(jpql);
         query.setParameter("name",name);
         ReplyMissionEntity replyMissionEntity;
-        replyMissionEntity = (ReplyMissionEntity) query.getSingleResult();
+        try {
+            replyMissionEntity = (ReplyMissionEntity) query.getSingleResult();
+        } catch (NoResultException e) {
+            logger.info("未找到实体");
+            return null;
+        }
+
         return  replyMissionEntity;
     }
 }
