@@ -60,7 +60,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
         do {
             //出现重复Token则重新生成
             token = generateToken();
-        } while (!tokenMap.containsKey(token));
+        } while (tokenMap.containsKey(token));
 
         tokenMap.put(token, tokenInfo);//保存Token数据，开始生效
         return token;
